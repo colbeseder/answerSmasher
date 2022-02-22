@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: backend-namespace
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: main-deployment
+  namespace: backend-namespace
+  labels:
+    app: smasher
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: smasher
+  template:
+    metadata:
+      labels:
+        app: smasher
+    spec:
+      containers:
+      - name: backend
+        image: colbeseder/smasherbackend
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: apigate
+  namespace: backend-namespace
+  labels:
+    service: apigate
+spec:
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+  selector:
+    app: smasher
+  externalIPs:
+  - 192.168.64.2

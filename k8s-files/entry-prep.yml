@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: entry-prep
+  labels:
+    app: smasher
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: smasher
+  template:
+    metadata:
+      labels:
+        app: smasher
+    spec:
+      containers:
+      - name: backend
+        image: colbeseder/smasher-entry-prep
+        imagePullPolicy: Always
