@@ -1,0 +1,34 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Docker Login
+      env:
+        DOCKER_USER: ${{secrets.DOCKER_USER}}
+        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+      run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+    - name: Build Backend Image
+      run: docker build --tag colbeseder/smasherbackend:latest -f backend/Dockerfile .
+    - name: Build Frontend Image
+      run: docker build --tag colbeseder/smasherfrontend:latest -f frontend/Dockerfile .
+    - name: Build prepareEntries Image
+      run: docker build --tag colbeseder/smasher-entry-prep:latest -f prepareEntries .
+    - name: Push Backend
+      run: docker push colbeseder/smasherbackend:latest
+    - name: Push Frontend
+      run: docker push colbeseder/smasherfrontend:latest
+    - name: Push prepareEntries
+      run: docker push colbeseder/smasher-entry-prep:latest
+
