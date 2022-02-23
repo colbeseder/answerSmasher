@@ -11,24 +11,40 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Docker Login
-      env:
-        DOCKER_USER: ${{secrets.DOCKER_USER}}
-        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-      run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-    - name: Build Backend Image
-      run: docker build --tag ${{secrets.DOCKER_USER}}/smasherbackend:latest -f backend/Dockerfile .
-    - name: Build Frontend Image
-      run: docker build --tag ${{secrets.DOCKER_USER}}/smasherfrontend:latest -f frontend/Dockerfile .
-    - name: Build prepareEntries Image
-      run: docker build --tag ${{secrets.DOCKER_USER}}/smasher-entry-prep:latest -f prepareEntries .
-    - name: Push Backend
-      run: docker push ${{secrets.DOCKER_USER}}/smasherbackend:latest
-    - name: Push Frontend
-      run: docker push ${{secrets.DOCKER_USER}}/smasherfrontend:latest
-    - name: Push prepareEntries
-      run: docker push ${{secrets.DOCKER_USER}}/smasher-entry-prep:latest
-
+steps:
+      -
+        name: Checkout 
+        uses: actions/checkout@v2
+      -
+        name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      -
+        name: Build and push Backend
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: backend/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/smasherbackend:latest
+      -
+        name: Build and push Frontend
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: frontend/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/smasherfrontend:latest
+      -
+        name: Build and push prepareEntries
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: prepareEntries/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/prepareEntries:latest
