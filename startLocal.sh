@@ -1,8 +1,3 @@
-docker pull mongo
-docker run -d -p 27017-27019:27017-27019 --name mongodb mongo
-source constants.sh
-cd backend
-bash start.sh &
-cd ..
-cd prepareEntries
-node app.js &
+minikube start
+kubectl apply -f k8s-files
+kubectl port-forward service/apigate 3000:3000 --namespace backend-namespace
