@@ -26,6 +26,10 @@ mongoose.connect(MongoURI)
 function getRandomDoc(model){
   return new Promise((resolve, reject) => {
     model.count().exec(function(err, count){
+      if (count ===0){
+        resolve();
+        return;
+      }
       var random = Math.floor(Math.random() * count);
       
       model.findOne().skip(random).exec(
@@ -49,16 +53,24 @@ app.post('/api/entry/:title', (req, res) => {
   if(!isConnected) {
     res.send('Not ready')
   }
+  if (req.params.success === false){
+    Raw.deleteOne({ _id: req.params.title}).catch();
+    res.send(req.params);
+    return;
+  }
   var entry = new Entry({
     _id: req.params.title,
     start: req.body.start,
     end: req.body.end,
-    clue: req.body.clue
+    clue: req.body.clue,
+    pattern: req.body.pattern
   });
   entry.save()
     .then(result => {
       //console.log(result);
-      res.send(result)})
+      res.send(result);
+      Raw.deleteOne({ _id: req.params.title});
+    })
     .catch(err => res.send(err));
 });
 
@@ -73,11 +85,14 @@ function findPair(first){
   return new Promise((resolve, reject) => {
     getEntryByStart(first.end).then(second => {
       try {
+        var pronounciation = [...first.pattern]
+        pronounciation.push(...second.pattern.slice(3))
         var smash = {
 					firstAnswer: first._id,
 					firstClue: first.clue,
 					secondAnswer: second._id,
-					secondClue: second.clue
+					secondClue: second.clue,
+          pronounciation: pronounciation.join('')
 				}
         resolve(smash)
       }
@@ -109,7 +124,7 @@ function getEntryByStart(start){
 
 app.get('/api/entryByStart/:start', (req, res) => {
   if(!isConnected) {
-    res.send('Not ready')
+    res.send('Not ready');
   }
   getEntryByStart(req.params.start).then(entry => res.send(entry));
 });

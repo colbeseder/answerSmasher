@@ -4,20 +4,33 @@
         <link rel="stylesheet" href="static/style.css">
     </head>
     <body>
-        <button id="next">Next Smash</button>
-        <table>
-            <tr>
-                <td id="clue1"> </td>
-                <td id="clue2"> </td>
-            </tr>
-            <tr>
-                <td><div id="answer1" contenteditable="true"></div></td>
-                <td><div id="answer2"contenteditable="true"></div></td>
-            </tr>
+        <h1>Answer Smasher</h1>
+        <div>
+            <div class="q">
+                <div id="clue1" class="clue"> </div>
+                <div id="answer1" contenteditable="true"></div>
+            </div>
+            <div class="q">
+                <div id="clue2" class="clue"> </div>
+                <div id="answer2" contenteditable="true"></div>
+            </div>
+            <div id="controls">
+                <div id="buttonGroup1">
+                    <button id="submit">Submit</button>   
+                    <button id="reveal">Reveal</button><br>
+                </div>
 
-        </table>
-        <button id="submit">Submit</button><button id="reveal">Reveal</button><br>
-        <div id="result"></div>
+                <div>
+                    <span id="result"></span><br>
+                    <span id="answer"></span><br>
+                    <span id="IPA"></span>
+                </div>
+                <div id="buttonGroup2">
+                    <button id="next">Next Smash</button><br>
+                </div>
+            </div>
+        </div>
+       
         
         <script src="static/smash.js"></script>
     </body>

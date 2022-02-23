@@ -1,12 +1,29 @@
 body {
-    background-color:oldlace
+    background-color:white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 div[contenteditable=true] {
     background-color: white;
-    border: solid black 2px;
 }
 
-td {
+div.q {
+    float: left;
     width: 30em;
+    height: 8em;
+    padding: 0.5em;
+    margin:1em;
+    background-color:oldlace;
+}
+
+.clue {
+    height: 6em;
+}
+
+#controls {
+    clear: left;
+}
+
+#buttonGroup2 {
+    display: none;
 }
