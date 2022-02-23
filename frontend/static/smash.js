@@ -76,7 +76,7 @@ function combineSpelling(){
     else {
         var parts = a.split(joint);
         parts.pop();
-        return leadCapital(parts.join(joint)) + leadCapital(b)
+        return leadCapital(parts.join(joint) + b)
     }
 }
 
