@@ -80,6 +80,14 @@ function combineSpelling(){
     }
 }
 
+function digest(a, b){
+    return btoa(a + "," + b);
+}
+
+function fromDigest(){
+    
+}
+
 function revealOnEnter(ev){
     if (ev.key ===  "Enter") {
         checkSmash();

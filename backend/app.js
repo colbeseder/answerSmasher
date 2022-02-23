@@ -1,5 +1,6 @@
 const express = require('express')
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
+const atob = require('atob');
 const Entry = require('./models/entry');
 const Smash = require('./models/smash')
 const Raw = require('./models/raw')
@@ -81,19 +82,24 @@ app.get('/api/entry/:title', (req, res) => {
   Entry.findById(req.params.title).then(result => res.send(result))
 });
 
+function combine(first, second){
+  var pronounciation = [...first.pattern]
+  pronounciation.push(...second.pattern.slice(3))
+  var smash = {
+    firstAnswer: first._id,
+    firstClue: first.clue,
+    secondAnswer: second._id,
+    secondClue: second.clue,
+    pronounciation: pronounciation.join('')
+  }
+  return smash;
+}
+
 function findPair(first){
   return new Promise((resolve, reject) => {
     getEntryByStart(first.end).then(second => {
       try {
-        var pronounciation = [...first.pattern]
-        pronounciation.push(...second.pattern.slice(3))
-        var smash = {
-					firstAnswer: first._id,
-					firstClue: first.clue,
-					secondAnswer: second._id,
-					secondClue: second.clue,
-          pronounciation: pronounciation.join('')
-				}
+        var smash = combine(first, second);
         resolve(smash)
       }
       catch (err){
@@ -111,6 +117,26 @@ app.get('/api/smash', (req, res) => {
     .then(result => findPair(result))
     .then(pair => res.send(pair))
     .catch(err => res.send(err));
+});
+
+
+app.get('/api/combine/:digest', (req, res) => {
+  if(!isConnected) {
+    res.send('Not ready')
+  }
+  try {
+  var uncoded = atob(req.params.digest);
+  var words = uncoded.split();
+  Promise.all(
+    Entry.findById(words[0]),
+    Entry.findById(words[0]))
+      .then(function(entries){
+        res.send(combine(entries[0], entries[1]))
+      });
+  }
+  catch(er){
+    res.send(er);
+  }
 });
 
 function getEntryByStart(start){
