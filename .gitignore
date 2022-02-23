@@ -3,3 +3,5 @@ build
 npm-debug.log
 .env
 .DS_Store
+backend/resources/Collins Scrabble Words (2019).txt
+backend/resources/enwiki-20220219-all-titles-in-ns-0
