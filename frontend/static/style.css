@@ -1,0 +1,12 @@
+body {
+    background-color:oldlace
+}
+
+div[contenteditable=true] {
+    background-color: white;
+    border: solid black 2px;
+}
+
+td {
+    width: 30em;
+}
