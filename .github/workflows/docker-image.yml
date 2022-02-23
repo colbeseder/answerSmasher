@@ -20,15 +20,15 @@ jobs:
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
       run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: Build Backend Image
-      run: docker build --tag colbeseder/smasherbackend:latest -f backend/Dockerfile .
+      run: docker build --tag ${{secrets.DOCKER_USER}}/smasherbackend:latest -f backend/Dockerfile .
     - name: Build Frontend Image
-      run: docker build --tag colbeseder/smasherfrontend:latest -f frontend/Dockerfile .
+      run: docker build --tag ${{secrets.DOCKER_USER}}/smasherfrontend:latest -f frontend/Dockerfile .
     - name: Build prepareEntries Image
-      run: docker build --tag colbeseder/smasher-entry-prep:latest -f prepareEntries .
+      run: docker build --tag ${{secrets.DOCKER_USER}}/smasher-entry-prep:latest -f prepareEntries .
     - name: Push Backend
-      run: docker push colbeseder/smasherbackend:latest
+      run: docker push ${{secrets.DOCKER_USER}}/smasherbackend:latest
     - name: Push Frontend
-      run: docker push colbeseder/smasherfrontend:latest
+      run: docker push ${{secrets.DOCKER_USER}}/smasherfrontend:latest
     - name: Push prepareEntries
-      run: docker push colbeseder/smasher-entry-prep:latest
+      run: docker push ${{secrets.DOCKER_USER}}/smasher-entry-prep:latest
 
