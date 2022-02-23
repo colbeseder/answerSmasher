@@ -47,4 +47,4 @@ jobs:
           context: .
           file: prepareEntries/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/prepareEntries:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/smasher-entry-prep:latest
