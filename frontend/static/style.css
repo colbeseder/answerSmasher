@@ -1,26 +1,26 @@
 :root {
-/* CSS HEX */
---rose-madder: #da2c38ff;
---jet: #353535ff;
---cool-grey: #938ba1ff;
---blond: #f4f0bbff;
---deep-champagne: #e1d89f;
+    --xiketic: #130303;
+    --cinnabar: #D64933;
+    --cool-grey: #938ba1ff;
+    --periwinkle-crayola: #C9DDFF;
+    --state-blue: #6665DD;
 }
 
 body {
-    background-color: var(--blond);
+    background-color: var(--periwinkle-crayola);
     font-family: Actor, Verdana, Geneva, Tahoma, sans-serif;
-    color: var(--jet)
+    color: var(--xiketic)
 }
 
 h1 {
-    border-bottom: solid 1px var(--cool-grey);
+    border-bottom: solid 1px var(--xiketic);
     text-align: center;
     font-size: xxx-large;
+    color: var(--cinnabar)
 }
 
 div[contenteditable=true] {
-    background-color: var(--blond);
+    background-color: var(--periwinkle-crayola);
 }
 
 div.q {
@@ -28,12 +28,17 @@ div.q {
     height: auto;
     padding: 0.5em;
     margin-left: auto;
-    background-color: var(--deep-champagne);
-    color: var(--rose-madder);
+    background-color: var(--state-blue);
+    color: var(--xiketic);
     font-size: xx-large;
     margin-right: auto;
     margin-top: 15px;
     margin-bottom: 25px;
+    background-clip: padding-box;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    box-shadow: rgb(0 0 0 / 2%) 0 1px 3px 0;
+    box-sizing: border-box;
 }
 
 
@@ -48,8 +53,9 @@ span#answer {
 
 #def {
     margin-top: 2.5em;
-    color: var(--jet);
+    color: var(--xiketic);
     min-height: 5em;
+
     margin-left: 2.5em;
     font-size: larger;
 }
@@ -64,12 +70,12 @@ button {
     float: right;
     align-items: center;
     background-clip: padding-box;
-    background-color: var(--rose-madder);
+    background-color: var(--xiketic);
     border: 1px solid transparent;
     border-radius: 0.25rem;
     box-shadow: rgb(0 0 0 / 2%) 0 1px 3px 0;
     box-sizing: border-box;
-    color: var(--blond);
+    color: var(--periwinkle-crayola);
     font-size: 16px;
     font-weight: 600;
     min-height: 3rem;
@@ -86,4 +92,8 @@ span#result {
     font-size: larger;
     float: right;
     margin-right: 5em;
+}
+
+span#IPA {
+    font-size: medium;
 }
