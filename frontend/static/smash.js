@@ -121,18 +121,9 @@ function leadingLower(s){
     return s.replace(/^\s*[A-Z]/, x => x.toLowerCase());
 }
 
-var breakers = "(,|\band\b|\bor\b|\bwith\b|\bfor\b|\bof\b)";
+var breakers = "(,|\band\b|\bor\b|\bwith\b|\bfor\b|\bof\b|\bin\b)";
 
 function combineDef(){
-    var a = removeBrackets(currentSmash.firstClue).split(/(?=,)|\s+/g);
-    var b = leadingLower(removeBrackets(currentSmash.secondClue)).split(/(?=,)|\s+/g);
-    for (var i = 2; i < Math.min(a.length, 9); i++){
-        let idx = b.indexOf(a[i]);
-        if (idx > -1){
-            return (a.slice(0, i).join(' ') + ' ' + b.slice(idx).join(' ')).replace(/\s+,/g, ',');
-        }
-    }
-
     var joiner = ' ';
     var re = new RegExp(breakers, 'i');
     if (!re.test(currentSmash.firstClue) && !!re.test(currentSmash.firstClue)){
