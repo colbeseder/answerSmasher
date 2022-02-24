@@ -125,14 +125,15 @@ app.get('/api/combine/:digest', (req, res) => {
     res.send('Not ready')
   }
   try {
-  var uncoded = atob(req.params.digest);
-  var words = uncoded.split();
-  Promise.all(
-    Entry.findById(words[0]),
-    Entry.findById(words[0]))
-      .then(function(entries){
-        res.send(combine(entries[0], entries[1]))
-      });
+    var uncoded = atob(req.params.digest);
+    var words = uncoded.split(',');
+    Promise.all([
+      Entry.findById(words[0]),
+      Entry.findById(words[1])])
+        .then(function(entries){
+          res.send(combine(entries[0], entries[1]))
+        })
+        .catch(er => res.send(er));
   }
   catch(er){
     res.send(er);

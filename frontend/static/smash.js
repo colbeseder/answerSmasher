@@ -1,6 +1,7 @@
 var currentSmash = {};
 
 function next(){
+    location.hash = '';
     getNewSmash()
         .then(r => updateSmash(r))
         .catch(next)
@@ -31,10 +32,16 @@ function updateSmash(smash){
 
     document.getElementById("buttonGroup1").style.display = "block";
     document.getElementById("buttonGroup2").style.display = "none";
+    window.history.pushState('', '', '?d=' + createDigest(currentSmash));
+    if(/reveal/.test(location.hash)){
+        reveal();
+    }
+
     document.getElementById("answer1").focus();
 }
 
 function reveal(){
+    location.hash = 'reveal';
     document.getElementById("answer1").innerHTML = currentSmash.firstAnswer;
     document.getElementById("answer2").innerHTML = currentSmash.secondAnswer;
     document.getElementById("result").innerText = "Revealed";
@@ -80,12 +87,21 @@ function combineSpelling(){
     }
 }
 
-function digest(a, b){
-    return btoa(a + "," + b);
+function createDigest(smash){
+    return btoa(smash.firstAnswer + "," + smash.secondAnswer);
 }
 
-function fromDigest(){
-    
+function getSmashfromDigest(digest){
+    return new Promise((resolve, reject) => {
+        fetch("http://localhost:3000/api/combine/" + digest).then(r => r.json()).then(smash => {
+            if (smash.firstAnswer) {
+                updateSmash(smash);
+            }
+            else {
+                next();
+            }
+        });
+    });
 }
 
 function revealOnEnter(ev){
@@ -100,4 +116,11 @@ document.getElementById("next")?.addEventListener("click", next);
 document.getElementById("reveal").addEventListener("click", reveal);
 document.getElementById("answer1").addEventListener("keypress", revealOnEnter);
 document.getElementById("answer2").addEventListener("keypress", revealOnEnter);
-next();
+
+var digest = /[?&]d=([A-Z0-9/+=]+)/i.exec(location.search)?.at(1);
+if (digest){
+    getSmashfromDigest(digest);
+}
+else {
+    next();
+}
