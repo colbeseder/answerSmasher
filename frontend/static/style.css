@@ -87,3 +87,7 @@ span#result {
     float: right;
     margin-right: 5em;
 }
+
+span#IPA {
+    font-size: medium;
+}
