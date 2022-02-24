@@ -36,6 +36,7 @@ function updateSmash(smash){
     document.getElementById("result").innerText = "";
     document.getElementById("answer").innerText = "";
     document.getElementById("IPA").innerText = "";
+    document.getElementById("meaning").innerText = "";
 
     document.getElementById("buttonGroup1").style.display = "block";
     document.getElementById("buttonGroup2").style.display = "none";
@@ -49,6 +50,7 @@ function reveal(){
     document.getElementById("result").innerText = "Revealed";
     document.getElementById("answer").innerText = combineSpelling();
     document.getElementById("IPA").innerText = `/${currentSmash.pronounciation}/`
+    document.getElementById("meaning").innerText = `1. ${combineDef()}`
 
     document.getElementById("buttonGroup1").style.display = "none";
     document.getElementById("buttonGroup2").style.display = "block";
@@ -62,6 +64,7 @@ function checkSmash(){
             location.hash = 'reveal';
             document.getElementById("answer").innerText = combineSpelling();
             document.getElementById("IPA").innerText = `/${currentSmash.pronounciation}/`
+            document.getElementById("meaning").innerText = `1. ${combineDef()}`;
 
             document.getElementById("buttonGroup1").style.display = "none";
             document.getElementById("buttonGroup2").style.display = "block";
@@ -109,6 +112,38 @@ function getSmashfromDigest(digest){
         });
     });
 }
+
+function removeBrackets(s){
+    return s.replace(/\([^)]*\)\s*/g, '');
+}
+
+function leadingLower(s){
+    return s.replace(/^\s*[A-Z]/, x => x.toLowerCase());
+}
+
+var breakers = "(,|\band\b|\bor\b|\bwith\b|\bfor\b|\bof\b)";
+
+function combineDef(){
+    var a = removeBrackets(currentSmash.firstClue).split(/(?=,)|\s+/g);
+    var b = leadingLower(removeBrackets(currentSmash.secondClue)).split(/(?=,)|\s+/g);
+    for (var i = 2; i < Math.min(a.length, 9); i++){
+        let idx = b.indexOf(a[i]);
+        if (idx > -1){
+            return (a.slice(0, i).join(' ') + ' ' + b.slice(idx).join(' ')).replace(/\s+,/g, ',');
+        }
+    }
+
+    var joiner = ' ';
+    var re = new RegExp(breakers, 'i');
+    if (!re.test(currentSmash.firstClue) && !!re.test(currentSmash.firstClue)){
+        joiner = ' and ';
+    }
+
+    return removeBrackets(currentSmash.firstClue).replace(new RegExp(breakers + ".*", 'i'), '$1') +
+            ' ' +
+            leadingLower(removeBrackets(currentSmash.secondClue)).replace(new RegExp(".*" + breakers, 'i'), '');
+}
+
 
 function revealOnEnter(ev){
     if (ev.key ===  "Enter") {
