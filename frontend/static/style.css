@@ -49,7 +49,7 @@ span#answer {
 #def {
     margin-top: 2.5em;
     color: var(--jet);
-    height: 5em;
+    min-height: 5em;
     margin-left: 2.5em;
     font-size: larger;
 }
