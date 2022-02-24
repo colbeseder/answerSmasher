@@ -28,6 +28,22 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 3000
+        env:
+          - name: MONGO_NAME
+            valueFrom: 
+              secretKeyRef:
+                name: mongo-key
+                key: username
+          - name: MONGO_PASS
+            valueFrom: 
+              secretKeyRef:
+                name: mongo-key
+                key: password
+          - name: MONGO_URI
+            valueFrom: 
+              secretKeyRef:
+                name: mongo-key
+                key: apiUrl
 
 ---
 apiVersion: v1

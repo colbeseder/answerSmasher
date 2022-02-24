@@ -3,7 +3,7 @@ const { off, exit } = require("process");
 const Raw = require('./models/raw')
 
 
-const MongoURI = process.argv[2];
+const MongoURI = `mongodb+srv://${process.env.MONGO_NAME}:${process.env.MONGO_PASS}${process.env.MONGO_URI}`;;
 
 function insertAllRaw(offset){
   var lineReader = require('readline').createInterface({
@@ -11,7 +11,11 @@ function insertAllRaw(offset){
   });
   
   var lineNumber = 0;
-  console.log(`Offset: ${offset}`)
+  console.log(`Offset: ${offset}`);
+  if (lineNumber > 8900){
+    //enough for now
+    stop();
+  }
   lineReader.on('line', function (line) {
     lineNumber++;
     if (lineNumber >= offset){
@@ -26,8 +30,6 @@ function insertAllRaw(offset){
     if (lineNumber > (offset + 100)){
       lineReader.close();
     }
-
-    
   });
 }
 
@@ -40,10 +42,15 @@ function go(){
   Raw.count().exec(function(err, count){insertAllRaw(count || 0)})
 }
 
+var handle;
+function stop(){
+  clearInterval(handle);
+}
+
 mongoose.connect(MongoURI)
   .then(result => {
     console.log("queueTitles.js Connected to Mongo");
     go();
-    setInterval(go, 60000);
+    handle = setInterval(go, 60000);
   })
   .catch(err => console.log(err))

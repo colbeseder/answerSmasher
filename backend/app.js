@@ -14,7 +14,7 @@ app.use(express.json());
 const port = 3000
 
 // Connection URI
-const MongoURI = process.argv[2];
+const MongoURI = `mongodb+srv://${process.env.MONGO_NAME}:${process.env.MONGO_PASS}${process.env.MONGO_URI}`;
 var isConnected = false;
 
 mongoose.connect(MongoURI)
