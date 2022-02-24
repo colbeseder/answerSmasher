@@ -61,6 +61,7 @@ function checkSmash(){
     if (document.getElementById("answer1").innerHTML.toLowerCase() === currentSmash.firstAnswer.toLowerCase()
         && document.getElementById("answer2").innerHTML.toLowerCase() === currentSmash.secondAnswer.toLowerCase()){
             document.getElementById("result").innerText = "Correct";
+            location.hash = 'reveal';
             document.getElementById("answer").innerText = combineSpelling();
             document.getElementById("IPA").innerText = `/${currentSmash.pronounciation}/`
 
