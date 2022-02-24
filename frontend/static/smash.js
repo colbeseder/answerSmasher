@@ -126,12 +126,12 @@ var breakers = "(,|\band\b|\bor\b|\bwith\b|\bfor\b|\bof\b|\bin\b)";
 function combineDef(){
     var joiner = ' ';
     var re = new RegExp(breakers, 'i');
-    if (!re.test(currentSmash.firstClue) && !!re.test(currentSmash.firstClue)){
-        joiner = ' and ';
+    if (!re.test(currentSmash.firstClue) && !re.test(currentSmash.firstClue)){
+        joiner = ' with ';
     }
 
     return removeBrackets(currentSmash.firstClue).replace(new RegExp(breakers + ".*", 'i'), '$1') +
-            ' ' +
+            joiner +
             leadingLower(removeBrackets(currentSmash.secondClue)).replace(new RegExp(".*" + breakers, 'i'), '');
 }
 
