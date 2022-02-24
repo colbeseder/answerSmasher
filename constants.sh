@@ -1,1 +1,1 @@
-export API_Gateway="http://apigate.backend-namespace.svc.cluster.local:3000"
+export API_Gateway="http://api.answersmasher.com/"

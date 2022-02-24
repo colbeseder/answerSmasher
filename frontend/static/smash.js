@@ -1,5 +1,7 @@
 var currentSmash = {};
 
+var apiUrl = "http://api." + location.host
+
 function next(){
     location.hash = '';
     getNewSmash()
@@ -9,14 +11,16 @@ function next(){
 
 function getNewSmash(){
     return new Promise((resolve, reject) => {
-        fetch("http://localhost:3000/api/smash").then(r => r.json()).then(r => {
-            if (r.firstAnswer) {
-                resolve(r);
-            }
-            else {
-                reject();
-            }
-        });
+        fetch(apiUrl + "/api/smash").then(r => r.json())
+            .then(r => {
+                if (r.firstAnswer) {
+                    resolve(r);
+                }
+                else {
+                    reject();
+                }
+            })
+        .catch();
     });
 }
 
@@ -93,7 +97,7 @@ function createDigest(smash){
 
 function getSmashfromDigest(digest){
     return new Promise((resolve, reject) => {
-        fetch("http://localhost:3000/api/combine/" + digest).then(r => r.json()).then(smash => {
+        fetch(apiUrl + "/api/combine/" + digest).then(r => r.json()).then(smash => {
             if (smash.firstAnswer) {
                 updateSmash(smash);
             }

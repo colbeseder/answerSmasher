@@ -28,13 +28,15 @@ metadata:
   name: ui-service
   labels:
     service: ui-service
+  annotations:
+    service.beta.kubernetes.io/do-loadbalancer-name: "ui-service"
+    service.beta.kubernetes.io/do-loadbalancer-hostname: "answersmasher.com"
+    service.beta.kubernetes.io/do-loadbalancer-http-ports: "80"
 spec:
   type: LoadBalancer
   ports:
     - protocol: TCP
-      port: 3001
+      port: 80
       targetPort: 3001
   selector:
     app: smasher
-  externalIPs:
-  - 192.168.64.2

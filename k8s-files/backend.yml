@@ -45,15 +45,17 @@ kind: Service
 metadata:
   name: apigate
   namespace: backend-namespace
+  annotations:
+    service.beta.kubernetes.io/do-loadbalancer-name: "apigate"
+    service.beta.kubernetes.io/do-loadbalancer-hostname: "api.answersmasher.com"
+    service.beta.kubernetes.io/do-loadbalancer-http-ports: "80"
   labels:
     service: apigate
 spec:
   type: LoadBalancer
   ports:
     - protocol: TCP
-      port: 3000
+      port: 80
       targetPort: 3000
   selector:
     app: smasher
-  externalIPs:
-  - 192.168.64.2
