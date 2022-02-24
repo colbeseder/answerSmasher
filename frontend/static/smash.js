@@ -5,7 +5,10 @@ var apiUrl = "http://api." + location.host
 function next(){
     location.hash = '';
     getNewSmash()
-        .then(r => updateSmash(r))
+        .then(r => {
+            updateSmash(r);
+            window.history.pushState('', '', '?d=' + createDigest(currentSmash));
+        })
         .catch(next)
 }
 
@@ -36,11 +39,6 @@ function updateSmash(smash){
 
     document.getElementById("buttonGroup1").style.display = "block";
     document.getElementById("buttonGroup2").style.display = "none";
-    window.history.pushState('', '', '?d=' + createDigest(currentSmash));
-    if(/reveal/.test(location.hash)){
-        reveal();
-    }
-
     document.getElementById("answer1").focus();
 }
 
@@ -101,6 +99,9 @@ function getSmashfromDigest(digest){
         fetch(apiUrl + "/api/combine/" + digest).then(r => r.json()).then(smash => {
             if (smash.firstAnswer) {
                 updateSmash(smash);
+                if(/reveal/.test(location.hash)){
+                    reveal();
+                }
             }
             else {
                 next();
