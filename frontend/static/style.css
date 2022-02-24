@@ -1,10 +1,25 @@
+:root {
+/* CSS HEX */
+--rose-madder: #da2c38ff;
+--jet: #353535ff;
+--cool-grey: #938ba1ff;
+--blond: #f4f0bbff;
+--deep-champagne: #e1d89f;
+}
+
 body {
-    background-color:white;
+    background-color: var(--blond);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: var(--jet)
+}
+
+h1 {
+    border-bottom: solid 1px var(--cool-grey);
+    text-align: center;
 }
 
 div[contenteditable=true] {
-    background-color: white;
+    background-color: ivory;
 }
 
 div.q {
@@ -13,7 +28,8 @@ div.q {
     height: 8em;
     padding: 0.5em;
     margin:1em;
-    background-color:oldlace;
+    background-color:var(--deep-champagne);
+    color: var(--rose-madder)
 }
 
 .clue {
@@ -26,4 +42,16 @@ div.q {
 
 #buttonGroup2 {
     display: none;
+}
+
+span#answer {
+    font-family: serif;
+    font-size: xx-large;
+}
+
+#def {
+    margin-top: 2.5em;
+    color: var(--jet);
+    height: 5em;
+    margin-left: 2.5em;
 }
