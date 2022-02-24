@@ -79,8 +79,7 @@ button {
     touch-action: manipulation;
     vertical-align: baseline;
     width: auto;
-
-    
+    margin-right: 2em;    
 }
 
 span#result {
