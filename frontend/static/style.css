@@ -16,29 +16,26 @@ body {
 h1 {
     border-bottom: solid 1px var(--cool-grey);
     text-align: center;
+    font-size: xxx-large;
 }
 
 div[contenteditable=true] {
-    background-color: ivory;
+    background-color: var(--blond);
 }
 
 div.q {
-    float: left;
-    width: 30em;
-    height: 8em;
+    width: 95%;
+    height: auto;
     padding: 0.5em;
-    margin:1em;
-    background-color:var(--deep-champagne);
-    color: var(--rose-madder)
+    margin-left: auto;
+    background-color: var(--deep-champagne);
+    color: var(--rose-madder);
+    font-size: xx-large;
+    margin-right: auto;
+    margin-top: 15px;
+    margin-bottom: 25px;
 }
 
-.clue {
-    height: 6em;
-}
-
-#controls {
-    clear: left;
-}
 
 #buttonGroup2 {
     display: none;
@@ -46,7 +43,7 @@ div.q {
 
 span#answer {
     font-family: serif;
-    font-size: xx-large;
+    font-size: xxx-large;
 }
 
 #def {
@@ -54,4 +51,40 @@ span#answer {
     color: var(--jet);
     height: 5em;
     margin-left: 2.5em;
+    font-size: larger;
+}
+
+.clue {
+    padding: 1em;
+}
+
+button {
+    font-size: x-large;
+    margin: 5px;
+    float: right;
+    align-items: center;
+    background-clip: padding-box;
+    background-color: var(--rose-madder);
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    box-shadow: rgb(0 0 0 / 2%) 0 1px 3px 0;
+    box-sizing: border-box;
+    color: var(--deep-champagne);
+    font-size: 16px;
+    font-weight: 600;
+    min-height: 3rem;
+    padding: calc(0.875rem - 1px) calc(1.5rem - 1px);
+    transition: all 250ms;
+    user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    width: auto;
+
+    
+}
+
+span#result {
+    font-size: larger;
+    float: right;
+    margin-right: 5em;
 }
