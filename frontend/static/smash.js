@@ -48,7 +48,7 @@ function reveal(){
     document.getElementById("answer1").innerHTML = currentSmash.firstAnswer;
     document.getElementById("answer2").innerHTML = currentSmash.secondAnswer;
     document.getElementById("result").innerText = "Revealed";
-    document.getElementById("answer").innerText = combineSpelling(currentSmash.firstAnswer, currentSmash.secpndAnswer);
+    document.getElementById("answer").innerText = combineSpelling(currentSmash.firstAnswer, currentSmash.secondAnswer);
     document.getElementById("IPA").innerText = `/${currentSmash.pronounciation}/`
     document.getElementById("meaning").innerText = `1. ${combineDef()}`
 
@@ -62,7 +62,7 @@ function checkSmash(){
         && document.getElementById("answer2").innerHTML.toLowerCase() === currentSmash.secondAnswer.toLowerCase()){
             document.getElementById("result").innerText = "Correct";
             location.hash = 'reveal';
-            document.getElementById("answer").innerText = combineSpelling(currentSmash.firstAnswer, currentSmash.secpndAnswer);
+            document.getElementById("answer").innerText = combineSpelling(currentSmash.firstAnswer, currentSmash.secondAnswer);
             document.getElementById("IPA").innerText = `/${currentSmash.pronounciation}/`
             document.getElementById("meaning").innerText = `1. ${combineDef()}`;
 
@@ -77,10 +77,10 @@ function leadCapital(s){
 }
 
 function combineSpelling(a, b){
-    if (!a?.trim()) {
+    if (!a) {
         return b;
     }
-    if (!b?.trim()){
+    if (!b){
         return leadCapital(a);
     }
     var joint = b.charAt(0);
