@@ -48,7 +48,7 @@ function reveal(){
     document.getElementById("answer1").innerHTML = currentSmash.firstAnswer;
     document.getElementById("answer2").innerHTML = currentSmash.secondAnswer;
     document.getElementById("result").innerText = "Revealed";
-    document.getElementById("answer").innerText = combineSpelling();
+    document.getElementById("answer").innerText = combineSpelling(currentSmash.firstAnswer, currentSmash.secpndAnswer);
     document.getElementById("IPA").innerText = `/${currentSmash.pronounciation}/`
     document.getElementById("meaning").innerText = `1. ${combineDef()}`
 
@@ -62,7 +62,7 @@ function checkSmash(){
         && document.getElementById("answer2").innerHTML.toLowerCase() === currentSmash.secondAnswer.toLowerCase()){
             document.getElementById("result").innerText = "Correct";
             location.hash = 'reveal';
-            document.getElementById("answer").innerText = combineSpelling();
+            document.getElementById("answer").innerText = combineSpelling(currentSmash.firstAnswer, currentSmash.secpndAnswer);
             document.getElementById("IPA").innerText = `/${currentSmash.pronounciation}/`
             document.getElementById("meaning").innerText = `1. ${combineDef()}`;
 
@@ -70,18 +70,19 @@ function checkSmash(){
             document.getElementById("buttonGroup2").style.display = "block";
             document.getElementById("next").focus();
         }
-    else{
-        document.getElementById("result").innerText = "Wrong";
-    }
 }
 
 function leadCapital(s){
     return s.replace(/^./, x => x.toUpperCase())
 }
 
-function combineSpelling(){
-    var a = currentSmash.firstAnswer;
-    var b = currentSmash.secondAnswer;
+function combineSpelling(a, b){
+    if (!a.trim()) {
+        return b;
+    }
+    if (!b.trim()){
+        return leadCapital(a);
+    }
     var joint = b.charAt(0);
     if (a.indexOf(joint) === -1){
         return `${leadCapital(a)}-${leadCapital(b)}`;
@@ -135,6 +136,12 @@ function combineDef(){
             leadingLower(removeBrackets(currentSmash.secondClue)).replace(new RegExp(".*" + breakers, 'i'), '');
 }
 
+function attempt(){
+    var attemp1 = document.getElementById("answer1").innerText;
+    var attemp2 = document.getElementById("answer2").innerText;
+    document.getElementById("answer").innerText = combineSpelling(attemp1, attemp2);
+    checkSmash();
+}
 
 function revealOnEnter(ev){
     if (ev.key ===  "Enter") {
@@ -146,8 +153,8 @@ function revealOnEnter(ev){
 document.getElementById("submit").addEventListener("click", checkSmash);
 document.getElementById("next")?.addEventListener("click", next);
 document.getElementById("reveal").addEventListener("click", reveal);
-document.getElementById("answer1").addEventListener("keypress", revealOnEnter);
-document.getElementById("answer2").addEventListener("keypress", revealOnEnter);
+document.getElementById("answer1").addEventListener("input", attempt);
+document.getElementById("answer2").addEventListener("input", attempt);
 
 var digest = /[?&]d=([A-Z0-9/+=]+)/i.exec(location.search)?.at(1);
 if (digest){
