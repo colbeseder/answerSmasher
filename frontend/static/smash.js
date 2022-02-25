@@ -121,7 +121,7 @@ function leadingLower(s){
     return s.replace(/^\s*[A-Z]/, x => x.toLowerCase());
 }
 
-var breakers = "(,|\band\b|\bor\b|\bwith\b|\bfor\b|\bof\b|\bin\b)";
+var breakers = "(,|\\band\\b|\\bor\\b|\\bwith\\b|\\bfor\\b|\\bof\\b|\\bin\\b|\\bis\\b)";
 
 function combineDef(){
     var joiner = ' ';
@@ -130,7 +130,7 @@ function combineDef(){
         joiner = ' with ';
     }
 
-    return removeBrackets(currentSmash.firstClue).replace(new RegExp(breakers + ".*", 'i'), '$1') +
+    return removeBrackets(currentSmash.firstClue).replace(new RegExp("^(.*?)" + breakers + ".*$", 'i'), '$1$2') +
             joiner +
             leadingLower(removeBrackets(currentSmash.secondClue)).replace(new RegExp(".*" + breakers, 'i'), '');
 }
