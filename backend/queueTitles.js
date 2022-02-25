@@ -1,3 +1,23 @@
+/*
+
+
+
+DEPRECATED!
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
 const mongoose = require("mongoose");
 const { off, exit } = require("process");
 const Raw = require('./models/raw')
