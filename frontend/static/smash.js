@@ -150,7 +150,7 @@ function revealOnEnter(ev){
     }
 }
 
-document.getElementById("submit").addEventListener("click", checkSmash);
+//document.getElementById("submit").addEventListener("click", checkSmash);
 document.getElementById("next")?.addEventListener("click", next);
 document.getElementById("reveal").addEventListener("click", reveal);
 document.getElementById("answer1").addEventListener("input", attempt);
