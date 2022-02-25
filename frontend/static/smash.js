@@ -139,7 +139,7 @@ function combineDef(){
 function attempt(){
     var attempt1 = document.getElementById("answer1").innerText;
     var attempt2 = document.getElementById("answer2").innerText;
-    document.getElementById("answer").innerText = combineSpelling(attempt1, attempt2);
+    document.getElementById("answer").innerText = combineSpelling(attempt1.toLowerCase(), attempt2.toLowerCase());
     checkSmash();
 }
 
