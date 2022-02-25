@@ -77,10 +77,10 @@ function leadCapital(s){
 }
 
 function combineSpelling(a, b){
-    if (!a.trim()) {
+    if (!a?.trim()) {
         return b;
     }
-    if (!b.trim()){
+    if (!b?.trim()){
         return leadCapital(a);
     }
     var joint = b.charAt(0);
@@ -137,9 +137,9 @@ function combineDef(){
 }
 
 function attempt(){
-    var attemp1 = document.getElementById("answer1").innerText;
-    var attemp2 = document.getElementById("answer2").innerText;
-    document.getElementById("answer").innerText = combineSpelling(attemp1, attemp2);
+    var attempt1 = document.getElementById("answer1").innerText;
+    var attempt2 = document.getElementById("answer2").innerText;
+    document.getElementById("answer").innerText = combineSpelling(attempt1, attempt2);
     checkSmash();
 }
 
