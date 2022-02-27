@@ -3,7 +3,6 @@ var currentSmash = {};
 var apiUrl = "http://api." + location.host
 
 function next(){
-    location.hash = '';
     getNewSmash()
         .then(r => {
             updateSmash(r);
