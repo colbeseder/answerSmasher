@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose');
 const atob = require('atob');
+const combineSpelling = require('./combineSpelling');
 const Entry = require('./models/entry');
 const Smash = require('./models/smash')
 const Raw = require('./models/raw')
@@ -53,21 +54,32 @@ function combine(first, second){
 }
 
 function findPair(limit){
-  limit = limit || 7; //Don't retry forever
+  limit = limit || 8; //Don't retry forever
   return new Promise((resolve, reject) => {
     var entry = getRandomDoc(Entry)
       .then(first => {
         getEntryByStart(first.end).then(second => {
           try {
+            if (!first || !second){
+              throw 'No match';
+            }
+            var canMergeSpelling = combineSpelling(first._id, second._id, true);
+            if (!canMergeSpelling){
+              throw 'Failed to merge spelling';
+            }
             var smash = combine(first, second);
+            smash.retries = 7 - limit;
             resolve(smash)
           }
           catch (err){
+            console.log(err);
             if (limit <= 1){
-              reject({})
+              reject({error: "Exceeded retries"})
             }
             else {
-              findPair(limit-1).then(pair => resolve(pair));
+              findPair(limit-1)
+                .then(pair => resolve(pair))
+                .catch(e => reject(e))
             }
           }
         });
