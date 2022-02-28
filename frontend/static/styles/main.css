@@ -113,16 +113,31 @@ span#IPA {
     height: 20em;
 }
 
+div#foot {
+    height: 1em;
+    position: fixed;
+    bottom: 0.6em;
+    border-top: solid 1px var(--xiketic);
+    width: 100%;
+    left: 0;
+    padding: 7px;
+}
+
+span#credit {
+    float: right;
+    padding-right: 1em;
+}
+
 #root {
     width: 30em;
 }
 
 @media only screen and (max-width: 800px) {
-    body {
+    html>body {
         zoom: 3;
     }
 
-    #reactContainer {
+    div#reactContainer {
         position: initial;
         top: 0;
         margin-top: 50%;
