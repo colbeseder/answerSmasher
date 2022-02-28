@@ -53,8 +53,10 @@ function combine(first, second){
   return smash;
 }
 
+const maxRetries = 8;
+
 function findPair(limit){
-  limit = limit || 8; //Don't retry forever
+  limit = limit || maxRetries; //Don't retry forever
   return new Promise((resolve, reject) => {
     var entry = getRandomDoc(Entry)
       .then(first => {
@@ -68,7 +70,6 @@ function findPair(limit){
               throw 'Failed to merge spelling';
             }
             var smash = combine(first, second);
-            smash.retries = 7 - limit;
             resolve(smash)
           }
           catch (err){
