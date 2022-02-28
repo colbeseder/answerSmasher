@@ -1,5 +1,5 @@
 const e = React.createElement;
-const apiUrl = "http://api.answersmasher.com"
+const apiUrl = "http://api." + location.host
 
 
 function leadCapital(s){
