@@ -10,6 +10,11 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/static/index.html');
 })
 
+app.get('/main', (req, res) => {
+  res.sendFile(__dirname + '/static/main.html');
+})
+
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
