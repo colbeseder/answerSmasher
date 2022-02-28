@@ -1,8 +1,6 @@
 {
-  "devDependencies": {
-    "@babel/plugin-transform-react-jsx": "^7.17.3"
-  },
   "dependencies": {
-    "esbuild": "^0.14.23"
+    "esbuild": "^0.14.23",
+    "package.json": "^2.0.1"
   }
 }
