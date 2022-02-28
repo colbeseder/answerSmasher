@@ -114,25 +114,27 @@ span#IPA {
 }
 
 div#foot {
-    height: 1em;
+    height: 17px;
     position: fixed;
-    bottom: 0.6em;
+    bottom: 4px;
     border-top: solid 1px var(--xiketic);
     width: 100%;
     left: 0;
-    padding: 7px;
+    padding: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 span#credit {
     float: right;
-    padding-right: 1em;
+    margin-right: 1em;
 }
 
 #root {
     width: 30em;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (min-device-width: 800px) {
     html>body {
         zoom: 3;
     }
