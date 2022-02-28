@@ -28,8 +28,8 @@ function getNewSmash(){
 
 function updateSmash(smash){
     currentSmash = smash;
-    document.getElementById("clue1").innerText = currentSmash?.firstClue ;
-    document.getElementById("clue2").innerText = currentSmash?.secondClue;
+    document.getElementById("clue1").innerText = removeBrackets(currentSmash?.firstClue) ;
+    document.getElementById("clue2").innerText = removeBrackets(currentSmash?.secondClue);
     document.getElementById("answer1").innerHTML = "";
     document.getElementById("answer2").innerHTML = "";
     document.getElementById("result").innerText = "";
@@ -97,23 +97,10 @@ function createDigest(smash){
     return btoa(smash.firstAnswer + "," + smash.secondAnswer);
 }
 
-function getSmashfromDigest(digest){
-    return new Promise((resolve, reject) => {
-        fetch(apiUrl + "/api/combine/" + digest).then(r => r.json()).then(smash => {
-            if (smash.firstAnswer) {
-                updateSmash(smash);
-                if(/reveal/.test(location.hash)){
-                    reveal();
-                }
-            }
-            else {
-                next();
-            }
-        });
-    });
-}
-
 function removeBrackets(s){
+    if (!s){
+        return '';
+    }
     return s.replace(/\([^)]*\)\s*/g, '');
 }
 
@@ -133,6 +120,22 @@ function combineDef(){
     return removeBrackets(currentSmash.firstClue).replace(new RegExp("^(.*?)" + breakers + ".*$", 'i'), '$1$2') +
             joiner +
             leadingLower(removeBrackets(currentSmash.secondClue)).replace(new RegExp(".*" + breakers, 'i'), '');
+}
+
+function getSmashfromDigest(digest){
+    return new Promise((resolve, reject) => {
+        fetch(apiUrl + "/api/combine/" + digest).then(r => r.json()).then(smash => {
+            if (smash.firstAnswer) {
+                updateSmash(smash);
+                if(/reveal/.test(location.hash)){
+                    reveal();
+                }
+            }
+            else {
+                next();
+            }
+        });
+    });
 }
 
 function attempt(){
