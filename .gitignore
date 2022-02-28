@@ -7,3 +7,4 @@ npm-debug.log
 */resources/enwiki-20220219-all-titles-in-ns-0
 */constants.sh
 secrets
+frontend/static/JSX/*

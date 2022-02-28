@@ -1,5 +1,12 @@
 {
+  "name": "answersmasher-frontend",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts":{
+    "build": "esbuild ./JSX/main.jsx --outfile=./static/JSX/main.js"
+  },
   "dependencies": {
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "package.json": "^2.0.1"
   }
 }

@@ -1,0 +1,117 @@
+:root {
+    --xiketic: #130303;
+    --cinnabar: #D64933;
+    --cool-grey: #938ba1ff;
+    --periwinkle-crayola: #C9DDFF;
+    --state-blue: #6665DD;
+}
+
+body {
+    background-color: var(--periwinkle-crayola);
+    font-family: Actor, Verdana, Geneva, Tahoma, sans-serif;
+    color: var(--xiketic)
+}
+
+h1 {
+    border-bottom: solid 1px var(--xiketic);
+    text-align: center;
+    font-size: xxx-large;
+    color: var(--cinnabar)
+}
+
+div[contenteditable=true] {
+    background-color: var(--periwinkle-crayola);
+}
+
+div.q {
+    width: 95%;
+    height: auto;
+    padding: 0.5em;
+    margin-left: auto;
+    background-color: var(--state-blue);
+    color: var(--xiketic);
+    font-size: xx-large;
+    margin-right: auto;
+    margin-top: 15px;
+    margin-bottom: 25px;
+    background-clip: padding-box;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    box-shadow: rgb(0 0 0 / 2%) 0 1px 3px 0;
+    box-sizing: border-box;
+}
+
+
+#buttonGroup2 {
+    display: none;
+}
+
+span#answer {
+    font-family: serif;
+    font-size: xxx-large;
+}
+
+#def {
+    margin-top: 2.5em;
+    color: var(--xiketic);
+    min-height: 5em;
+
+    margin-left: 2.5em;
+    font-size: larger;
+}
+
+.clue {
+    padding: 1em;
+}
+
+button {
+    font-size: x-large;
+    margin: 5px;
+    align-items: center;
+    background-clip: padding-box;
+    background-color: var(--xiketic);
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    box-shadow: rgb(0 0 0 / 2%) 0 1px 3px 0;
+    box-sizing: border-box;
+    color: var(--periwinkle-crayola);
+    font-size: 16px;
+    font-weight: 600;
+    min-height: 3rem;
+    padding: calc(0.875rem - 1px) calc(1.5rem - 1px);
+    transition: all 250ms;
+    user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    width: auto;
+    margin-right: 2em;    
+}
+
+span#result {
+    font-size: larger;
+    float: right;
+    margin-right: 5em;
+}
+
+span#IPA {
+    font-size: medium;
+}
+
+.answer {
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+#reactContainer {
+    position: absolute;
+    top: 50%;
+    margin-top: -50px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px;
+    height: 100px;
+}
+
+#root {
+    width: 30em;
+}
