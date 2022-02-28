@@ -51,26 +51,25 @@ function combineDef(a, b){
 }
 
 function getSmashfromDigest(digest){
-    return new Promise((resolve, reject) => {
-        fetch(apiUrl + "/api/combine/" + digest).then(r => r.json()).then(smash => {
-            if (smash.firstAnswer) {
-                updateSmash(smash);
-                if(/reveal/.test(location.hash)){
-                    reveal();
+        fetch(apiUrl + "/api/combine/" + digest)
+            .then(r => r.json())
+            .then(smash => {
+                if (smash.firstAnswer) {
+                    elem.setState(smash)
                 }
-            }
-            else {
-                next();
-            }
-        });
-    });
+                else {
+                    next();
+                }
+            })
+            .catch(er => next());
 }
-
-
 
 function next(){
     fetch(apiUrl + "/api/smash").then(r => r.json())
-        .then(r => { elem.setState(r) })
+        .then(smash => { 
+            elem.setState(smash);
+            window.history.pushState('', '', '?d=' + createDigest(smash));
+         })
         .catch();
 }
 
@@ -104,4 +103,17 @@ class QuoteZone extends React.Component {
 
 const domContainer = document.querySelector('#root');
 var elem = ReactDOM.render(e(QuoteZone), domContainer);
-next(elem);
+
+function loadPage(){
+    var digest = /[?&]d=([A-Z0-9/+=]+)/i.exec(location.search)?.at(1);
+    if (digest){
+        getSmashfromDigest(digest);
+    }
+    else {
+        next();
+    }
+}
+
+window.onpopstate = loadPage;
+
+loadPage();
