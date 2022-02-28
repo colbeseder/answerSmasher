@@ -68,22 +68,17 @@ function getSmashfromDigest(digest){
 
 
 
-function next(elem){
-    elem.setState({"firstAnswer":"comment","firstClue":"A spoken or written remark","secondAnswer":"entry","secondClue":"The act of entering",
-    "pronounciation":"kɒmɛntɹi"});
-    return;
+function next(){
     fetch(apiUrl + "/api/smash").then(r => r.json())
-    .then(r => {
-        elem.setState(r);
-    })
-    .catch();
+        .then(r => { elem.setState(r) })
+        .catch();
 }
 
 class QuoteZone extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        firstAnswer: 'lkjlkjlkj',
+        firstAnswer: '',
         firstClue: '',
         secondAnswer: '',
         secondClue: '',
@@ -96,6 +91,7 @@ class QuoteZone extends React.Component {
         <div>
         <span id="answer" onClick={x=>{next(this)}}>{combineSpelling(this.state.firstAnswer, this.state.secondAnswer)}</span><br></br>
         <span id="IPA">/{this.state.pronounciation}/</span><br></br>
+        <span>{this.state.firstAnswer}, {this.state.secondAnswer}</span>
         <span id="meaning">1. {combineDef(this.state.firstClue, this.state.secondClue)}</span><br></br>
         <button id="next">Next Smash</button>
         </div>
