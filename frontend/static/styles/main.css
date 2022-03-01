@@ -45,7 +45,6 @@ div.q {
     box-sizing: border-box;
 }
 
-
 #buttonGroup2 {
     display: none;
 }
@@ -131,6 +130,7 @@ span#result {
 #part2 {
     float: right;
 }
+
 #parts {
     color: var(--cool-grey);
     font-size: 1em;
@@ -140,7 +140,7 @@ span#result {
 div#foot {
     height: 17px;
     position: fixed;
-    bottom: 4px;
+    bottom: 20px;
     border-top: solid 1px var(--xiketic);
     width: 100%;
     left: 0;
@@ -149,9 +149,18 @@ div#foot {
     padding-right: 10px;
 }
 
+img#quizButton {
+    transform: scaleX(-1);
+    height: 40px;
+    margin-left: 1em;
+    margin-top: 2px;
+    vertical-align: middle;
+}
+
 span#credit {
     float: right;
     margin-right: 1em;
+    margin-top: 8px;
 }
 
 @media only screen and (max-device-width: 800px) {
