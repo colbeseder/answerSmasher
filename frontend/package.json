@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts":{
-    "build": "esbuild ./JSX/main.jsx --outfile=./static/JSX/main.js"
+    "build": "esbuild ./JSX/* --outdir=./static/JSX/"
   },
   "dependencies": {
     "express": "^4.17.3",
