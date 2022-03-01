@@ -6,11 +6,11 @@ const port = 3001;
 app.use("/static", express.static(path.join(__dirname, './static')))
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/static/index.html');
+  res.sendFile(__dirname + '/static/main.html');
 })
 
-app.get('/main', (req, res) => {
-  res.sendFile(__dirname + '/static/main.html');
+app.get('/quiz', (req, res) => {
+  res.sendFile(__dirname + '/static/quiz.html');
 })
 
 
