@@ -19,7 +19,7 @@ class QuoteZone extends React.Component {
             <div id="reactContainer" onClick={next}>
                 <span id="answer">{combineSpelling(this.state.firstAnswer, this.state.secondAnswer)}</span><br></br>
                 <span id="IPA">{this.state.pronounciation ? '/' + this.state.pronounciation + '/' : ''}</span><br />
-                <div id="meaning">{combineDef(this.state.firstClue, this.state.secondClue)}</div><br>
+                <div id="meaning">{combineDef(this.state.firstClue, this.state.secondClue)}</div>
                 <div id="buttonContainer"><button>Next Smash</button></div>
             </div>
         </div>
