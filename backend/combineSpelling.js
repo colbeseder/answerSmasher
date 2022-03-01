@@ -11,17 +11,16 @@ function combineSpelling(a, b, falseIfFailed){
         return leadCapital(a);
     }
     var joint = b.charAt(0);
-    if (a.indexOf(joint) === -1){
-        // Filed to combine
+    if (a.slice(1, -1).indexOf(joint) === -1){
+        // Failed to combine
         if (falseIfFailed){
             return false;
         }
         return `${leadCapital(a)}-${leadCapital(b)}`;
     }
     else {
-        var parts = a.split(joint);
-        parts.pop();
-        return leadCapital(parts.join(joint) + b)
+        var combo = a.replace(new RegExp('(.+)' + joint + ".+", "i"), "$1" + b);
+        return leadCapital(combo)
     }
 }
 

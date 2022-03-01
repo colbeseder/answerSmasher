@@ -5,7 +5,7 @@ function leadCapital(s){
     return s.replace(/^./, x => x.toUpperCase())
 }
 
-function combineSpelling(a, b){
+function combineSpelling(a, b, falseIfFailed){
     if (!a) {
         return b;
     }
@@ -13,13 +13,16 @@ function combineSpelling(a, b){
         return leadCapital(a);
     }
     var joint = b.charAt(0);
-    if (a.indexOf(joint) === -1){
+    if (a.slice(1, -1).indexOf(joint) === -1){
+        // Failed to combine
+        if (falseIfFailed){
+            return false;
+        }
         return `${leadCapital(a)}-${leadCapital(b)}`;
     }
     else {
-        var parts = a.split(joint);
-        parts.pop();
-        return leadCapital(parts.join(joint) + b)
+        var combo = a.replace(new RegExp('(.+)' + joint + ".+", "i"), "$1" + b);
+        return leadCapital(combo)
     }
 }
 
@@ -44,9 +47,9 @@ function combineDef(a, b){
         joiner = ' with ';
     }
 
-    return removeBrackets(a).replace(new RegExp("^(.*?)" + breakers + ".*$", 'i'), '$1$2') +
+    return removeBrackets(a).replace(new RegExp("^(.{8,}?)" + breakers + ".*$", 'i'), '$1') +
             joiner +
-            leadingLower(removeBrackets(b)).replace(new RegExp(".*" + breakers, 'i'), '');
+            leadingLower(removeBrackets(b)).replace(new RegExp(".*" + breakers + "(.+)", 'i'), '$1$2');
 }
 
 function getSmashfromDigest(digest){
