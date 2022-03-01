@@ -49,7 +49,7 @@ function combineDef(a, b){
 
     return removeBrackets(a).replace(new RegExp("^(.{8,}?)" + breakers + ".*$", 'i'), '$1') +
             joiner +
-            leadingLower(removeBrackets(b)).replace(new RegExp(".*" + breakers + "(.+)", 'i'), '$1$2');
+            leadingLower(removeBrackets(b)).replace(new RegExp(".*" + breakers + "(.{5,})", 'i'), '$1$2');
 }
 
 function getSmashfromDigest(digest){
