@@ -49,6 +49,10 @@ div.q {
     display: none;
 }
 
+div#answerBlock {
+    height: 9em;
+}
+
 span#answer, div#answer {
     font-family: serif;
     font-size: 4em;
@@ -104,6 +108,7 @@ span#result {
 }
 
 .answer {
+    height: 1em;
     padding-left: 3px;
     padding-right: 3px;
 }
@@ -171,15 +176,12 @@ span#credit {
 .guessBox {
     width: 45%;
     background-color: var(--state-blue);
-    padding: 0.5em;
+    padding: 1em;
+    border: solid 2px var(--xiketic);
 }
 
 .guessBox div {
     height: 5em;
-}
-
-.guessBox input {
-    width: 100%;
 }
 
 #guessBox1 {
@@ -192,7 +194,8 @@ span#credit {
 }
 
 .guessbox input, .guessbox span {
-    width: 90%;
+    width: 100%;
+    font-size: large;
 }
 
 .correct #revealButton {

@@ -54,7 +54,7 @@ function getSmashfromDigest(digest){
             .then(r => r.json())
             .then(smash => {
                 if (smash.firstAnswer) {
-                    elem.setState(smash);
+                    elem.setState(smash, equalizeGuessBoxes);
                     if(/reveal/.test(location.hash)){
                         reveal();
                     }
@@ -70,7 +70,7 @@ function next(){
     fetch(apiUrl + "/api/smash").then(r => r.json())
         .then(smash => {
             clear();
-            elem.setState(smash);
+            elem.setState(smash, equalizeGuessBoxes);
             window.history.pushState('', '', '?d=' + createDigest(smash));
          })
         .catch();
@@ -114,4 +114,16 @@ function clear(){
         guess1: '',
         guess2: ''
     });
+}
+
+function equalizeGuessBoxes(){
+    if(!isQuizPage){
+        return;
+    }
+    var boxes = document.querySelectorAll(".guessBox>div");
+    boxes[0].style.height = 'auto';
+    boxes[1].style.height = 'auto';
+    var newHeight = Math.max(boxes[0].offsetHeight, boxes[1].offsetHeight);
+    boxes[0].style.height = newHeight;
+    boxes[1].style.height = newHeight;
 }

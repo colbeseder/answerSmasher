@@ -22,9 +22,12 @@ class QuoteZone extends React.Component {
     return (
         <div>
             <div id="reactContainer" className={`${this.state.isCorrect ? "correct" : ""} ${this.state.isRevealed ? "revealed": ""}`}>
-                <span id="answer">{this.state.isCorrect ? combineSpelling(this.state.firstAnswer, this.state.secondAnswer) : combineSpelling(this.state.guess1, this.state.guess2) || ' '}</span><br></br>
-                <span id="IPA">{this.state.isCorrect ? '/' + this.state.pronounciation + '/' : ''}</span><br />
-                <div id="meaning">{this.state.isCorrect ? combineDef(this.state.firstClue, this.state.secondClue) : ''}</div><br></br>
+                <div id="answerBlock">
+                    <span id="answer">{this.state.isCorrect ? combineSpelling(this.state.firstAnswer, this.state.secondAnswer) 
+                        : combineSpelling(this.state.guess1, this.state.guess2) || ' '}</span><br></br>
+                    <span id="IPA">{this.state.isCorrect ? '/' + this.state.pronounciation + '/' : ''}</span><br />
+                    <div id="meaning">{this.state.isCorrect ? combineDef(this.state.firstClue, this.state.secondClue) : ''}</div><br></br>
+                </div>
                 <div id="guesses">
                     <div className="guessBox" id="guessBox1">
                         <div>{removeBrackets(this.state.firstClue)}</div><br />
