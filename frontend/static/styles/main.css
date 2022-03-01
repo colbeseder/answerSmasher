@@ -153,6 +153,7 @@ div#foot {
     padding: 2px;
     padding-left: 10px;
     padding-right: 10px;
+    background-color: background-color: var(--periwinkle-crayola);;
 }
 
 img#quizButton {
@@ -212,7 +213,11 @@ span#credit {
 
 @media only screen and (max-device-width: 800px) {
     html>body {
-        zoom: 3;
+        zoom: 2;
+    }
+
+    html, body {
+        overflow-y: inherit;
     }
 
     div#reactContainer {
