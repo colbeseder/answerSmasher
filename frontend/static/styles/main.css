@@ -144,16 +144,13 @@ span#IPA, div#IPA {
 }
 
 div#foot {
-    height: 17px;
+    height: 37px;
     position: fixed;
-    bottom: 20px;
+    bottom: 0px;
     border-top: solid 1px var(--xiketic);
     width: 100%;
     left: 0;
-    padding: 2px;
-    padding-left: 10px;
-    padding-right: 10px;
-    background-color: background-color: var(--periwinkle-crayola);;
+    background-color: var(--periwinkle-crayola);;
 }
 
 img#quizButton {
@@ -185,12 +182,7 @@ span#credit {
 }
 
 #guessBox1 {
-    float:left;
     margin-right: 0.5em;
-}
-
-#guessBox2 {
-    float: right;
 }
 
 .guessbox input, .guessbox span {
@@ -229,6 +221,15 @@ span#credit {
         height: 30em;
         padding: 0.5em;
         font-size: inherit;
+    }
+
+    #guesses {
+        display: inherit;
+    }
+
+    .guessBox {
+        width: 100%;
+        margin-bottom: 5px;;
     }
 
     div#root {

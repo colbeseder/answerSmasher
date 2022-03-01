@@ -41,7 +41,7 @@ class QuoteZone extends React.Component {
                 <div id="buttonContainer">
                     <button id="revealButton" onClick={reveal}>Reveal</button>
                     <button id="nextButton" onClick={x=>{next()}}>Next Smash</button>
-                </div>
+                </div><br /><br />
             </div>
         </div>
     )
