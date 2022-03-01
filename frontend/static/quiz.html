@@ -1,43 +1,22 @@
 <html>
     <head>
         <title>AnswerSmasher</title>
+        <link rel="icon" type="image/x-icon" href="/static/icons/atom-blue.svg">
+
         <style>
              @import url('https://fonts.googleapis.com/css2?family=Actor&display=swap');
         </style>
-        <link rel="stylesheet" href="/static/styles/style.css">
+        <link rel="stylesheet" href="/static/styles/main.css">
     </head>
     <body>
-        <h1>AnswerSmasher</h1>
-        <div id="def">
-            <span id="answer"></span><br>
-            <span id="IPA"></span><br>
-            <span id="meaning"></span>
-        </div>
-        <div>
-            <div class="q">
-                <div id="clue1" class="clue"> </div>
-                <div id="answer1" class="answer" contenteditable="true"></div>
-            </div>
-            <div class="q">
-                <div id="clue2" class="clue"> </div>
-                <div id="answer2" class="answer" contenteditable="true"></div>
-            </div>
-            <div id="controls">
-                <div id="buttonGroup1">
-                    <!-- <button id="submit">Submit</button> -->  
-                    <button id="reveal">Reveal</button>
-                </div>
-                
-
-                <div id="buttonGroup2">
-                    <button id="next">Next Smash</button>
-                </div>
-            </div>
-            <span id="result"></span><br>
-        </div>
-       
-        <br><span id="credit">Created by <a href="https://twitter.com/bryapp">@bryapp</a></span>
         
-        <script src="/static/scripts/smash.js"></script>
+            <div id="root"></div>
+
+        <div id="foot"><a href="/"><img id="quizButton" src="/static/icons/atom-blue.svg">Smashes</a><span id="credit">Created by <a href="https://twitter.com/bryapp">@bryapp</a></div>
+        <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+
+        <script src="/static/scripts/common.js"></script>
+        <script src="/static/JSX/quiz.js"></script>
     </body>
 </html>
