@@ -88,13 +88,14 @@ class QuoteZone extends React.Component {
   render() {
     return (
         <div>
-        <span id="answer">{combineSpelling(this.state.firstAnswer, this.state.secondAnswer)}</span><br></br>
-        <span id="IPA">/{this.state.pronounciation}/</span><br />
-        <span>{this.state.firstAnswer} {this.state.secondAnswer}</span><br />
-        <span id="meaning">1. {combineDef(this.state.firstClue, this.state.secondClue)}</span><br></br>
-        <button onClick={x=>{next(this)}}>Next Smash</button>
+            <div id="parts"><span id="part1">{this.state.firstAnswer}</span> <span id="part2">{this.state.secondAnswer}</span></div>
+            <div id="reactContainer">
+                <span id="answer">{combineSpelling(this.state.firstAnswer, this.state.secondAnswer)}</span><br></br>
+                <span id="IPA">/{this.state.pronounciation}/</span><br />
+                <div id="meaning">1. {combineDef(this.state.firstClue, this.state.secondClue)}</div><br></br>
+                <div id="buttonContainer"><button onClick={x=>{next(this)}}>Next Smash</button></div>
+            </div>
         </div>
-
     )
   }
 }
