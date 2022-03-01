@@ -54,7 +54,10 @@ function getSmashfromDigest(digest){
             .then(r => r.json())
             .then(smash => {
                 if (smash.firstAnswer) {
-                    elem.setState(smash)
+                    elem.setState(smash);
+                    if(/reveal/.test(location.hash)){
+                        reveal();
+                    }
                 }
                 else {
                     next();
@@ -65,9 +68,50 @@ function getSmashfromDigest(digest){
 
 function next(){
     fetch(apiUrl + "/api/smash").then(r => r.json())
-        .then(smash => { 
+        .then(smash => {
+            clear();
             elem.setState(smash);
             window.history.pushState('', '', '?d=' + createDigest(smash));
          })
         .catch();
+}
+
+function checkSmash(){
+    if (elem.state.guess1 === elem.state.firstAnswer && elem.state.guess2 === elem.state.secondAnswer){
+        elem.setState({isCorrect: true});
+    }
+    else {
+        elem.setState({isCorrect: false});
+    }
+
+}
+
+var isQuizPage = false;
+
+function reveal(){
+    if (!isQuizPage){
+        // Not Quiz Page
+        return;
+    }
+    location.hash = "reveal"
+    document.getElementById("guess1").value = elem.state.firstAnswer;
+    document.getElementById("guess2").value = elem.state.secondAnswer;
+    elem.setState({
+        isCorrect: true,
+        isRevealed: true
+    });
+}
+
+function clear(){
+    if(!isQuizPage){
+        return;
+    }
+    document.getElementById("guess1").value = '';
+    document.getElementById("guess2").value = '';
+    elem.setState({
+        isCorrect: false,
+        isRevealed: false,
+        guess1: '',
+        guess2: ''
+    });
 }
