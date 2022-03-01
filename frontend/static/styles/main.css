@@ -204,6 +204,10 @@ span#credit {
 
 @media only screen and (max-device-width: 800px) {
     html>body {
+        zoom: 2.8;
+    }
+
+    html>body.quiz {
         zoom: 2;
     }
 
@@ -228,7 +232,7 @@ span#credit {
     }
 
     .guessBox {
-        width: 100%;
+        width: 95%;
         margin-bottom: 5px;;
     }
 
