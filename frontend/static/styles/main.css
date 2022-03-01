@@ -176,7 +176,6 @@ span#credit {
 
 .guessBox {
     width: 45%;
-    background-color: var(--state-blue);
     padding: 1em;
     border: solid 2px var(--xiketic);
 }
@@ -242,7 +241,7 @@ span#credit {
 
     @media only screen and (orientation:landscape) {
         html>body {
-            zoom: 2;
+            zoom: 2.5;
         }
         div#reactContainer {
             top: 0px;
