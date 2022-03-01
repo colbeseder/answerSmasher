@@ -250,7 +250,15 @@ span#credit {
         }
         div#reactContainer {
             top: 0px;
-            margin-top: 0.5em;
+            margin-top: 0px;
+            padding: 0px;
+        }
+        #foot {
+            display: none;
+        }
+        #buttonContainer {
+            margin-left: 0;
+            margin-top: 0;
         }
     }
 
