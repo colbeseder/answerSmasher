@@ -28,7 +28,7 @@ function createDigest(smash){
 }
 
 function removeBrackets(s){
-    return s.replace(/\([^)]*\)\s*/g, '');
+    return s.replace(/\([^)]*\)?\s*/g, '');
 }
 
 function leadingLower(s){
