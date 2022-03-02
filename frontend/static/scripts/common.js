@@ -109,7 +109,7 @@ function reveal(){
     location.hash = "reveal"
     document.getElementById("guess1").value = elem.state.firstAnswer;
     document.getElementById("guess2").value = elem.state.secondAnswer;
-    document.title = combineSpelling(smash.firstAnswer, smash.secondAnswer);
+    document.title = combineSpelling(elem.state.firstAnswer, elem.state.secondAnswer);
     elem.setState({
         isCorrect: true,
         isRevealed: true
