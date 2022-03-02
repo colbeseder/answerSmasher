@@ -12,8 +12,8 @@ function combineSpelling(a, b, falseIfFailed){
     if (!b){
         return leadCapital(a);
     }
-    var joint = b.charAt(0).toLowerCase();
-    if (a.slice(1, -1).indexOf(joint) === -1){
+    var joint = b.charAt(0);
+    if (a.slice(1, -1).indexOf(joint.toLowerCase()) === -1){
         // Failed to combine
         if (falseIfFailed){
             return false;
@@ -21,7 +21,7 @@ function combineSpelling(a, b, falseIfFailed){
         return `${leadCapital(a)}-${leadCapital(b)}`;
     }
     else {
-        var combo = a.replace(new RegExp('(.+)' + joint + ".+", "i"), "$1" + b);
+        var combo = a.replace(new RegExp('(.+)' + joint.toLowerCase() + ".+", "i"), "$1" + b);
         return leadCapital(combo)
     }
 }
