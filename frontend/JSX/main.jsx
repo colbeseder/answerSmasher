@@ -27,8 +27,6 @@ class QuoteZone extends React.Component {
   }
 }
 
-
-
 const domContainer = document.querySelector('#root');
 var elem = ReactDOM.render(e(QuoteZone), domContainer);
 

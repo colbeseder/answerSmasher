@@ -57,7 +57,7 @@ function getSmashfromDigest(digest){
             .then(r => r.json())
             .then(smash => {
                 if (smash.firstAnswer) {
-                    elem.setState(smash, equalizeGuessBoxes);
+                    elem.setState(smash, x => handleUpdate(smash));
                     if(/reveal/.test(location.hash)){
                         reveal();
                     }
@@ -73,10 +73,20 @@ function next(){
     fetch(apiUrl + "/api/smash").then(r => r.json())
         .then(smash => {
             clear();
-            elem.setState(smash, equalizeGuessBoxes);
+            elem.setState(smash, x => handleUpdate(smash));
             window.history.pushState('', '', '?d=' + createDigest(smash));
          })
         .catch();
+}
+
+function handleUpdate(smash){
+    if (isQuizPage){
+        document.title = "Answer Smasher";
+    }
+    else {
+        document.title = combineSpelling(smash.firstAnswer, smash.secondAnswer);
+    }
+    equalizeGuessBoxes()
 }
 
 function checkSmash(){
@@ -99,6 +109,7 @@ function reveal(){
     location.hash = "reveal"
     document.getElementById("guess1").value = elem.state.firstAnswer;
     document.getElementById("guess2").value = elem.state.secondAnswer;
+    document.title = combineSpelling(smash.firstAnswer, smash.secondAnswer);
     elem.setState({
         isCorrect: true,
         isRevealed: true
