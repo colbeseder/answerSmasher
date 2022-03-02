@@ -149,6 +149,8 @@ span#IPA, div#IPA {
     color: var(--cool-grey);
     font-size: 1em;
     font-style: italic;
+    top: 37px;
+    position: relative;
 }
 
 div#foot {
@@ -281,6 +283,10 @@ div#header {
         }
         #buttonContainer {
             margin-left: 0;
+        }
+        #parts {
+            top: 0px;
+            position: inherit;
         }
     }
 
