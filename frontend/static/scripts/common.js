@@ -134,7 +134,7 @@ function clear(){
         isRevealed: false,
         guess1: '',
         guess2: ''
-    });
+    }, x => {document.getElementById('guess2').focus()});
 }
 
 function equalizeGuessBoxes(){
