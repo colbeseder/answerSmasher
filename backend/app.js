@@ -53,7 +53,7 @@ function combine(first, second){
   return smash;
 }
 
-const maxRetries = 8;
+const maxRetries = 10;
 
 function findPair(limit){
   limit = limit || maxRetries; //Don't retry forever

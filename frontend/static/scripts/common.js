@@ -12,7 +12,7 @@ function combineSpelling(a, b, falseIfFailed){
     if (!b){
         return leadCapital(a);
     }
-    var joint = b.charAt(0);
+    var joint = b.charAt(0).toLowerCase();
     if (a.slice(1, -1).indexOf(joint) === -1){
         // Failed to combine
         if (falseIfFailed){
