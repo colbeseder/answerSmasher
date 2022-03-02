@@ -1,0 +1,11 @@
+<form onSubmit="return go()">
+    <input id="main" />
+    <br />
+    <input type="submit"/>
+</form>
+<script>
+    function go(){
+        window.location = `http://answersmasher.com/?d=${btoa(document.getElementById('main').value)}`;
+        return false;
+    }
+</script>

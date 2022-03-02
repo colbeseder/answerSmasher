@@ -13,6 +13,10 @@ app.get('/quiz', (req, res) => {
   res.sendFile(__dirname + '/static/quiz.html');
 })
 
+app.get('/compose', (req, res) => {
+  res.sendFile(__dirname + '/static/compose.html');
+})
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
