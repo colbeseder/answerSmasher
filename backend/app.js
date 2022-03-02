@@ -1,10 +1,9 @@
-const express = require('express')
+const express = require('express');
 const mongoose = require('mongoose');
 const atob = require('atob');
 const combineSpelling = require('./combineSpelling');
 const Entry = require('./models/entry');
-const Smash = require('./models/smash')
-const Raw = require('./models/raw')
+const Smash = require('./models/smash');
 
 
 const app = express();
@@ -105,7 +104,6 @@ app.post('/api/entry/:title', (req, res) => {
     res.send('Not ready')
   }
   if (req.params.success === false){
-    Raw.deleteOne({ _id: req.params.title}).catch();
     res.send(req.params);
     return;
   }
@@ -120,7 +118,6 @@ app.post('/api/entry/:title', (req, res) => {
     .then(result => {
       //console.log(result);
       res.send(result);
-      Raw.deleteOne({ _id: req.params.title});
     })
     .catch(err => res.send(err));
 });
@@ -159,13 +156,6 @@ app.get('/api/combine/:digest', (req, res) => {
   catch(er){
     res.send(er);
   }
-});
-
-app.get('/api/q', (req, res) => {
-  if(!isConnected) {
-    res.send('Not ready')
-  }
-  getRandomDoc(Raw).then(result => res.send(result));
 });
 
 app.get('/api/randomEntry', (req, res) => {

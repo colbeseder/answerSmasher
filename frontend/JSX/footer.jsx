@@ -18,7 +18,7 @@ class FooterZone extends React.Component {
             </a>
             
             <span id="credit">
-                Created by 
+                Created by&nbsp;
                 <a href="https://twitter.com/bryapp">
                     @bryapp
                 </a>
