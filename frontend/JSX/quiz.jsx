@@ -31,11 +31,11 @@ class QuoteZone extends React.Component {
                 <div id="guesses">
                     <div className="guessBox" id="guessBox1">
                         <div>{removeBrackets(this.state.firstClue)}</div><br />
-                        <input id="guess1" onKeyPress={nextOnEnter} onInput={ev => {this.setState({guess1: ev.target.value.toLowerCase()}, checkSmash)}} />
+                        <input id="guess1" onKeyPress={nextOnEnter} onInput={ev => {this.setState(getGuesses(), checkSmash)}} />
                     </div>
                     <div className="guessBox" id="guessBox2">
                         <div>{removeBrackets(this.state.secondClue)}</div><br />
-                        <input id="guess2" onKeyPress={nextOnEnter} onInput={ev => {this.setState({guess2: ev.target.value.toLowerCase()}, checkSmash)}} />
+                        <input id="guess2" onKeyPress={nextOnEnter} onInput={ev => {this.setState(getGuesses(), checkSmash)}} />
                     </div>
                 </div>
                 <div id="buttonContainer">
@@ -49,9 +49,15 @@ class QuoteZone extends React.Component {
 }
 
 
-
 const domContainer = document.querySelector('#root');
 var elem = ReactDOM.render(e(QuoteZone), domContainer);
+
+function getGuesses(){
+    return {
+        guess1: document.getElementById('guess1').value.toLowerCase(),
+        guess2: document.getElementById('guess2').value.toLowerCase(),
+    }
+}
 
 function loadPage(){
     var digest = /[?&]d=([A-Z0-9/+=]+)/i.exec(location.search)?.at(1);

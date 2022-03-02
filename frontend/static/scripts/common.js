@@ -87,7 +87,8 @@ function next(){
 
 function handleUpdate(smash){
     if (isQuizPage){
-        document.title = "Answer Smasher";
+        document.title = 'Answer Smasher';
+        document.getElementsByTagName('input')[0].focus();
     }
     else {
         document.title = combineSpelling(smash.firstAnswer, smash.secondAnswer);
