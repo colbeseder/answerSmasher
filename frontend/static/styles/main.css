@@ -16,6 +16,14 @@ body {
     color: var(--xiketic)
 }
 
+div#header {
+    text-align: center;
+}
+
+span#siteName {
+    font-size: 30px;
+}
+
 h1 {
     border-bottom: solid 1px var(--xiketic);
     text-align: center;
@@ -153,7 +161,11 @@ div#foot {
     background-color: var(--periwinkle-crayola);;
 }
 
-img#quizButton {
+#foot a {
+    margin-right: 5px;
+}
+
+img.navButton {
     transform: scaleX(-1);
     height: 40px;
     margin-left: 1em;
@@ -201,6 +213,17 @@ span#credit {
 .correct #nextButton {
     display: inherit;
 }
+
+div#header {
+    height: 37px;
+    position: fixed;
+    top: 0px;
+    border-bottom: solid 1px var(--xiketic);
+    width: 100%;
+    left: 0;
+    background-color: var(--periwinkle-crayola);;
+}
+
 
 @media only screen and (max-device-width: 800px) {
     html>body {
@@ -253,7 +276,7 @@ span#credit {
             margin-top: 0px;
             padding: 0px;
         }
-        #foot {
+        #foot, #header {
             display: none;
         }
         #buttonContainer {
