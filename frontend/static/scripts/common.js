@@ -147,3 +147,9 @@ function equalizeGuessBoxes(){
     boxes[0].style.height = newHeight;
     boxes[1].style.height = newHeight;
 }
+
+function nextOnEnter(){
+    if (ev.key ===  "Enter" && (!isQuizPage || elem.state.isRevealed)) {
+        next();
+    }
+}

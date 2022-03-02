@@ -31,11 +31,11 @@ class QuoteZone extends React.Component {
                 <div id="guesses">
                     <div className="guessBox" id="guessBox1">
                         <div>{removeBrackets(this.state.firstClue)}</div><br />
-                        <input id="guess1" onInput={ev => {this.setState({guess1: ev.target.value.toLowerCase()}, checkSmash)}} />
+                        <input id="guess1" onKeyPress={nextOnEnter} onInput={ev => {this.setState({guess1: ev.target.value.toLowerCase()}, checkSmash)}} />
                     </div>
                     <div className="guessBox" id="guessBox2">
                         <div>{removeBrackets(this.state.secondClue)}</div><br />
-                        <input id="guess2" onInput={ev => {this.setState({guess2: ev.target.value.toLowerCase()}, checkSmash)}} />
+                        <input id="guess2" onKeyPress={nextOnEnter} onInput={ev => {this.setState({guess2: ev.target.value.toLowerCase()}, checkSmash)}} />
                     </div>
                 </div>
                 <div id="buttonContainer">
