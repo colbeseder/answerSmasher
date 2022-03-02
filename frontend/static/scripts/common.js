@@ -40,6 +40,10 @@ function leadingLower(s){
 
 var breakers = "(,|\\band\\b|\\bor\\b|\\bwith\\b|\\bfor\\b|\\bof\\b|\\bin\\b|\\bis\\b)";
 
+function normalizeCommas(s){
+    return s.replace(/ +,/g, ',');
+}
+
 function combineDef(a, b){
     var joiner = ' ';
     var re = new RegExp(breakers, 'i');
@@ -47,9 +51,11 @@ function combineDef(a, b){
         joiner = ' with ';
     }
 
-    return removeBrackets(a).replace(new RegExp("^(.{8,}?)" + breakers + ".*$", 'i'), '$1') +
+    var wholeClue = removeBrackets(a).replace(new RegExp("^(.{8,}?)" + breakers + ".*$", 'i'), '$1') +
             joiner +
             leadingLower(removeBrackets(b)).replace(new RegExp(".*" + breakers + "(.{5,})", 'i'), '$1$2');
+    
+    return normalizeCommas(wholeClue);
 }
 
 function getSmashfromDigest(digest){
