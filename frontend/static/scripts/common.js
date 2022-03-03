@@ -55,7 +55,7 @@ function normalizeCommas(s){
 
 function extractSynonyms(clue, maxCount){
     maxCount = maxCount || 1;
-    var re = /Synonyms?\s*:\s*([\w ,])/i
+    var re = /Synonyms?\s*:\s*([\w ,]+)/i
     var match = re.exec(clue);
     if (match){
         var words = match[1].split(/, */g)
