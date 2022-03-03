@@ -34,6 +34,14 @@ function removeBrackets(s){
     return s.replace(/\([^)]*\)?\s*/g, '');
 }
 
+function cleanClue(clue){
+    var synonym = extractSynonym(clue);
+    if (synonym){
+        return synonym;
+    }
+    return removeBrackets(clue);
+}
+
 function leadingLower(s){
     return s.replace(/^\s*[A-Z]/, x => x.toLowerCase());
 }
@@ -44,16 +52,27 @@ function normalizeCommas(s){
     return s.replace(/ +,/g, ',');
 }
 
+function extractSynonym(clue){
+    var re = /Synonyms?\s*:\s*(\w+)/i
+    var match = re.exec(clue);
+    if (match){
+        return match[1];
+    }
+    return '';
+}
+
 function combineDef(a, b){
+    a = cleanClue(a);
+    b = cleanClue(b);
     var joiner = ' ';
     var re = new RegExp(breakers, 'i');
     if (!re.test(a) && !re.test(b)){
         joiner = ' with ';
     }
 
-    var wholeClue = removeBrackets(a).replace(new RegExp("^(.{8,}?)" + breakers + ".*$", 'i'), '$1') +
+    var wholeClue = a.replace(new RegExp("^(.{8,}?)" + breakers + ".*$", 'i'), '$1') +
             joiner +
-            leadingLower(removeBrackets(b)).replace(new RegExp(".*" + breakers + "(.{5,})", 'i'), '$1$2');
+            leadingLower(b).replace(new RegExp(".*" + breakers + "(.{5,})", 'i'), '$1$2');
     
     return normalizeCommas(wholeClue);
 }
