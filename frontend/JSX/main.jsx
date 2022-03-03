@@ -15,7 +15,7 @@ class QuoteZone extends React.Component {
   render() {
     return (
         <div>
-            <div id="parts"><span id="part1">{this.state.firstAnswer}</span> <span id="part2">{this.state.secondAnswer}</span></div>
+            <div id="parts"><span id="part1">{this.state.firstAnswer}</span> <span id="part2">{this.state.secondAnswer}&nbsp;</span></div>
             <div id="reactContainer" onClick={next} onKeyPress={nextOnEnter}>
                 <span id="answer">{combineSpelling(this.state.firstAnswer, this.state.secondAnswer)}</span><br></br>
                 <span id="IPA">{this.state.pronounciation ? '/' + this.state.pronounciation + '/' : ''}</span><br />
