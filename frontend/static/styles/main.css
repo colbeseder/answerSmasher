@@ -22,6 +22,7 @@ body {
 
 div#header {
     text-align: center;
+    z-index: 1;
 }
 
 span#siteName {
@@ -164,7 +165,8 @@ div#foot {
     border-top: solid 1px var(--xiketic);
     width: 100%;
     left: 0;
-    background-color: var(--periwinkle-crayola);;
+    background-color: var(--periwinkle-crayola);
+    z-index: 1;
 }
 
 #foot a {
@@ -231,9 +233,9 @@ div#header {
 }
 
 img#correctImage {
-    height: 3em;
+    height: 2.5em;
     position: relative;
-    top: 3em;
+    top: 1.5em;
     left: 3em;
 }
 
@@ -254,7 +256,7 @@ img#correctImage {
     div#reactContainer {
         position: initial;
         top: 0;
-        margin-top: 30%;
+        margin-top: 37px;
         margin-left: 0;
         left: 0;
         width: 100%;
