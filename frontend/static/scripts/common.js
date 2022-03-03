@@ -34,12 +34,13 @@ function removeBrackets(s){
     return s.replace(/\([^)]*\)?\s*/g, '');
 }
 
-function cleanClue(clue){
-    var synonym = extractSynonym(clue);
+function cleanClue(clue, synCount){
+    clue = removeBrackets(clue);
+    var synonym = extractSynonyms(clue, synCount);
     if (synonym){
         return synonym;
     }
-    return removeBrackets(clue);
+    return clue;
 }
 
 function leadingLower(s){
@@ -52,11 +53,13 @@ function normalizeCommas(s){
     return s.replace(/ +,/g, ',');
 }
 
-function extractSynonym(clue){
-    var re = /Synonyms?\s*:\s*(\w+)/i
+function extractSynonyms(clue, maxCount){
+    maxCount = maxCount || 1;
+    var re = /Synonyms?\s*:\s*([\w ,])/i
     var match = re.exec(clue);
     if (match){
-        return match[1];
+        var words = match[1].split(/, */g)
+        return words.slice(0, maxCount).join(', ');
     }
     return '';
 }

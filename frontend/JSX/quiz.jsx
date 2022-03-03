@@ -30,11 +30,11 @@ class QuoteZone extends React.Component {
                 </div>
                 <div id="guesses">
                     <div className="guessBox" id="guessBox1">
-                        <div>{cleanClue(this.state.firstClue)}</div><br />
+                        <div>{cleanClue(this.state.firstClue, 3)}</div><br />
                         <input id="guess1" onKeyPress={nextOnEnter} onInput={ev => {this.setState(getGuesses(), checkSmash)}} />
                     </div>
                     <div className="guessBox" id="guessBox2">
-                        <div>{cleanClue(this.state.secondClue)}</div><br />
+                        <div>{cleanClue(this.state.secondClue, 3)}</div><br />
                         <input id="guess2" onKeyPress={nextOnEnter} onInput={ev => {this.setState(getGuesses(), checkSmash)}} />
                     </div>
                 </div>
