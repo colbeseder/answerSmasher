@@ -74,6 +74,9 @@ function aAn(s){
 }
 
 function getSubject(s){
+    if (!s){
+        return '';
+    }
     var re = new RegExp("\\b(An?|The|Any|Or|From|As|Of|And|With|To)\\b(.+?)" + breakersRE, "i");
     var m = re.exec(s);
     var subject;
@@ -85,7 +88,7 @@ function getSubject(s){
         words = s.split(/[^A-Z]+/ig).filter(x => x.trim());
         subject = words[words.length-1];
     }
-    return `${aAn(subject)} ${words ? '*' : ''}${subject.toLowerCase()}`
+    return `${aAn(subject)} ${subject.toLowerCase()}`
 }
 function combineDef(a, b){
     a = cleanClue(a);
