@@ -16,6 +16,10 @@ body {
     color: var(--xiketic)
 }
 
+.hidden {
+    visibility: hidden;
+}
+
 div#header {
     text-align: center;
 }
@@ -224,6 +228,13 @@ div#header {
     width: 100%;
     left: 0;
     background-color: var(--periwinkle-crayola);;
+}
+
+img#correctImage {
+    height: 3em;
+    position: relative;
+    top: 3em;
+    left: 3em;
 }
 
 
