@@ -51,6 +51,10 @@ function normalizeCommas(s){
     return s.replace(/ +,/g, ',');
 }
 
+function hash(s){
+    return parseInt(s.toLowerCase().replace(/[^a-w]/g, ''), 32);
+}
+
 function extractSynonyms(clue, maxCount){
     maxCount = maxCount || 1;
     var re = /Synonyms?\s*:\s*([\w ,]+)/i
