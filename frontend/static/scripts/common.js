@@ -207,3 +207,11 @@ function nextOnEnter(ev){
         next();
     }
 }
+
+function showShare(){
+    document.getElementById("shareContainer")?.classList.remove('hidden');
+}
+
+function hideShare(){
+    document.getElementById("shareContainer")?.classList.add('hidden');
+}

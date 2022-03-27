@@ -39,6 +39,9 @@ class QuoteZone extends React.Component {
                         <input id="guess2" onKeyPress={nextOnEnter} onInput={ev => {this.setState(getGuesses(), checkSmash)}} />
                     </div>
                 </div>
+                <div id="buttonContainer">
+                    <button id="shareButton" onClick={showShare}>Share</button>
+                </div><br /><br />
             </div>
         </div>
     )

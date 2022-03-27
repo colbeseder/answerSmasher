@@ -157,17 +157,3 @@ document.getElementById("next")?.addEventListener("click", next);
 document.getElementById("reveal").addEventListener("click", reveal);
 document.getElementById("answer1").addEventListener("input", attempt);
 document.getElementById("answer2").addEventListener("input", attempt);
-
-function loadPage(){
-    var digest = /[?&]d=([A-Z0-9/+=]+)/i.exec(location.search)?.at(1);
-    if (digest){
-        getSmashfromDigest(digest);
-    }
-    else {
-        next();
-    }
-}
-
-window.onpopstate = loadPage;
-
-loadPage()
