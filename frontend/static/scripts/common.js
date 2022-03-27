@@ -112,6 +112,7 @@ var joiners = [
 ];
 
 function getSmashfromDigest(digest){
+        window.digest = window.digest = digest;
         fetch(apiUrl + "/api/combine/" + digest)
             .then(r => r.json())
             .then(smash => {
@@ -133,7 +134,9 @@ function next(){
         .then(smash => {
             clear();
             elem.setState(smash, x => handleUpdate(smash));
-            window.history.pushState('', '', '?d=' + createDigest(smash));
+            var digest = createDigest(smash);
+            window.digest = digest;
+            window.history.pushState('', '', '?d=' + digest);
          })
         .catch();
 }

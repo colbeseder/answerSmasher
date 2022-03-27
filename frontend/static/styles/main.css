@@ -240,7 +240,7 @@ img#correctImage {
     left: 3em;
 }
 
-shareModal {
+#shareModal {
     z-index: 3;
     background-color: white;
     position: fixed;
