@@ -59,14 +59,14 @@ function reveal(){
 function checkSmash(){
     if (document.getElementById("answer1").innerHTML.toLowerCase() === currentSmash.firstAnswer.toLowerCase()
         && document.getElementById("answer2").innerHTML.toLowerCase() === currentSmash.secondAnswer.toLowerCase()){
+            // Answer is Correct!
             document.getElementById("result").innerText = "Correct";
             location.hash = 'reveal';
             document.getElementById("answer").innerText = combineSpelling(currentSmash.firstAnswer, currentSmash.secondAnswer);
             document.getElementById("IPA").innerText = `/${currentSmash.pronounciation}/`
             document.getElementById("meaning").innerText = `1. ${combineDef()}`;
 
-            document.getElementById("buttonGroup1").style.display = "none";
-            document.getElementById("buttonGroup2").style.display = "block";
+            document.getElementById("shareButton")?.classList.remove('hidden');
             document.getElementById("next").focus();
         }
 }

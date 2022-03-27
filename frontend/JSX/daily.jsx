@@ -40,7 +40,7 @@ class QuoteZone extends React.Component {
                     </div>
                 </div>
                 <div id="buttonContainer">
-                    <button id="shareButton" onClick={showShare}>Share</button>
+                    <button id="shareButton" className="hidden" onClick={showShare}>Share</button>
                 </div><br /><br />
             </div>
         </div>

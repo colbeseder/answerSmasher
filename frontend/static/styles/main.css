@@ -85,7 +85,7 @@ span#answer, div#answer {
     padding: 1em;
 }
 
-button {
+button, .button {
     font-size: x-large;
     margin: 5px;
     align-items: center;
@@ -240,6 +240,23 @@ img#correctImage {
     left: 3em;
 }
 
+shareModal {
+    z-index: 3;
+    background-color: white;
+    position: fixed;
+    width: 50%;
+    margin-left: 25%;
+    height: 30%;
+    top: 25%;
+    border: black solid 2px;
+    border-radius: 5px;
+    box-shadow: rgb(0 0 0 / 30%) 5px 5px 5px 0;
+    box-sizing: border-box;
+}
+
+.button {
+    margin-top: 1.5em;
+}
 
 @media only screen and (max-device-width: 800px) {
     html>body {

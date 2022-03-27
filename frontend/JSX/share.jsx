@@ -9,10 +9,17 @@ class ShareZone extends React.Component {
       return (
           <div id="shareModal">
               <div id="twitter">
-              <a id="tweetButton" className="twitter-share-button"
-                href="https://twitter.com/intent/tweet?text=">
+                <a id="tweetButton" className="twitter-share-button button" target="_blank"
+                  href="https://twitter.com/intent/tweet?text=">
                     Share on Twitter</a>
               </div>
+
+              <div id="whatsapp">
+                <a id="whatsAppButton" className="button" target="_blank"
+                  href="whatsapp://send?text=" data-action="share/whatsapp/share">
+                    Share on Whatsapp</a>
+              </div>
+              
           </div>
       )
     }
@@ -23,6 +30,7 @@ var footerElem = ReactDOM.render(React.createElement(ShareZone), document.queryS
 
 function updateShareContent(msg) {
     document.getElementById("tweetButton").href = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(msg);
+    document.getElementById("whatsAppButton").href = "whatsapp://send?text=" + encodeURIComponent(msg);
 }
 
-updateShareContent("I guessed today's answersmash\n" + location.href);
+updateShareContent("I guessed today's Answer Smash\n" + location.href);
