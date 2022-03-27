@@ -51,7 +51,7 @@ function updateShareContent(msg) {
 document.getElementById("whatToShare").addEventListener("input", 
   function(){
     var msg = this.checked ? 
-    `Check out the definition for ${document.getElementById("answer").innerText} \nhttp://answersmasher.com/?d=${window.digest}` :
+    `Check out the definition for _${document.getElementById("answer").innerText}_ \nhttp://answersmasher.com/?d=${window.digest}` :
     "I guessed today's Answer Smash\n" + location.href ;
     shareElem.setState({
         "toShare": this.checked,
