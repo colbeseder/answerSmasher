@@ -127,7 +127,7 @@ function getSmashfromDigest(digest){
         fetch(apiUrl + "/api/combine/" + digest).then(r => r.json()).then(smash => {
             if (smash.firstAnswer) {
                 updateSmash(smash);
-                if(/reveal/.test(location.hash)){
+                if(!window.isDailyPage && /reveal/.test(location.hash)){
                     reveal();
                 }
             }

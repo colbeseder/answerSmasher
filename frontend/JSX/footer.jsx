@@ -14,7 +14,11 @@ class FooterZone extends React.Component {
             </a>
             <a href="/quiz">
                 <img className="navButton" src="/static/icons/brain-user-blue.svg" />
-                quiz
+                Quiz
+            </a>
+            <a href="/daily">
+                <img className="navButton" src="/static/icons/badge.svg" />
+                Daily Smash
             </a>
             
             <span id="credit">

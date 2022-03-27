@@ -18,6 +18,7 @@ body {
 
 .hidden {
     visibility: hidden;
+    display: none;
 }
 
 div#header {
@@ -270,7 +271,7 @@ img#correctImage {
     }
 
     .guessBox {
-        width: 95%;
+        width: 90%;
         margin-bottom: 5px;;
     }
 
