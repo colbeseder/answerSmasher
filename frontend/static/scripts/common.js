@@ -139,7 +139,7 @@ function next(){
 }
 
 function handleUpdate(smash){
-    if (isQuizPage){
+    if (window.isQuizPage || window.isDailyPage){
         document.title = 'Answer Smasher';
         document.getElementsByTagName('input')[0].focus();
     }
@@ -159,10 +159,8 @@ function checkSmash(){
 
 }
 
-var isQuizPage = false;
-
 function reveal(){
-    if (!isQuizPage){
+    if (!window.isQuizPage){
         // Not Quiz Page
         return;
     }
@@ -177,7 +175,7 @@ function reveal(){
 }
 
 function clear(){
-    if(!isQuizPage){
+    if(!window.isQuizPage){
         return;
     }
     document.getElementById("guess1").value = '';
@@ -191,7 +189,7 @@ function clear(){
 }
 
 function equalizeGuessBoxes(){
-    if(!isQuizPage){
+    if(!window.isQuizPage && !window.isDailyPage){
         return;
     }
     var boxes = document.querySelectorAll(".guessBox>div");

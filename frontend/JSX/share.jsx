@@ -9,7 +9,7 @@ class ShareZone extends React.Component {
       return (
           <div id="shareModal">
               <div id="twitter">
-              <a id="tweetButton" class="twitter-share-button"
+              <a id="tweetButton" className="twitter-share-button"
                 href="https://twitter.com/intent/tweet?text=">
                     Share on Twitter</a>
               </div>
