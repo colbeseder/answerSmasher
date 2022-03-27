@@ -15,19 +15,20 @@ class ShareZone extends React.Component {
               <div>
                 <div className="switch-button">
                   <input id="whatToShare" className="switch-button-checkbox" type="checkbox"></input>
-                  <label className="switch-button-label" for="">
+                  <label className="switch-button-label" htmlFor="">
                     <span className="switch-button-label-span">Challenge</span>
                   </label>
                 </div>
+                <br />
               </div>
 
-              <div id="twitter">
+              <div id="twitter" className="shareButton">
                 <a id="tweetButton" className="twitter-share-button button" target="_blank"
                   href={"https://twitter.com/intent/tweet?text=" + this.state.shareMsg}>
                     Share on Twitter</a>
               </div>
 
-              <div id="whatsapp">
+              <div id="whatsapp" className="shareButton">
                 <a id="whatsAppButton" className="button" target="_blank"
                   href={"whatsapp://send?text=" + this.state.shareMsg} data-action="share/whatsapp/share">
                     Share on Whatsapp</a>

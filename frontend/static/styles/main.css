@@ -242,7 +242,7 @@ img#correctImage {
 
 #shareModal {
     z-index: 3;
-    background-color: white;
+    background-color: var(--state-blue);
     position: fixed;
     width: 50%;
     margin-left: 25%;
@@ -252,6 +252,10 @@ img#correctImage {
     border-radius: 5px;
     box-shadow: rgb(0 0 0 / 30%) 5px 5px 5px 0;
     box-sizing: border-box;
+}
+
+.shareButton {
+    float: left;
 }
 
 .button {
