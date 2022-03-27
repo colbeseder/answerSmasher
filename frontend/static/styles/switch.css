@@ -13,10 +13,13 @@
     text-align: center;
     font-size: 18px;
     letter-spacing: 1px;
-    color: #155FFF;
+    color: var(--state-blue);
     position: relative;
     padding-right: 120px;
     position: relative;
+    top: 8px;
+    left: 8px;
+    margin-bottom: 5px;
   }
   .switch-button:before {
     content: "Definition";

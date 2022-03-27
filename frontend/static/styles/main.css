@@ -244,9 +244,9 @@ img#correctImage {
     z-index: 3;
     background-color: var(--state-blue);
     position: fixed;
-    width: 50%;
-    margin-left: 25%;
-    height: 30%;
+    width: 40%;
+    margin-left: 30%;
+    height: 50%;
     top: 25%;
     border: black solid 2px;
     border-radius: 5px;
@@ -255,7 +255,8 @@ img#correctImage {
 }
 
 .shareButton {
-    float: left;
+    margin: 8px;
+    margin-left: 15px;
 }
 
 .button {
