@@ -1,4 +1,4 @@
-window.isQuizPage = true;
+window.isDailyPage = true;
 
 const e = React.createElement;
 
@@ -39,10 +39,6 @@ class QuoteZone extends React.Component {
                         <input id="guess2" onKeyPress={nextOnEnter} onInput={ev => {this.setState(getGuesses(), checkSmash)}} />
                     </div>
                 </div>
-                <div id="buttonContainer">
-                    <button id="revealButton" onClick={reveal}>Reveal</button>
-                    <button id="nextButton" onClick={x=>{next()}}>Next Smash</button>
-                </div><br /><br />
             </div>
         </div>
     )
@@ -61,16 +57,7 @@ function getGuesses(){
 }
 
 function loadPage(){
-    var digest = /[?&]d=([A-Z0-9/+=]+)/i.exec(location.search)?.at(1);
-    if (digest){
-        getSmashfromDigest(digest);
-    }
-    else {
-        next();
-    }
-    
+    getChallenge().then(digest => getSmashfromDigest(digest))
 }
-
-window.onpopstate = loadPage;
 
 loadPage();
