@@ -47,10 +47,12 @@ function leadingLower(s){
     return s.replace(/^\s*[A-Z]/, x => x.toLowerCase());
 }
 
-var breakers = "(,|\\band\\b|\\bor\\b|\\bwith\\b|\\bfor\\b|\\bof\\b|\\bin\\b|\\bis\\b)";
-
 function normalizeCommas(s){
     return s.replace(/ +,/g, ',');
+}
+
+function hash(s){
+    return parseInt(s.toLowerCase().replace(/[^a-w]/g, ''), 32);
 }
 
 function extractSynonyms(clue, maxCount){
@@ -64,21 +66,50 @@ function extractSynonyms(clue, maxCount){
     return '';
 }
 
+function aAn(s){
+    if (/s$/i.test(s)){
+        return '';
+    }
+    return /^[aeiou]/i.test(s) ? 'an' : 'a';
+}
+
+function getSubject(s){
+    if (!s){
+        return '';
+    }
+    var re = new RegExp("\\b(An?|The|Any|Or|From|As|Of|And|With|To)\\b(.+?)" + breakersRE, "i");
+    var m = re.exec(s);
+    var subject;
+    var words;
+    if (m) {
+        subject = m[2].trim();
+    }
+    else {
+        words = s.split(/[^A-Z]+/ig).filter(x => x.trim());
+        subject = words[words.length-1];
+    }
+    return `${aAn(subject)} ${subject.toLowerCase()}`
+}
 function combineDef(a, b){
     a = cleanClue(a);
     b = cleanClue(b);
-    var joiner = ' ';
-    var re = new RegExp(breakers, 'i');
-    if (!re.test(a) && !re.test(b)){
-        joiner = ' with ';
-    }
+    var joiner = joiners[hash(a)%joiners.length]
 
-    var wholeClue = a.replace(new RegExp("^(.{8,}?)" + breakers + ".*$", 'i'), '$1') +
-            joiner +
-            leadingLower(b).replace(new RegExp(".*" + breakers + "(.{5,})", 'i'), '$1$2');
+    var wholeClue = `${getSubject(a)} ${joiner} ${getSubject(b)}`;
     
-    return normalizeCommas(wholeClue);
+    return leadCapital(normalizeCommas(wholeClue).trim());
 }
+
+var breakers = ['and', 'or', 'with', 'for', 'of', 'in', 'is', 'from', 'as'];
+var breakersRE = `(,|\\b${breakers.join('\\b|\\b')}\\b|$)`;
+
+var joiners = [
+'in',
+'on',
+'is',
+'with',
+'from',
+];
 
 function getSmashfromDigest(digest){
         fetch(apiUrl + "/api/combine/" + digest)
