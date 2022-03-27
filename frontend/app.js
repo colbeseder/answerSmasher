@@ -13,6 +13,10 @@ app.get('/quiz', (req, res) => {
   res.sendFile(__dirname + '/static/quiz.html');
 })
 
+app.get('/daily', (req, res) => {
+  res.sendFile(__dirname + '/static/daily.html');
+})
+
 app.get('/compose', (req, res) => {
   res.sendFile(__dirname + '/static/compose.html');
 })
