@@ -24,13 +24,14 @@ class ShareZone extends React.Component {
 
               <div id="twitter" className="shareButton">
                 <a id="tweetButton" className="twitter-share-button button" target="_blank"
-                  href={"https://twitter.com/intent/tweet?text=" + this.state.shareMsg}>
+                  href={"https://twitter.com/intent/tweet?text=" + encodeURIComponent(this.state.shareMsg)}>
                     Share on Twitter</a>
               </div>
+              <br />
 
               <div id="whatsapp" className="shareButton">
                 <a id="whatsAppButton" className="button" target="_blank"
-                  href={"whatsapp://send?text=" + this.state.shareMsg} data-action="share/whatsapp/share">
+                  href={"whatsapp://send?text=" + encodeURIComponent(this.state.shareMsg)} data-action="share/whatsapp/share">
                     Share on Whatsapp</a>
               </div>
               
@@ -49,8 +50,11 @@ function updateShareContent(msg) {
 
 document.getElementById("whatToShare").addEventListener("input", 
   function(){
-    shareElem.state.toShare = this.checked ? 1 : 0;
-    shareElem.state.shareMsg = this.checked ? 
-      `Check out the definition for ${document.getElementById("answer").innerText} \nhttp://answersmasher.com/?d=${window.digest}` :
-      "I guessed today's Answer Smash\n" + location.href ;
+    var msg = this.checked ? 
+    `Check out the definition for ${document.getElementById("answer").innerText} \nhttp://answersmasher.com/?d=${window.digest}` :
+    "I guessed today's Answer Smash\n" + location.href ;
+    shareElem.setState({
+        "toShare": this.checked,
+        "shareMsg": msg
+      });
   });
