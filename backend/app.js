@@ -5,6 +5,7 @@ const combineSpelling = require('./combineSpelling');
 const Entry = require('./models/entry');
 const Smash = require('./models/smash');
 
+const entry_api_key = process.env.ENTRY_API_KEY ;
 
 const app = express();
 var cors = require('cors');
@@ -16,6 +17,10 @@ const port = 3000
 // Connection URI
 const MongoURI = `mongodb+srv://${process.env.MONGO_NAME}:${process.env.MONGO_PASS}${process.env.MONGO_URI}`;
 var isConnected = false;
+
+function validateAPIKey(req, key){
+  return req.get("X-API-Key") === key;
+}
 
 function getRandomDoc(model){
   return new Promise((resolve, reject) => {
@@ -100,8 +105,14 @@ app.get('/', (req, res) => {
 })
 
 app.post('/api/entry/:title', (req, res) => {
+  if(!validateAPIKey(req, entry_api_key)){
+    res.statusCode = 401;
+    res.send('Invalid or expired API Key')
+    return;
+  }
   if(!isConnected) {
     res.send('Not ready')
+    return;
   }
   if (req.params.success === false){
     res.send(req.params);

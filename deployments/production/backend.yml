@@ -23,6 +23,11 @@ spec:
         ports:
         - containerPort: 3000
         env:
+          - name: ENTRY_API_KEY
+            valueFrom: 
+              secretKeyRef:
+                name: api-key
+                key: key
           - name: MONGO_NAME
             valueFrom: 
               secretKeyRef:
