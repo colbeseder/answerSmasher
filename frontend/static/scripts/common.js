@@ -204,7 +204,7 @@ function equalizeGuessBoxes(){
 }
 
 function nextOnEnter(ev){
-    if (ev.key ===  "Enter" && (!isQuizPage || elem.state.isRevealed)) {
+    if (ev.key ===  "Enter" && (!window.isQuizPage || elem.state.isRevealed)) {
         next();
     }
 }
