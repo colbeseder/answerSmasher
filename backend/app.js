@@ -107,7 +107,7 @@ app.get('/', (req, res) => {
 app.post('/api/entry/:title', (req, res) => {
   if(!validateAPIKey(req, entry_api_key)){
     res.statusCode = 401;
-    res.send('Invalid or expired API Key')
+    res.send(`Invalid or expired API Key |${req.get("X-API-Key")[0]}|${entry_api_key}|`)
     return;
   }
   if(!isConnected) {
