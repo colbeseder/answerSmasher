@@ -18,7 +18,7 @@ spec:
       containers:
       - name: backend
         image: colbeseder/smasher-entry-prep
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         env:
           - name: ENTRY_API_KEY
             valueFrom: 
@@ -26,4 +26,4 @@ spec:
                 name: api-key
                 key: key
           - name: API_Gateway
-            value: "http://api.answersmasher.com"
+            value: "http://apigate.backend-namespace.svc.cluster.local:80"

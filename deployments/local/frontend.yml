@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smasher-ui
+  labels:
+    app: smasher
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: smasher
+  template:
+    metadata:
+      labels:
+        app: smasher
+    spec:
+      containers:
+      - name: frontend
+        image: colbeseder/smasherfrontend
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3001
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ui-service
+  labels:
+    service: ui-service
+  annotations:
+    service.beta.kubernetes.io/do-loadbalancer-name: "ui-service"
+    service.beta.kubernetes.io/do-loadbalancer-hostname: "answersmasher.com"
+    service.beta.kubernetes.io/do-loadbalancer-http-ports: "80"
+spec:
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3001
+  selector:
+    app: smasher
