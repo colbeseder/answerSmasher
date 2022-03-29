@@ -14,8 +14,13 @@ app.use(express.json());
 
 const port = 3000
 
+const isProd = process.env.IS_PROD !== "no";
+
 // Connection URI
-const MongoURI = `mongodb+srv://${process.env.MONGO_NAME}:${process.env.MONGO_PASS}${process.env.MONGO_URI}`;
+var MongoURI = `mongodb+srv://${process.env.MONGO_NAME}:${process.env.MONGO_PASS}${process.env.MONGO_URI}`;
+if (!isProd){
+  MongoURI = `mongodb://mongodb-service.mongodb-namespace.svc.cluster.local:27017`;
+}
 var isConnected = false;
 
 function validateAPIKey(req, key){
