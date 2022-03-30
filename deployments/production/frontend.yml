@@ -4,16 +4,16 @@ metadata:
   name: smasher-ui
   namespace: smasher-ns
   labels:
-    app: smasher
+    app: smasherf
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: smasher
+      app: smasherf
   template:
     metadata:
       labels:
-        app: smasher
+        app: smasherf
     spec:
       containers:
       - name: frontend
@@ -23,6 +23,7 @@ spec:
         - containerPort: 3001
 
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -41,4 +42,4 @@ spec:
       port: 80
       targetPort: 3001
   selector:
-    app: smasher
+    app: smasherf
