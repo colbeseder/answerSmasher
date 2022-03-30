@@ -2,8 +2,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: main-deployment
-  namespace: backend-namespace
+  name: backend
+  namespace: smasher-ns
   labels:
     app: smasher
 spec:
@@ -18,8 +18,8 @@ spec:
     spec:
       containers:
       - name: backend
-        image: colbeseder/smasherbackend
-        imagePullPolicy: IfNotPresent
+        image: colbeseder/smasherbackend:local
+        imagePullPolicy: Never
         ports:
         - containerPort: 3000
         env:
@@ -28,21 +28,8 @@ spec:
               secretKeyRef:
                 name: api-key
                 key: key
-          - name: MONGO_NAME
-            valueFrom: 
-              secretKeyRef:
-                name: mongo-key
-                key: username
-          - name: MONGO_PASS
-            valueFrom: 
-              secretKeyRef:
-                name: mongo-key
-                key: password
           - name: MONGO_URI
-            valueFrom: 
-              secretKeyRef:
-                name: mongo-key
-                key: apiUrl
+            value: "mongodb-service.mongodb-namespace.svc.cluster.local:27017"
           - name: IS_PROD
             value: "no"
 
@@ -51,7 +38,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: apigate
-  namespace: backend-namespace
+  namespace: smasher-ns
   annotations:
     service.beta.kubernetes.io/do-loadbalancer-name: "apigate"
     service.beta.kubernetes.io/do-loadbalancer-hostname: "api.answersmasher.com"
@@ -59,10 +46,11 @@ metadata:
   labels:
     service: apigate
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
     - protocol: TCP
       port: 80
       targetPort: 3000
+      nodePort: 30182
   selector:
     app: smasher

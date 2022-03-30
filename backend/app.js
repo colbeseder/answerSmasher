@@ -19,7 +19,7 @@ const isProd = process.env.IS_PROD !== "no";
 // Connection URI
 var MongoURI = `mongodb+srv://${process.env.MONGO_NAME}:${process.env.MONGO_PASS}${process.env.MONGO_URI}`;
 if (!isProd){
-  MongoURI = `mongodb://mongodb-service.mongodb-namespace.svc.cluster.local:27017`;
+  MongoURI = `mongodb://${process.env.MONGO_URI}`;
 }
 var isConnected = false;
 
@@ -141,22 +141,30 @@ app.post('/api/entry/:title', (req, res) => {
 app.get('/api/entry/:title', (req, res) => {
   if(!isConnected) {
     res.send('Not ready')
+    return;
   }
   Entry.findById(req.params.title).then(result => res.send(result))
 });
 
 app.get('/api/smash', (req, res) => {
   if(!isConnected) {
-    res.send('Not ready')
+    res.send('Not ready');
+    return;
   }
-  findPair()
-    .then(pair => res.send(pair))
-    .catch(err => res.send(err));
+  try {
+    findPair()
+      .then(pair => res.send(pair))
+      .catch(err => res.send(err));
+  }
+  catch(err){
+    res.send(err);
+  }
 });
 
 app.get('/api/combine/:digest', (req, res) => {
   if(!isConnected) {
-    res.send('Not ready')
+    res.send('Not ready');
+    return;
   }
   try {
     var uncoded = atob(req.params.digest);
@@ -176,14 +184,16 @@ app.get('/api/combine/:digest', (req, res) => {
 
 app.get('/api/randomEntry', (req, res) => {
   if(!isConnected) {
-    res.send('Not ready')
+    res.send('Not ready');
+    return;
   }
   getRandomDoc(Entry).then(result => res.send(result));
 });
 
 app.get('/api/status', (req, res) => {
   if(!isConnected) {
-    res.send('Not ready')
+    res.send('Not ready');
+    return;
   }
   Entry.count().exec(function(err, count){res.send(`${count} Entries`)})
 });

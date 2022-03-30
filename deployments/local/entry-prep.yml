@@ -1,29 +1,21 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Pod
 metadata:
   name: entry-prep
-  namespace: backend-namespace
+  namespace: smasher-ns
   labels:
     app: smasher
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: smasher
-  template:
-    metadata:
-      labels:
-        app: smasher
-    spec:
-      containers:
-      - name: backend
-        image: colbeseder/smasher-entry-prep
-        imagePullPolicy: IfNotPresent
-        env:
-          - name: ENTRY_API_KEY
-            valueFrom: 
-              secretKeyRef:
-                name: api-key
-                key: key
-          - name: API_Gateway
-            value: "http://apigate.backend-namespace.svc.cluster.local:80"
+  restartPolicy: OnFailure
+  containers:
+  - name: entry-prep
+    image: colbeseder/smasher-entry-prep:local
+    imagePullPolicy: Never
+    env:
+      - name: ENTRY_API_KEY
+        valueFrom: 
+          secretKeyRef:
+            name: api-key
+            key: key
+      - name: API_Gateway
+        value: "http://apigate.smasher-ns.svc.cluster.local:80"
