@@ -198,12 +198,23 @@ app.get('/api/status', (req, res) => {
   Entry.count().exec(function(err, count){res.send(`${count} Entries`)})
 });
 
-mongoose.connect(MongoURI)
-  .then(result => {
-    console.log("Backend app.js Connected to Mongo");
-    isConnected = true;
-  })
-  .catch(err => {console.log("Backend app.js failed to connect to Mongo");console.log(err)})
+var connectionRetryInterval = 1000; // ms
+
+function connectToDB(){
+  mongoose.connect(MongoURI)
+    .then(result => {
+      console.log("Backend app.js Connected to Mongo");
+      isConnected = true;
+    })
+    .catch(err => {
+      console.log("Backend app.js failed to connect to Mongo");
+      console.log(err);
+      setTimeout(connectToDB, connectionRetryInterval);
+      connectionRetryInterval *= 2 ; // exponential backoff
+    });
+}
+
+connectToDB();
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`)
