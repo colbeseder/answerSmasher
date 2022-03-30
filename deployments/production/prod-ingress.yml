@@ -8,12 +8,20 @@ spec:
   - host: answersmasher.com
     http:
       paths:
-      - backend:
-          serviceName: smasher-ui
-          servicePort: 80
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: smasher-ui
+            port:
+              number: 80
   - host: api.answersmasher.com
     http:
       paths:
-      - backend:
-          serviceName: apigate
-          servicePort: 80
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: apigate
+            port:
+              number: 80
