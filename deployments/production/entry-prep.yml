@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: entry-prep
-  namespace: backend-namespace
+  namespace: smasher-ns
   labels:
     app: smasher
 spec:

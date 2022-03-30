@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: prod-ingress
+  namespace: smasher-ns
+spec:
+  rules:
+  - host: answersmasher.com
+    http:
+      paths:
+      - backend:
+          serviceName: smasher-ui
+          servicePort: 80
+  - host: api.answersmasher.com
+    http:
+      paths:
+      - backend:
+          serviceName: apigate
+          servicePort: 80
