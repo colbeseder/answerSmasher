@@ -1,5 +1,5 @@
-const apiUrl = "http://api." + location.host
 
+window.apiUrl = window.apiUrl || "http://api.answersmasher.com";
 
 function leadCapital(s){
     return s.replace(/^./, x => x.toUpperCase())
