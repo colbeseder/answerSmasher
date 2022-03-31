@@ -1,11 +1,11 @@
 minikube delete
 minikube start
 
-kubectl apply -f ./deployments/local/mongo.yml
-
 eval $(minikube docker-env)
 minikube addons enable ingress
 minikube addons enable ingress-dns
+
+kubectl apply -f ./deployments/local/mongo.yml
 
 npm install package.json
 npm run build --prefix ./frontend

@@ -29,6 +29,7 @@ spec:
           ports:
             - containerPort: 27017
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -41,3 +42,60 @@ spec:
     - protocol: TCP
       port: 27017
       targetPort: 27017
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mongodb
+  namespace: mongodb-namespace
+  labels:
+    app: smasher-mongodb
+spec:
+  volumes:
+  - name: smasher-mongo-vol
+    persistentVolumeClaim:
+      claimName: smasher-pvc
+  containers:
+  - image: mongo
+    name: container1
+    command:
+    - mongod
+    - “ — bind_ip”
+    - “0.0.0.0”
+    ports:
+    - containerPort: 27017
+    volumeMounts:
+    - name: smasher-mongo-vol
+      mountPath: /data/db
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: smasher-pvc
+  namespace: mongodb-namespace
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 1G
+  storageClassName: ""
+
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: smasher-pv
+  namespace: mongodb-namespace
+spec:
+  accessModes:
+  - ReadWriteMany
+  capacity:
+    storage: 1G
+  hostPath:
+    path: /tmp/smasher-pv
