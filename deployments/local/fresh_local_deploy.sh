@@ -5,6 +5,7 @@ eval $(minikube docker-env)
 minikube addons enable ingress
 minikube addons enable ingress-dns
 
+minikube image load mongo
 kubectl apply -f ./deployments/local/mongo.yml
 
 npm install package.json
