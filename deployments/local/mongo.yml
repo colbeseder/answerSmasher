@@ -31,6 +31,13 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 27017
+          volumeMounts:
+            - name: smasher-mongo-vol
+              mountPath: /data/db
+      volumes:
+        - name: smasher-mongo-vol
+          persistentVolumeClaim:
+            claimName: smasher-pvc
 ---
 
 apiVersion: v1
