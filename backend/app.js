@@ -205,7 +205,7 @@ function connectToDB(){
   mongoose.connect(MongoURI)
     .then(result => {
       var t = Math.round((Date.now() - bootTime)/100) / 10; // 1 decimal place
-      console.log("Backend app.js Connected to Mongo after ${} seconds");
+      console.log(`Backend app.js Connected to Mongo after ${t} seconds`);
       isConnected = true;
     })
     .catch(err => {
