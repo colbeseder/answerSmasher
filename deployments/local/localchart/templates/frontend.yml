@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: smasher-ui
-  namespace: smasher-ns
   labels:
     app: smasherf
 spec:
@@ -17,7 +16,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: colbeseder/smasherfrontend:local
+        image: colbeseder/smasherfrontend:{{ .Values.imageTag}}
         imagePullPolicy: Never
         ports:
         - containerPort: 3001
@@ -30,7 +29,6 @@ apiVersion: v1
 kind: Service
 metadata:
   name: ui-service
-  namespace: smasher-ns
   labels:
     service: ui-service
   annotations:
