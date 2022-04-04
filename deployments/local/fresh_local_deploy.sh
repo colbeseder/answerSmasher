@@ -14,9 +14,9 @@ npm run build --prefix ./frontend
 docker build --tag colbeseder/smasherfrontend:local -f frontend/Dockerfile .
 docker build --tag colbeseder/smasherbackend:local -f backend/Dockerfile .
 docker build --tag colbeseder/smasher-entry-prep:local -f prepareEntries/Dockerfile .
-kubectl apply -f ./deployments/local/smasher-namespace.yml
-kubectl apply -f ../secrets/local/secrets.yml
-kubectl apply -f ./deployments/local
+
+cd ./deployments/local/localchart
+helm secrets install yo-yo . -n smasher-ns2 --create-namespace --values ../secrets.yml
 
 sleep 30
 kubectl port-forward svc/apigate 30182:80 --namespace smasher-ns &
