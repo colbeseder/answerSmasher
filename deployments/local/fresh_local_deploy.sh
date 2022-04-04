@@ -16,8 +16,8 @@ docker build --tag colbeseder/smasherbackend:local -f backend/Dockerfile .
 docker build --tag colbeseder/smasher-entry-prep:local -f prepareEntries/Dockerfile .
 
 cd ./deployments/local/localchart
-helm secrets install yo-yo . -n smasher-ns2 --create-namespace --values ../secrets.yml
+helm secrets install yo-yo . -n smasher-ns-local --create-namespace --values ../secrets.yml
 
 sleep 30
-kubectl port-forward svc/apigate 30182:80 --namespace smasher-ns &
-minikube service ui-service --namespace smasher-ns
+kubectl port-forward svc/apigate 30182:80 --namespace smasher-ns-local &
+minikube service ui-service --namespace smasher-ns-local
