@@ -9,6 +9,7 @@ pullImages: Always
 defaultServiceType: LoadBalancer
 isProd: 'yes'
 runEntryPrep: no
+wordList: 'resources/default-words.txt'
 
 image:
   repository: nginx

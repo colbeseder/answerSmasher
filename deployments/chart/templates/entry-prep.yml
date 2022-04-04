@@ -17,5 +17,7 @@ spec:
         value: '{{ .Values.apiKey }}'
       - name: API_Gateway
         value: "http://apigate.{{ .Release.Namespace }}.svc.cluster.local:80"
+      - name: WORD_LIST
+        value: {{ .Values.wordList }}
 
 {{ end }}

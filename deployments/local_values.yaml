@@ -9,6 +9,7 @@ pullImages: Never
 defaultServiceType: NodePort
 isProd: 'no'
 runEntryPrep: yes
+wordList: 'resources/test-words.txt'
 
 image:
   repository: nginx
