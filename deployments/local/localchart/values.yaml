@@ -8,6 +8,7 @@ imageTag: local
 pullImages: Never
 defaultServiceType: NodePort
 isProd: 'no'
+runEntryPrep: yes
 
 image:
   repository: nginx
