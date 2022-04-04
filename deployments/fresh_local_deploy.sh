@@ -6,7 +6,7 @@ minikube addons enable ingress
 minikube addons enable ingress-dns
 
 minikube image load mongo
-kubectl apply -f ./deployments/local/mongo.yml
+kubectl apply -f ./deployments/mongo.yml
 
 npm install package.json
 npm run build --prefix ./frontend
