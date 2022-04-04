@@ -15,8 +15,7 @@ docker build --tag colbeseder/smasherfrontend:local -f frontend/Dockerfile .
 docker build --tag colbeseder/smasherbackend:local -f backend/Dockerfile .
 docker build --tag colbeseder/smasher-entry-prep:local -f prepareEntries/Dockerfile .
 
-cd ./deployments/local/localchart
-helm secrets install dev . -n smasher-ns-local --create-namespace --values ../../local/local_secrets.yml --values ../../local/local_values.yaml
+helm secrets install dev ./deployments/chart -n smasher-ns-local --create-namespace --values ./deployments/local_secrets.yml --values ./deployments/local_values.yaml
 
 sleep 30
 kubectl port-forward svc/apigate 30182:80 --namespace smasher-ns-local &
