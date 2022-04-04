@@ -3,7 +3,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend
-  namespace: smasher-ns
   labels:
     app: smasher
 spec:
@@ -18,27 +17,27 @@ spec:
     spec:
       containers:
       - name: backend
-        image: colbeseder/smasherbackend:local
-        imagePullPolicy: Never
+        image: colbeseder/smasherbackend:{{ .Values.imageTag }}
+        imagePullPolicy: {{ .Values.pullImages}}
         ports:
         - containerPort: 3000
         env:
           - name: ENTRY_API_KEY
-            valueFrom: 
-              secretKeyRef:
-                name: api-key
-                key: key
+            value: '{{ .Values.apiKey }}'
+          - name: MONGO_NAME
+            value: {{ .Values.mongoUsername }}
+          - name: MONGO_PASS
+            value: {{ .Values.mongoPassword }}
           - name: MONGO_URI
-            value: "mongodb-service.mongodb-namespace.svc.cluster.local:27017"
+            value: {{ .Values.mongoApiUrl}}
           - name: IS_PROD
-            value: "no"
+            value: "{{ .Values.isProd }}"
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: apigate
-  namespace: smasher-ns
   annotations:
     service.beta.kubernetes.io/do-loadbalancer-name: "apigate"
     service.beta.kubernetes.io/do-loadbalancer-hostname: "api.answersmasher.com"
@@ -46,7 +45,7 @@ metadata:
   labels:
     service: apigate
 spec:
-  type: NodePort
+  type: {{ .Values.defaultServiceType }}
   ports:
     - protocol: TCP
       port: 80
