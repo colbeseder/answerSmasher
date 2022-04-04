@@ -9,7 +9,7 @@ spec:
   containers:
   - name: entry-prep
     image: colbeseder/smasher-entry-prep:{{ .Values.imageTag}}
-    imagePullPolicy: Never
+    imagePullPolicy: {{ .Values.pullImages }}
     env:
       - name: ENTRY_API_KEY
         value: '{{ .Values.apiKey }}'
