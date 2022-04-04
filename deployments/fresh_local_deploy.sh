@@ -1,3 +1,4 @@
+helm uninstall dev -n smasher-ns-local
 minikube delete
 minikube start
 
