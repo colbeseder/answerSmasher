@@ -8,3 +8,6 @@ npm-debug.log
 */constants.sh
 secrets
 frontend/static/JSX/*
+*.yml.dec
+*.yaml.dec
+*.sops.yaml

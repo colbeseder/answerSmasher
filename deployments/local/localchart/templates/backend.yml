@@ -23,27 +23,15 @@ spec:
         - containerPort: 3000
         env:
           - name: ENTRY_API_KEY
-            valueFrom: 
-              secretKeyRef:
-                name: api-key
-                key: key
+            value: '{{ .Values.apiKey }}'
           - name: MONGO_NAME
-            valueFrom: 
-              secretKeyRef:
-                name: mongo-key
-                key: username
+            value: {{ .Values.mongoUsername }}
           - name: MONGO_PASS
-            valueFrom: 
-              secretKeyRef:
-                name: mongo-key
-                key: password
+            value: {{ .Values.mongoPassword }}
           - name: MONGO_URI
-            valueFrom: 
-              secretKeyRef:
-                name: mongo-key
-                key: apiUrl
+            value: {{ .Values.mongoApiUrl}}
           - name: IS_PROD
-            value: "no"
+            value: "{{ .Values.isProd }}"
 
 ---
 apiVersion: v1
