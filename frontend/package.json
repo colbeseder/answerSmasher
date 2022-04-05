@@ -2,7 +2,7 @@
   "name": "answersmasher-frontend",
   "version": "1.0.0",
   "main": "app.js",
-  "scripts":{
+  "scripts": {
     "build": "esbuild ./JSX/* --outdir=./static/JSX/"
   },
   "dependencies": {

@@ -8,19 +8,6 @@ class FooterZone extends React.Component {
   render() {
     return (
         <div id="foot">
-            <a href="/">
-                <img className="navButton" src="/static/icons/tennis-blue.svg" />
-                Smashes
-            </a>
-            <a href="/quiz">
-                <img className="navButton" src="/static/icons/brain-user-blue.svg" />
-                Quiz
-            </a>
-            <a href="/daily">
-                <img className="navButton" src="/static/icons/badge.svg" />
-                Daily Smash
-            </a>
-            
             <span id="credit">
                 Created by&nbsp;
                 <a href="https://twitter.com/bryapp">

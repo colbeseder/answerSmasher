@@ -21,20 +21,10 @@ body {
     display: none;
 }
 
-div#header {
+#siteName {
     text-align: center;
     z-index: 1;
-}
-
-span#siteName {
     font-size: 30px;
-}
-
-h1 {
-    border-bottom: solid 1px var(--xiketic);
-    text-align: center;
-    font-size: xxx-large;
-    color: var(--cinnabar)
 }
 
 div[contenteditable=true] {
@@ -163,10 +153,8 @@ div#foot {
     height: 37px;
     position: fixed;
     bottom: 0px;
-    border-top: solid 1px var(--xiketic);
     width: 100%;
     left: 0;
-    background-color: var(--periwinkle-crayola);
     z-index: 1;
 }
 
@@ -174,12 +162,40 @@ div#foot {
     margin-right: 5px;
 }
 
-img.navButton {
-    transform: scaleX(-1);
-    height: 40px;
-    margin-left: 1em;
-    margin-top: 2px;
-    vertical-align: middle;
+#menuWrapper {
+    position: fixed;
+    top: 38px;
+    border-right: solid 1px var(--xiketic);
+    height: 100%;
+    width: 130px;
+    padding: 1.5em;
+    padding-left: .5em;
+    background: var(--periwinkle-crayola);
+    transition: 1s;
+    transition-timing-function: ease;
+    z-index: 5;
+}
+
+#menuWrapper.slideOff {
+    left: -200px;
+}
+
+
+#menuWrapper ul {
+    list-style-type: none; /* Remove bullets */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margins */
+  }
+
+div#iconBox {
+    position: absolute;
+    margin-left: 5px;
+    z-index: 2;
+}
+
+.navButton {
+    height: 37px;
+    cursor: pointer;
 }
 
 span#credit {
@@ -261,6 +277,12 @@ img#correctImage {
 
 .button {
     margin-top: 1.5em;
+}
+
+#helpContainer {
+    position: absolute;
+    top: 5em;
+    left: 5em;
 }
 
 @media only screen and (max-device-width: 800px) {
