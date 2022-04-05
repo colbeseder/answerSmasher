@@ -90,7 +90,10 @@ function getSubject(s){
     }
     return `${aAn(subject)} ${subject.toLowerCase()}`
 }
-function combineDef(a, b){
+function combineDef(a, b, target_a, target_b){
+    if (target_a && target_b){
+        return a.replace(target_a, target_b);
+    }
     a = cleanClue(a);
     b = cleanClue(b);
     var joiner = joiners[hash(a)%joiners.length]
