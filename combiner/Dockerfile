@@ -4,6 +4,7 @@ FROM python:3.8-slim-buster
 WORKDIR /usr/app
 COPY combiner/requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
+RUN command python3 -m spacy download en_core_web_sm
 
 
 # Install app dependencies
