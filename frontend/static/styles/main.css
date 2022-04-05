@@ -21,10 +21,12 @@ body {
     display: none;
 }
 
-#siteName {
+#siteName, #siteName a {
     text-align: center;
     z-index: 1;
     font-size: 30px;
+    color: inherit;
+    text-decoration: none;
 }
 
 div[contenteditable=true] {

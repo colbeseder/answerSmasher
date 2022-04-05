@@ -40,7 +40,9 @@ class HeadZone extends React.Component {
           </div>
         </div>
         <div id="siteName">
-          <span >Answer Smasher</span>
+          <a href="/">
+            <span >Answer Smasher</span>
+          </a>
         </div>
         <script src="app.jsx" type="text/jsx"></script>
       </div>
