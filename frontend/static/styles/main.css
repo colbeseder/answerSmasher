@@ -145,7 +145,7 @@ span#IPA, div#IPA {
     color: var(--cool-grey);
     font-size: 1em;
     font-style: italic;
-    top: 37px;
+    top: 47px;
     position: relative;
 }
 
@@ -164,15 +164,14 @@ div#foot {
 
 #menuWrapper {
     position: fixed;
-    top: 38px;
+    top: 49px;
     border-right: solid 1px var(--xiketic);
     height: 100%;
-    width: 130px;
+    width: 150px;
     padding: 1.5em;
-    padding-left: .5em;
     background: var(--periwinkle-crayola);
-    transition: 1s;
-    transition-timing-function: ease;
+    transition: 0.7s;
+    transition-timing-function: ease-in-out;
     z-index: 5;
 }
 
@@ -185,7 +184,12 @@ div#foot {
     list-style-type: none; /* Remove bullets */
     padding: 0; /* Remove padding */
     margin: 0; /* Remove margins */
-  }
+}
+
+#closeMenu {
+    cursor: pointer;
+    float: right;
+}
 
 div#iconBox {
     position: absolute;
@@ -246,7 +250,8 @@ div#header {
     border-bottom: solid 1px var(--xiketic);
     width: 100%;
     left: 0;
-    background-color: var(--periwinkle-crayola);;
+    background-color: var(--periwinkle-crayola);
+    padding: 5px;
 }
 
 img#correctImage {

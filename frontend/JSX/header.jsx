@@ -11,10 +11,12 @@ class HeadZone extends React.Component {
     return (
       <div id="header">
         <div id="iconBox">
-          <img className="navButton" src="/static/icons/menu.svg" onClick={x => toggleMenu(this)} />
+          <img className="navButton" src="/static/icons/menu.svg" onClick={toggleMenu} />
           <img className="navButton" src="/static/icons/help.svg" onClick={toggleHelp}  className="hidden" />
           <img className="navButton" src="/static/icons/share.svg" onClick={toggleShare}  className="hidden" />
           <div id="menuWrapper" className={`${this.state.showMenu ? "" : "slideOff"}`}>
+          <img id="closeMenu" className="navButton" src="/static/icons/close.svg" onClick={hideMenu} />
+          <br />
             <ul>
               <li>
                 <a href="/">
@@ -48,10 +50,18 @@ class HeadZone extends React.Component {
   
 var headerElem = ReactDOM.render(React.createElement(HeadZone), document.querySelector('#headerContainer'));
 
-function toggleMenu(that){
-  that.setState(prevState => ({
+function toggleMenu(){
+  headerElem.setState(prevState => ({
     showMenu: !prevState.showMenu
-  }), x => {
-    document.getElementById('menuWrapper').style.left = headerElem.state.showMenu ? '0px' : '-200px';
-  } );
+  }), updateMenu);
+}
+
+function hideMenu(){
+  headerElem.setState(prevState => ({
+    showMenu: false
+  }), updateMenu);
+}
+
+function updateMenu() {
+  document.getElementById('menuWrapper').style.left = headerElem.state.showMenu ? '0px' : '-200px';
 }
