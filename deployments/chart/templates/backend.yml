@@ -14,6 +14,8 @@ spec:
     metadata:
       labels:
         app: smasher
+      annotations:
+        trigger: "{{ .Values.trigger }}"
     spec:
       containers:
       - name: backend

@@ -6,6 +6,8 @@ metadata:
   name: entry-prep
   labels:
     app: smasher
+  annotations:
+    trigger: "{{ .Values.trigger }}"
 spec:
   restartPolicy: OnFailure
   containers:
@@ -19,5 +21,10 @@ spec:
         value: "http://apigate.{{ .Release.Namespace }}.svc.cluster.local:80"
       - name: WORD_LIST
         value: {{ .Values.wordList }}
+  - name: combiner
+    image: colbeseder/smasher-combiner:{{ .Values.imageTag}}
+    imagePullPolicy: {{ .Values.pullImages }}
+    ports:
+        - containerPort: 5000
 
 {{ end }}

@@ -13,6 +13,8 @@ spec:
     metadata:
       labels:
         app: smasherf
+      annotations:
+        trigger: "{{ .Values.trigger }}"
     spec:
       containers:
       - name: frontend

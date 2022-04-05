@@ -1,6 +1,6 @@
-helm uninstall dev -n smasher-ns-local
 minikube delete
 minikube start
+helm uninstall dev -n smasher-ns-local
 
 eval $(minikube docker-env)
 minikube addons enable ingress
@@ -15,7 +15,7 @@ npm run build --prefix ./frontend
 docker build --tag colbeseder/smasherfrontend:local -f frontend/Dockerfile .
 docker build --tag colbeseder/smasherbackend:local -f backend/Dockerfile .
 docker build --tag colbeseder/smasher-entry-prep:local -f prepareEntries/Dockerfile .
-docker build --tag colbeseder/smashercombiner:local -f combiner/Dockerfile .
+docker build --tag colbeseder/smasher-combiner:local -f combiner/Dockerfile .
 
 helm secrets install dev ./deployments/chart -n smasher-ns-local --create-namespace --values ./deployments/local_secrets.yml --values ./deployments/local_values.yaml
 

@@ -57,6 +57,8 @@ function combine(first, second){
     firstClue: first.clue,
     secondAnswer: second._id,
     secondClue: second.clue,
+    firstTarget: first.target,
+    secondTarget: second.target,
     pronounciation: pronounciation.join('')
   }
   return smash;
@@ -123,19 +125,23 @@ app.post('/api/entry/:title', (req, res) => {
     res.send(req.params);
     return;
   }
-  var entry = new Entry({
+  var entryData = {
     _id: req.params.title,
     start: req.body.start,
     end: req.body.end,
     clue: req.body.clue,
-    pattern: req.body.pattern
-  });
-  entry.save()
-    .then(result => {
-      //console.log(result);
+    pattern: req.body.pattern,
+    target: req.body.target
+  };
+
+  Entry.findOneAndUpdate({ _id: entryData._id }, entryData, {upsert: true}, function(err, result) {
+    if (err) {
+      res.send(err)
+    }
+    else {
       res.send(result);
-    })
-    .catch(err => res.send(err));
+    }
+  });
 });
 
 app.get('/api/entry/:title', (req, res) => {
@@ -220,5 +226,5 @@ var bootTime = Date.now();
 connectToDB();
 
 app.listen(port, () => {
-  console.log(`Listening on port ${port}`)
-})
+  console.log(`Listening on port ${port}`);
+});
