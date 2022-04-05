@@ -209,10 +209,10 @@ function nextOnEnter(ev){
     }
 }
 
-function showShare(){
-    document.getElementById("shareContainer")?.classList.remove('hidden');
+function toggleShare(){
+    document.getElementById("shareContainer")?.classList.toggle('hidden');
 }
 
-function hideShare(){
-    document.getElementById("shareContainer")?.classList.add('hidden');
+function toggleHelp(){
+    document.getElementById("helpContainer")?.classList.toggle('hidden');
 }
