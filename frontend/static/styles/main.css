@@ -104,7 +104,7 @@ button, .button {
 div#buttonContainer {
     clear: both;
     margin-left: 3em;
-    margin-top: 0;
+    margin-top: 1em;
 }
 
 span#result {
@@ -131,7 +131,7 @@ span#result {
 }
 
 #meaning {
-    height: 2em;
+    min-height: 2em;
     margin-left: 0.5em;
 }
 
