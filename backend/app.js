@@ -4,6 +4,7 @@ const atob = require('atob');
 const combineSpelling = require('./combineSpelling');
 const Entry = require('./models/entry');
 const Smash = require('./models/smash');
+const Visit = require('./models/visit');
 
 const entry_api_key = process.env.ENTRY_API_KEY ;
 
@@ -158,6 +159,7 @@ app.get('/api/smash', (req, res) => {
     return;
   }
   try {
+    logVisit(req);
     findPair()
       .then(pair => res.send(pair))
       .catch(err => res.send(err));
@@ -173,6 +175,7 @@ app.get('/api/combine/:digest', (req, res) => {
     return;
   }
   try {
+    logVisit(req);
     var uncoded = atob(req.params.digest);
     var words = uncoded.split(',');
     Promise.all([
@@ -205,6 +208,25 @@ app.get('/api/status', (req, res) => {
   Entry.count().exec(function(err, count){res.send(`${count} Entries`)})
 });
 
+app.get('/api/visits', (req, res) => {
+  if(!isConnected) {
+    res.status(502)
+    res.send('Not ready');
+    return;
+  }
+  Visit.count().exec(function(err, count){res.send(`${count} Visits`)})
+});
+
+function logVisit(req){
+  var ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+  var ref = req.get('Referrer');
+  console.log(`Visit: ${ip} ${ref}`);
+  var visit = new Visit({
+    ip: ip,
+    page: ref
+  }).save();
+}
+
 var connectionRetryInterval = 1; // seconds
 
 function connectToDB(){
@@ -227,4 +249,5 @@ connectToDB();
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
+  console.log('v1');
 });
