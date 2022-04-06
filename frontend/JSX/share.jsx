@@ -82,14 +82,20 @@ function isSolved(){
 
 function setShareMsg(){
   var tryitOutMessage;
+  /*
+    Messages for sending a challenge
+  */
   if(location.pathname === "/daily"){
-    tryitOutMessage = `See if you can beat me on today's AnswerSmash http://answersmash.com/daily`;
+    // Smash of the day
+    tryitOutMessage = `See if you can beat me on the *AnswerSmash of the day* http://answersmash.com/daily`;
   }
   else if (location.pathname !== "/" && isSolved() && !elem.state.isRevealed) {
-    tryitOutMessage = `I guessed today's Answer Smash. Try it http://answersmash.com/quiz?d=${window.digest}` ;
+    // Quiz, and I got it!
+    tryitOutMessage = `I guessed today's AnswerSmash. Try it http://answersmash.com/quiz?d=${window.digest}` ;
   }
   else {
-    tryitOutMessage = `Try out today's Answer Smash  http://answersmash.com/quiz?d=${window.digest}` ;
+    // Main page, or quiz but I didn't guess it
+    tryitOutMessage = `See how you do on this AnswerSmash  http://answersmash.com/quiz?d=${window.digest}` ;
   }
 
   var msg = shareElem.state.shareDefinition ? 
