@@ -149,6 +149,21 @@ function getSmashfromDigest(digest){
             .catch(er => next());
 }
 
+function getDaily(digest){
+    fetch(apiUrl + "/api/daily")
+        .then(r => r.json())
+        .then(smash => {
+            if (smash.firstAnswer) {
+                elem.setState(smash, x => handleUpdate(smash));
+            }
+            else {
+                next();
+            }
+        })
+        .catch(er => next());
+}
+
+
 function next(){
     fetch(apiUrl + "/api/smash").then(r => r.json())
         .then(smash => {

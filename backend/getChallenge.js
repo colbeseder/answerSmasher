@@ -1,4 +1,15 @@
-[
+// new Date().setUTCHours(0,0,0,0)
+const EPOCH = 1649203200000 ;
+
+function getChallengeNumber(){
+    return Math.floor((Date.now() - EPOCH) / (24*60*60*1000))
+}
+
+function getChallenge() {
+    return challenges[getChallengeNumber() % challenges.length];
+}
+
+var challenges = [
     "Z2xvc3NhcnksYXJlbmE=",
     "Y2hvY29sYXRlLGxpdGVyYWN5",
     "Y2hhbXBhZ25lLGFuZ2Vs",
@@ -18,4 +29,6 @@
     "cmVtYXJrLGFyY2FkZQ==",
     "d2hhbGUsYWxpZW4=",
     "bWFybW90LG1hdHVyZQ=="
-]
+];
+
+module.exports = getChallenge;

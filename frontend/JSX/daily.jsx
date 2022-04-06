@@ -59,8 +59,5 @@ function getGuesses(){
     }
 }
 
-function loadPage(){
-    getChallenge().then(digest => getSmashfromDigest(digest))
-}
 
-loadPage();
+getDaily();
