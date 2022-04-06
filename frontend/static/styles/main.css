@@ -254,6 +254,7 @@ div#header {
     left: 0;
     background-color: var(--periwinkle-crayola);
     padding: 5px;
+    z-index: 1;
 }
 
 img#correctImage {
