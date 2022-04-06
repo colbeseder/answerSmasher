@@ -52,7 +52,7 @@ function normalizeCommas(s){
 }
 
 function hash(s){
-    return parseInt(s.toLowerCase().replace(/[^a-w]/g, ''), 32);
+    return parseInt(s.toLowerCase().replace(/[^a-v]/g, ''), 32);
 }
 
 function extractSynonyms(clue, maxCount){

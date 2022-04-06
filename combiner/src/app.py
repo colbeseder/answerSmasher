@@ -53,7 +53,7 @@ class WordPicker(Resource):
         pass
     def post(self):
         json_data = request.get_json(force=True)
-        text = json_data['text']
+        text = removeBrackets(json_data['text'])
         
         return jsonify(result=pickWord(text))
 
