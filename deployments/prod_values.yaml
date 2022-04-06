@@ -10,8 +10,8 @@ defaultServiceType: LoadBalancer
 isProd: 'yes'
 runEntryPrep: no
 wordList: 'resources/default-words.txt'
-backendReplicas: 1
-trigger: "5"
+backendReplicas: 2
+trigger: "1"
 
 image:
   repository: nginx

@@ -11,3 +11,4 @@ frontend/static/JSX/*
 *.yml.dec
 *.yaml.dec
 *.sops.yaml
+deployments/deployProd.sh

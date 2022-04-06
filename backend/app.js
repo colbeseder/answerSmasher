@@ -218,7 +218,7 @@ app.get('/api/visits', (req, res) => {
 });
 
 function logVisit(req){
-  var ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+  var ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress; // XFF Only works on LoadBalancer (prod), Not NodePort (local)
   var ref = req.get('Referrer');
   var visit = new Visit({
     ip: ip,
