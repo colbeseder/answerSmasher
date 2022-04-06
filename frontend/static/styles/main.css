@@ -357,7 +357,7 @@ img#correctImage {
     }
 
     html>body {
-        zoom: 2.8;
+        zoom: 2;
     }
 
     html>body.quiz {
@@ -410,7 +410,7 @@ img#correctImage {
 
     @media only screen and (orientation:landscape) {
         html>body {
-            zoom: 2.5;
+            zoom: 2;
         }
         div#reactContainer {
             top: 0px;

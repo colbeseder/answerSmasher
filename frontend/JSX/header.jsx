@@ -13,7 +13,6 @@ class HeadZone extends React.Component {
         <div id="iconBoxLeft">
           <img className="navButton" src="/static/icons/menu.svg" onClick={toggleMenu} />
           <img className="navButton notMobile" src="/static/icons/help.svg" onClick={toggleHelp}  />
-          <img className="navButton notMobile" src="/static/icons/share.svg" onClick={toggleShare} />
           <div id="menuWrapper" className={`${this.state.showMenu ? "" : "slideOff"}`}>
           <img className="navButton closeMenu" src="/static/icons/close.svg" onClick={hideMenu} />
           <br />
@@ -45,7 +44,7 @@ class HeadZone extends React.Component {
             </ul>
           </div>
         </div>
-        <div id="iconBoxRight" className="mobileOnly">
+        <div id="iconBoxRight">
           <img className="navButton" src="/static/icons/share.svg" onClick={toggleShare} />
         </div>
         <div id="siteName">
