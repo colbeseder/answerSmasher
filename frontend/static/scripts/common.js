@@ -107,10 +107,10 @@ function combineDef(a, b, target_a, target_b){
     var combo;
     if (target_a && target_b){
         if (a.length > b.length){
-            combo = a.replace(target_a, target_b);
+            combo = a.replace(target_a, leadingLower(target_b));
         }
         else {
-            combo = b.replace(target_b, target_a);
+            combo = b.replace(target_b, leadingLower(target_a));
         }
         return leadCapital(combo);
     }
