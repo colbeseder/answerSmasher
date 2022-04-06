@@ -220,7 +220,6 @@ app.get('/api/visits', (req, res) => {
 function logVisit(req){
   var ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
   var ref = req.get('Referrer');
-  console.log(`Visit: ${ip} ${ref}`);
   var visit = new Visit({
     ip: ip,
     page: ref
@@ -249,5 +248,4 @@ connectToDB();
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
-  console.log('v1');
 });
