@@ -33,6 +33,7 @@ body {
 .bold {
     font-weight: bolder;
     color: darkblue;
+    font-size: x-large;
 }
 
 .center {
@@ -323,6 +324,11 @@ img#correctImage {
     margin-left: 15px;
 }
 
+.shareButton a {
+    text-decoration: none;
+    color: var(--periwinkle-crayola);
+}
+
 .button {
     margin-top: 1.5em;
 }
@@ -372,6 +378,10 @@ img#correctImage {
         top: initial;
     }
 
+    .switchOption {
+        transition-duration: 0.5s;
+    }
+
     div#reactContainer {
         position: initial;
         top: 0;
@@ -406,6 +416,10 @@ img#correctImage {
         margin-left: 10%;
         height: 80%;
         top: 5%;
+    }
+
+    shareModal h1 {
+        clear: both;
     }
 
     @media only screen and (orientation:landscape) {

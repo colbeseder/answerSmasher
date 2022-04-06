@@ -35,14 +35,14 @@ class ShareZone extends React.Component {
               <div id="twitter" className="shareButton">
                 <a id="tweetButton" className="twitter-share-button button" target="_blank"
                   href={"https://twitter.com/intent/tweet?text=" + encodeURIComponent(this.state.shareMsg)}>
-                    Share on Twitter</a>
+                    Twitter</a>
               </div>
               <br />
 
               <div id="whatsapp" className="shareButton mobileOnly">
                 <a id="whatsAppButton" className="button" target="_blank"
                   href={"whatsapp://send?text=" + encodeURIComponent(this.state.shareMsg)} data-action="share/whatsapp/share">
-                    Share on Whatsapp</a>
+                    Whatsapp</a>
               </div>
               </div>
               </div>
