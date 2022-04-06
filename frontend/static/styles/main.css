@@ -418,7 +418,7 @@ img#correctImage {
         top: 5%;
     }
 
-    shareModal h1 {
+    #shareModal h1 {
         clear: both;
     }
 
