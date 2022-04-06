@@ -6,7 +6,7 @@ metadata:
   labels:
     app: smasher
 spec:
-  replicas: "{{ .Values.backendReplicas }}"
+  replicas: {{ .Values.backendReplicas }}
   selector:
     matchLabels:
       app: smasher
