@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const atob = require('atob');
 const combineSpelling = require('./combineSpelling');
+const getChallenge = require('./getChallenge');
 const Entry = require('./models/entry');
 const Smash = require('./models/smash');
 const Visit = require('./models/visit');
@@ -169,6 +170,18 @@ app.get('/api/smash', (req, res) => {
   }
 });
 
+function getByDigest(digest, resolve, reject){
+  var uncoded = atob(digest);
+  var words = uncoded.split(',');
+  Promise.all([
+    Entry.findById(words[0]),
+    Entry.findById(words[1])])
+      .then(function(entries){
+        resolve(combine(entries[0], entries[1]))
+      })
+      .catch(er => reject(er))
+}
+
 app.get('/api/combine/:digest', (req, res) => {
   if(!isConnected) {
     res.send('Not ready');
@@ -176,15 +189,21 @@ app.get('/api/combine/:digest', (req, res) => {
   }
   try {
     logVisit(req);
-    var uncoded = atob(req.params.digest);
-    var words = uncoded.split(',');
-    Promise.all([
-      Entry.findById(words[0]),
-      Entry.findById(words[1])])
-        .then(function(entries){
-          res.send(combine(entries[0], entries[1]))
-        })
-        .catch(er => res.send(er));
+    getByDigest(req.params.digest, req.send, req.send);
+  }
+  catch(er){
+    res.send(er);
+  }
+});
+
+app.get('/api/daily', (req, res) => {
+  if(!isConnected) {
+    res.send('Not ready');
+    return;
+  }
+  try {
+    logVisit(req);
+    getByDigest(getChallenge(), req.send, req.send);
   }
   catch(er){
     res.send(er);
