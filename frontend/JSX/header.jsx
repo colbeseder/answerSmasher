@@ -10,14 +10,20 @@ class HeadZone extends React.Component {
   render() {
     return (
       <div id="header">
-        <div id="iconBox">
+        <div id="iconBoxLeft">
           <img className="navButton" src="/static/icons/menu.svg" onClick={toggleMenu} />
-          <img className="navButton" src="/static/icons/help.svg" onClick={toggleHelp}  />
-          <img className="navButton" src="/static/icons/share.svg" onClick={toggleShare} />
+          <img className="navButton notMobile" src="/static/icons/help.svg" onClick={toggleHelp}  />
+          <img className="navButton notMobile" src="/static/icons/share.svg" onClick={toggleShare} />
           <div id="menuWrapper" className={`${this.state.showMenu ? "" : "slideOff"}`}>
-          <img id="closeMenu" className="navButton" src="/static/icons/close.svg" onClick={hideMenu} />
+          <img className="navButton closeMenu" src="/static/icons/close.svg" onClick={hideMenu} />
           <br />
             <ul>
+              <li className="mobileOnly" onClick={function(){toggleHelp();hideMenu()}}>
+                <span>
+                  <img className="navButton" src="/static/icons/help-blue.svg" />
+                  How to Play
+                </span>
+              </li>
               <li>
                 <a href="/">
                   <img className="navButton" src="/static/icons/tennis-blue.svg" />
@@ -38,6 +44,9 @@ class HeadZone extends React.Component {
               </li>
             </ul>
           </div>
+        </div>
+        <div id="iconBoxRight" className="mobileOnly">
+          <img className="navButton" src="/static/icons/share.svg" onClick={toggleShare} />
         </div>
         <div id="siteName">
           <a href="/">

@@ -10,8 +10,9 @@ class HelpZone extends React.Component {
   render() {
     return (
         <div id="helpModal">
-            <h1>What's an Answer-Smash?</h1>
-            <p>You can make an answer-smash by combining two words with overlapping sounds. 
+            <img className="navButton closeMenu" src="/static/icons/close.svg" onClick={toggleHelp} />
+            <h1>What's an Answer Smash?</h1>
+            <p>You can make an Answer Smash by combining two words with overlapping sounds. 
               For example <i>Bowtie</i> and <i>Tiger</i> become <i><a href="/?d=Ym93dGllLHRpZ2Vy">Bowtiger</a></i></p>
             <h1>How to Play</h1>
             <p>The <a href="/quiz">Quiz page</a> will give you two definitions, whose answers combine to form an answersmash</p>

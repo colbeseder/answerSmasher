@@ -30,6 +30,15 @@ body {
     display: none;
 }
 
+.bold {
+    font-weight: bolder;
+    color: darkblue;
+}
+
+.center {
+    text-align: center;
+}
+
 #siteName, #siteName a {
     text-align: center;
     z-index: 1;
@@ -166,7 +175,7 @@ div#foot {
     bottom: 0px;
     width: 100%;
     left: 0;
-    z-index: 1;
+    z-index: 0;
 }
 
 #foot a {
@@ -207,20 +216,26 @@ div#foot {
     margin-right: 5px;
 }
 
-#menuWrapper li a {
+#menuWrapper li a, #menuWrapper li span {
     text-decoration: none;
     font-size: 1.1em;
     color: var(--xiketic);
 }
 
-#closeMenu {
+.closeMenu {
     cursor: pointer;
     float: right;
 }
 
-div#iconBox {
+#iconBoxLeft {
     position: absolute;
     margin-left: 5px;
+    z-index: 2;
+}
+
+#iconBoxRight {
+    position: absolute;
+    right: 17px;
     z-index: 2;
 }
 
@@ -337,6 +352,10 @@ img#correctImage {
         display: inherit;
     }
 
+    .notMobile {
+        display: none;
+    }
+
     html>body {
         zoom: 2.8;
     }
@@ -347,6 +366,10 @@ img#correctImage {
 
     html, body {
         overflow-y: inherit;
+    }
+
+    label.switch {
+        top: initial;
     }
 
     div#reactContainer {
