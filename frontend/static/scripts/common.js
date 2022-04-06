@@ -90,10 +90,8 @@ function getSubject(s){
     }
     return `${aAn(subject)} ${subject.toLowerCase()}`
 }
-function combineDef(a, b, target_a, target_b){
-    if (target_a && target_b){
-        return a.replace(target_a, target_b);
-    }
+
+function oldCombineDef(a, b){
     a = cleanClue(a);
     b = cleanClue(b);
     var joiner = joiners[hash(a)%joiners.length]
@@ -101,6 +99,25 @@ function combineDef(a, b, target_a, target_b){
     var wholeClue = `${getSubject(a)} ${joiner} ${getSubject(b)}`;
     
     return leadCapital(normalizeCommas(wholeClue).trim());
+}
+
+function combineDef(a, b, target_a, target_b){
+    a = removeBrackets(a);
+    b = removeBrackets(b);
+    var combo;
+    if (target_a && target_b){
+        if (a.length > b.length){
+            combo = a.replace(target_a, target_b);
+        }
+        else {
+            combo = b.replace(target_b, target_a);
+        }
+        return leadCapital(combo);
+    }
+    else {
+        return oldCombineDef(a, b);
+    }
+    
 }
 
 var breakers = ['and', 'or', 'with', 'for', 'of', 'in', 'is', 'from', 'as'];

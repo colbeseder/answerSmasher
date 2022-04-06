@@ -1,5 +1,5 @@
 import spacy
-import sys
+import sys, re
 
 from flask import Flask, jsonify, request
 from flask_restful import Resource, Api, reqparse
@@ -14,6 +14,9 @@ def pickWord(text):
     if len(nouns) == 0:
         return ''
     return nouns[-1]
+
+def removeBrackets(text):
+    return re.sub(r'\([^)]*\)', '', text)
 
 def combineDefs(text1, text2):
     doc1 = nlp(text1)
