@@ -250,5 +250,19 @@ function toggleShare(){
 }
 
 function toggleHelp(){
-    document.getElementById("helpContainer")?.classList.toggle('hidden');
+    var helpModal = document.getElementById("helpContainer");
+    if (!helpModal) {
+        return;
+    }
+    if (helpModal.classList.contains('hidden')){
+        helpModal.classList.remove('hidden');
+        location.hash = 'help';
+    }
+    else {
+        helpModal.classList.add('hidden');
+        location.hash = '';
+    }
+}
+if (/help/.test(location.hash)){
+    document.getElementById("helpContainer")?.classList.remove('hidden')
 }
