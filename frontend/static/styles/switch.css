@@ -67,3 +67,7 @@ div#shareSelector {
   padding: 1em;
   font-size: larger;
 }
+
+.switchOption {
+  transition-duration: 0.5s;
+}
