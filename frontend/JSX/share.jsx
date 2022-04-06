@@ -12,17 +12,22 @@ class ShareZone extends React.Component {
     render() {
       return (
           <div id="shareModal">
+            <img className="navButton closeMenu" src="/static/icons/close.svg" onClick={toggleShare} />
+            <div className="center">
+            <h1>Share</h1>
             <link rel="stylesheet" href="/static/styles/switch.css"></link>
             
             <div id="shareSelector">
-              <span className="switchOption">Definition</span>
+              <span className={`switchOption ${this.state.shareDefinition ? "bold" : ""}`}>Definition</span>
+              <br className="mobileOnly" />
               <span>
               <label className="switch">
                 <input id="whatToShare" type="checkbox" checked={ !this.state.shareDefinition } onChange={toggleShareSwitch}/>
                 <span className="slider round"></span>
               </label>
               </span>
-              <span className="switchOption">Challenge</span>
+              <br className="mobileOnly" />
+              <span className={`switchOption ${this.state.shareDefinition ? "" : "bold"}`}>Challenge</span>
               <br />
               <span className={this.state.noDefinition ? "" : "invisible"}>You can't share the daily definition. Spoilers.</span>
             </div>
@@ -38,6 +43,7 @@ class ShareZone extends React.Component {
                 <a id="whatsAppButton" className="button" target="_blank"
                   href={"whatsapp://send?text=" + encodeURIComponent(this.state.shareMsg)} data-action="share/whatsapp/share">
                     Share on Whatsapp</a>
+              </div>
               </div>
               </div>
           </div>
