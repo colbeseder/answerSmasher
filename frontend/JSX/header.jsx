@@ -12,8 +12,8 @@ class HeadZone extends React.Component {
       <div id="header">
         <div id="iconBox">
           <img className="navButton" src="/static/icons/menu.svg" onClick={toggleMenu} />
-          <img className="navButton" src="/static/icons/help.svg" onClick={toggleHelp}  className="hidden" />
-          <img className="navButton" src="/static/icons/share.svg" onClick={toggleShare}  className="hidden" />
+          <img className="navButton" src="/static/icons/help.svg" onClick={toggleHelp}  />
+          <img className="navButton" src="/static/icons/share.svg" onClick={toggleShare} />
           <div id="menuWrapper" className={`${this.state.showMenu ? "" : "slideOff"}`}>
           <img id="closeMenu" className="navButton" src="/static/icons/close.svg" onClick={hideMenu} />
           <br />
@@ -33,7 +33,7 @@ class HeadZone extends React.Component {
               <li>
                 <a href="/daily">
                   <img className="navButton" src="/static/icons/badge.svg" />
-                    Daily Smash
+                    Smash of the Day
                 </a>
               </li>
             </ul>
@@ -65,5 +65,5 @@ function hideMenu(){
 }
 
 function updateMenu() {
-  document.getElementById('menuWrapper').style.left = headerElem.state.showMenu ? '0px' : '-200px';
+  document.getElementById('menuWrapper').style.left = headerElem.state.showMenu ? '0px' : '-300px';
 }
