@@ -169,12 +169,13 @@ function handleUpdate(smash){
     else {
         document.title = combineSpelling(smash.firstAnswer, smash.secondAnswer);
     }
+    window?.setShareMsg();
     equalizeGuessBoxes()
 }
 
 function checkSmash(){
     if (elem.state.guess1 === elem.state.firstAnswer && elem.state.guess2 === elem.state.secondAnswer){
-        elem.setState({isCorrect: true});
+        elem.setState({isCorrect: true}, window?.setShareMsg);
     }
     else {
         elem.setState({isCorrect: false});

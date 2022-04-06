@@ -4,6 +4,7 @@
     --cool-grey: #938ba1ff;
     --periwinkle-crayola: #C9DDFF;
     --state-blue: #6665DD;
+    --whitish: #ffffff
 }
 
 body, html {
@@ -18,6 +19,14 @@ body {
 
 .hidden {
     visibility: hidden;
+    display: none;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.mobileOnly {
     display: none;
 }
 
@@ -169,23 +178,39 @@ div#foot {
     top: 49px;
     border-right: solid 1px var(--xiketic);
     height: 100%;
-    width: 150px;
-    padding: 1.5em;
-    background: var(--periwinkle-crayola);
+    width: 13em;
+    padding-left: 1em;
+    background: var(--whitish);
     transition: 0.7s;
     transition-timing-function: ease-in-out;
     z-index: 5;
 }
 
 #menuWrapper.slideOff {
-    left: -200px;
+    left: -300px;
 }
-
 
 #menuWrapper ul {
     list-style-type: none; /* Remove bullets */
     padding: 0; /* Remove padding */
     margin: 0; /* Remove margins */
+    margin-top: 2em;
+    margin-right: 0.5em;
+}
+
+#menuWrapper li {
+    margin-bottom: 8px;
+}
+
+#menuWrapper li img {
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+#menuWrapper li a {
+    text-decoration: none;
+    font-size: 1.1em;
+    color: var(--xiketic);
 }
 
 #closeMenu {
@@ -266,7 +291,7 @@ img#correctImage {
 
 #shareModal {
     z-index: 3;
-    background-color: var(--state-blue);
+    background-color: var(--whitish);
     position: fixed;
     width: 40%;
     margin-left: 30%;
@@ -289,11 +314,29 @@ img#correctImage {
 
 #helpContainer {
     position: absolute;
-    top: 5em;
-    left: 5em;
+    top: 70px;
+    width: 80%;
+    left: 10%;
+}
+
+#helpModal {
+    width: 80%;
+    background-color: var(--whitish);
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    box-shadow: rgb(0 0 0 / 2%) 0 1px 3px 0;
+    box-sizing: border-box;
+    padding: 2em;
+    min-height: 60vh;
+    margin-left: 10%;
 }
 
 @media only screen and (max-device-width: 800px) {
+
+    .mobileOnly {
+        display: inherit;
+    }
+
     html>body {
         zoom: 2.8;
     }
