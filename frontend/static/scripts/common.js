@@ -174,7 +174,7 @@ function handleUpdate(smash){
 }
 
 function checkSmash(){
-    if (elem.state.guess1 === elem.state.firstAnswer && elem.state.guess2 === elem.state.secondAnswer){
+    if (elem.state.guess1 === elem.state.firstAnswer.toLowerCase() && elem.state.guess2 === elem.state.secondAnswer.toLowerCase()){
         elem.setState({isCorrect: true}, window?.setShareMsg);
     }
     else {
