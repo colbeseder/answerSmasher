@@ -6,7 +6,7 @@ function getChallengeNumber(){
 }
 
 function getChallenge() {
-    return challenges[getChallengeNumber()];
+    return challenges[getChallengeNumber() % challenges.length];
 }
 
 var challenges = [
