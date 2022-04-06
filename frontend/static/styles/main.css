@@ -76,7 +76,7 @@ div.q {
 }
 
 div#answerBlock {
-    height: 9em;
+    min-height: 9em;
 }
 
 span#answer, div#answer {
