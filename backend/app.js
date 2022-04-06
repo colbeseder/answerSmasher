@@ -189,7 +189,7 @@ app.get('/api/combine/:digest', (req, res) => {
   }
   try {
     logVisit(req);
-    getByDigest(req.params.digest, req.send, req.send);
+    getByDigest(req.params.digest, x => res.send(x), x => res.send(x));
   }
   catch(er){
     res.send(er);
@@ -203,7 +203,7 @@ app.get('/api/daily', (req, res) => {
   }
   try {
     logVisit(req);
-    getByDigest(getChallenge(), req.send, req.send);
+    getByDigest(getChallenge(), x => res.send(x), x => res.send(x));
   }
   catch(er){
     res.send(er);
