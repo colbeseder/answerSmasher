@@ -10,6 +10,7 @@ defaultServiceType: NodePort
 isProd: 'no'
 runEntryPrep: yes
 wordList: 'resources/test-words.txt'
+backendReplicas: 1
 trigger: "1"
 
 image:
