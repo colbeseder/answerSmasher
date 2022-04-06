@@ -52,7 +52,6 @@ class HeadZone extends React.Component {
             <span >Answer Smasher</span>
           </a>
         </div>
-        <script src="app.jsx" type="text/jsx"></script>
       </div>
     )
   }
