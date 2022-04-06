@@ -21,14 +21,9 @@ spec:
         value: "http://apigate.{{ .Release.Namespace }}.svc.cluster.local:80"
       - name: WORD_LIST
         value: {{ .Values.wordList }}
-      - name: trigger
-        value: "{{ .Values.trigger }}"
   - name: combiner
     image: colbeseder/smasher-combiner:{{ .Values.imageTag}}
     imagePullPolicy: {{ .Values.pullImages }}
-    env:
-      - name: trigger
-        value: "{{ .Values.trigger }}"
     ports:
         - containerPort: 5000
 
