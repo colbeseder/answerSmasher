@@ -3,7 +3,7 @@
 replicaCount: 1
 
 imageFlavour: "-local" # empty for main
-pullImages: Always
+pullImages: Never
 defaultServiceType: NodePort
 isProd: 'no'
 wordList: 'resources/test-words.txt'
