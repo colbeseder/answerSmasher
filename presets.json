@@ -1,0 +1,18 @@
+[
+    {
+        "_id": "tingle",
+        "__v": 0,
+        "clue": "A prickling or mildly stinging sensation",
+        "end": "ɡəl",
+        "pattern": [
+            "t",
+            "ɪ",
+            "ŋ",
+            "ɡ",
+            "ə",
+            "l"
+        ],
+        "start": "tɪŋ",
+        "target": "sensation"
+    }
+]
