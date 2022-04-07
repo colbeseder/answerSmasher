@@ -4,13 +4,15 @@
 
 replicaCount: 1
 
-imageTag: latest
+imageFlavour: "" # empty for main
 pullImages: Always
 defaultServiceType: LoadBalancer
 isProd: 'yes'
 runEntryPrep: no
+runUI: yes
 wordList: 'resources/default-words.txt'
 backendReplicas: 2
+logLevel: 0
 trigger: "1"
 
 image:
