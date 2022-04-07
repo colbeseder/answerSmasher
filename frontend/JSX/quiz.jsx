@@ -27,7 +27,7 @@ class QuoteZone extends React.Component {
                 <div id="answerBlock">
                     <span id="answer">{this.state.isCorrect ? combineSpelling(this.state.firstAnswer, this.state.secondAnswer) 
                         : combineSpelling(this.state.guess1, this.state.guess2) || ' '}</span>
-                        <img className={`${this.state.isCorrect && !this.state.isRevealed ? '' : 'hidden'}`} src="/static/icons/check-mark.svg" id="correctImage" /><br />
+                        <img className={`${this.state.isCorrect && !this.state.isRevealed ? '' : 'shrunk'}`} src="/static/icons/check-mark.svg" id="correctImage" /><br />
                     <span id="IPA">{this.state.isCorrect ? '/' + this.state.pronounciation + '/' : ''}</span><br />
                     <div id="meaning">{this.state.isCorrect ? combineDef(this.state.firstClue, this.state.secondClue, this.state.firstTarget, this.state.secondTarget) : ''}</div><br></br>
                 </div>

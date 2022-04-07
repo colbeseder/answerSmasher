@@ -22,6 +22,10 @@ body {
     display: none;
 }
 
+.shrunk {
+    height: 0em;
+}
+
 .invisible {
     visibility: hidden;
 }
@@ -301,10 +305,17 @@ div#header {
 }
 
 img#correctImage {
-    height: 2.5em;
+    height: 3.5em;
     position: relative;
-    top: 1.5em;
-    left: 3em;
+    top: 7.5em;
+    left: -5em;
+    transition-duration: 0.4s;
+    transition-timing-function: ease-in;
+}
+
+img#correctImage.shrunk {
+    height: 0em;
+    transition-duration: 0s;
 }
 
 #shareModal {
@@ -313,7 +324,9 @@ img#correctImage {
     position: fixed;
     width: 40%;
     margin-left: 30%;
-    height: 50%;
+    padding: 1em;
+    padding-bottom: 2em;
+    min-height: 50%;
     top: 25%;
     border: black solid 2px;
     border-radius: 5px;
@@ -321,9 +334,20 @@ img#correctImage {
     box-sizing: border-box;
 }
 
+#shareButtons {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+}
+
 .shareButton {
-    margin: 8px;
-    margin-left: 15px;
+    height: 60px;
+    width: 60px;
+    margin: 5px;
 }
 
 .shareButton a {
@@ -352,6 +376,18 @@ img#correctImage {
     padding: 2em;
     min-height: 60vh;
     margin-left: 10%;
+}
+
+#whatsapp {
+    background-image: url(/static/icons/whatsapp.svg);
+}
+
+#twitter {
+    background-image: url(/static/icons/twitter.svg);
+}
+
+#facebook {
+    background-image: url(/static/icons/facebook.svg);
 }
 
 @media only screen and (max-device-width: 800px) {

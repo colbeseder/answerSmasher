@@ -4,7 +4,8 @@ class ShareZone extends React.Component {
       super(props);
       this.state = {
         shareDefinition: location.pathname === "/", // 0: daily, 1: definition
-        shareMsg: "Check out http://answersmasher.com",
+        shareMsg: "Check out ",
+        shareLink: "http://answersmasher.com",
         noDefinition: false
       }
     }
@@ -32,18 +33,18 @@ class ShareZone extends React.Component {
               <span className={this.state.noDefinition ? "" : "invisible"}>You can't share the daily definition. Spoilers.</span>
             </div>
             <div id="shareButtons">
-              <div id="twitter" className="shareButton">
-                <a id="tweetButton" className="twitter-share-button button" target="_blank"
-                  href={"https://twitter.com/intent/tweet?text=" + encodeURIComponent(this.state.shareMsg)}>
-                    Twitter</a>
-              </div>
-              <br />
-
-              <div id="whatsapp" className="shareButton mobileOnly">
-                <a id="whatsAppButton" className="button" target="_blank"
-                  href={"whatsapp://send?text=" + encodeURIComponent(this.state.shareMsg)} data-action="share/whatsapp/share">
-                    Whatsapp</a>
-              </div>
+              <a id="whatsAppButton" className="shareButtonLink" target="_blank"
+                href={"whatsapp://send?text=" + encodeURIComponent(this.state.shareMsg + this.state.shareLink)} data-action="share/whatsapp/share">
+                <div id="whatsapp" className="shareButton mobileOnly"></div>
+              </a>
+              <a id="tweetButton" className="twitter-share-button shareButtonLink" target="_blank"
+                  href={"https://twitter.com/intent/tweet?text=" + encodeURIComponent(this.state.shareMsg + this.state.shareLink)}>
+                <div id="twitter" className="shareButton"></div>
+              </a>
+              <a id="facebookButton" className="facebook-share-button shareButtonLink" target="_blank"
+                href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(this.state.shareLink)}&quote=${encodeURIComponent(this.state.shareMsg)}`}>
+                <div id="facebook" className="shareButton"></div>
+              </a>
               </div>
               </div>
           </div>
@@ -81,28 +82,38 @@ function isSolved(){
 }
 
 function setShareMsg(){
-  var tryitOutMessage;
+  if (shareElem.state.shareDefinition){
+    shareElem.setState({
+      "shareMsg": `Check out the definition for _${document.getElementById("answer").innerText}_`,
+      "shareLink": `http://answersmasher.com/?d=${window.digest}`
+    });
+    return;
+  }
+
+  var msg;
+  var url;
   /*
     Messages for sending a challenge
   */
   if(location.pathname === "/daily"){
     // Smash of the day
-    tryitOutMessage = `See if you can beat me on the *AnswerSmash of the day* http://answersmasher.com/daily`;
+    msg = `See if you can beat me on the *AnswerSmash of the day* `;
+    url = "http://answersmasher.com/daily";
   }
   else if (location.pathname !== "/" && isSolved() && !elem.state.isRevealed) {
     // Quiz, and I got it!
-    tryitOutMessage = `I guessed today's AnswerSmash. Try it http://answersmasher.com/quiz?d=${window.digest}` ;
+    msg = `I guessed today's AnswerSmash. Try it `;
+    url = `http://answersmasher.com/quiz?d=${window.digest}` ;
   }
   else {
     // Main page, or quiz but I didn't guess it
-    tryitOutMessage = `See how you do on this AnswerSmash  http://answersmasher.com/quiz?d=${window.digest}` ;
+    msg = `See how you do on this AnswerSmash `;
+    url = `http://answersmasher.com/quiz?d=${window.digest}` ;
   }
 
-  var msg = shareElem.state.shareDefinition ? 
-    `Check out the definition for _${document.getElementById("answer").innerText}_ \nhttp://answersmasher.com/?d=${window.digest}` :
-    tryitOutMessage ;
   shareElem.setState({
-    "shareMsg": msg
+    "shareMsg": msg,
+    "shareLink": url
   });
 }
 
