@@ -8,7 +8,7 @@ imageFlavour: "" # empty for main
 pullImages: IfNotPresent
 defaultServiceType: LoadBalancer
 isProd: 'yes'
-wordList: 'resources/default-words.txt'
+wordList: 'resources/test-words.txt'
 backendReplicas: 2
 logLevel: 1
 trigger: "1"

@@ -9,7 +9,7 @@ pullImages: Always
 defaultServiceType: LoadBalancer
 isProd: 'yes'
 wordList: 'resources/default-words.txt'
-backendReplicas: 2
+backendReplicas: 1
 logLevel: 0
 trigger: "1"
 

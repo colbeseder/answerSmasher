@@ -120,6 +120,7 @@ app.post('/api/entry/:title', (req, res) => {
     return;
   }
   if(!isConnected) {
+    res.status(502);
     res.send('Not ready')
     return;
   }
@@ -148,6 +149,7 @@ app.post('/api/entry/:title', (req, res) => {
 
 app.get('/api/entry/:title', (req, res) => {
   if(!isConnected) {
+    res.status(502);
     res.send('Not ready')
     return;
   }
@@ -156,6 +158,7 @@ app.get('/api/entry/:title', (req, res) => {
 
 app.get('/api/smash', (req, res) => {
   if(!isConnected) {
+    res.status(502);
     res.send('Not ready');
     return;
   }
@@ -163,7 +166,7 @@ app.get('/api/smash', (req, res) => {
     logVisit(req);
     findPair()
       .then(pair => res.send(pair))
-      .catch(err => res.send(err));
+      .catch(err => res.status(503).send(err));
   }
   catch(err){
     res.send(err);
@@ -184,12 +187,13 @@ function getByDigest(digest, resolve, reject){
 
 app.get('/api/combine/:digest', (req, res) => {
   if(!isConnected) {
+    res.status(502);
     res.send('Not ready');
     return;
   }
   try {
     logVisit(req);
-    getByDigest(req.params.digest, x => res.send(x), x => res.send(x));
+    getByDigest(req.params.digest, x => res.send(x), x => res.status(404).send(x));
   }
   catch(er){
     res.send(er);
@@ -198,12 +202,13 @@ app.get('/api/combine/:digest', (req, res) => {
 
 app.get('/api/daily', (req, res) => {
   if(!isConnected) {
+    res.status(502);
     res.send('Not ready');
     return;
   }
   try {
     logVisit(req);
-    getByDigest(getChallenge(), x => res.send(x), x => res.send(x));
+    getByDigest(getChallenge(), x => res.send(x), x => res.status(404).send(x));
   }
   catch(er){
     res.send(er);
@@ -212,6 +217,7 @@ app.get('/api/daily', (req, res) => {
 
 app.get('/api/randomEntry', (req, res) => {
   if(!isConnected) {
+    res.status(502);
     res.send('Not ready');
     return;
   }
@@ -220,7 +226,7 @@ app.get('/api/randomEntry', (req, res) => {
 
 app.get('/api/status', (req, res) => {
   if(!isConnected) {
-    res.status(502)
+    res.status(502);
     res.send('Not ready');
     return;
   }
