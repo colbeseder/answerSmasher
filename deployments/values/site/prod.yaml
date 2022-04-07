@@ -1,17 +1,17 @@
-# Default values for localdep.
+# Default values for prodchart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
 
 replicaCount: 1
 
-imageFlavour: "-local" # empty for main
+imageFlavour: "" # empty for main
 pullImages: Always
-defaultServiceType: NodePort
-isProd: 'no'
-runEntryPrep: yes
-runUI: yes
-wordList: 'resources/test-words.txt'
-backendReplicas: 1
-logLevel: 1
-trigger: "2"
+defaultServiceType: LoadBalancer
+isProd: 'yes'
+wordList: 'resources/default-words.txt'
+backendReplicas: 2
+logLevel: 0
+trigger: "1"
 
 image:
   repository: nginx

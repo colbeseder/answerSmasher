@@ -4,13 +4,11 @@
 
 replicaCount: 1
 
-imageFlavour: "" # empty for main
-pullImages: IfNotPresent
-defaultServiceType: LoadBalancer
-isProd: 'yes'
-runEntryPrep: yes
-runUI: no
+imageFlavour: "-local" # empty for main
+pullImages: Never
+defaultServiceType: NodePort
+isProd: 'no'
 wordList: 'resources/test-words.txt'
 backendReplicas: 2
 logLevel: 1
-trigger: "6"
+trigger: "1"

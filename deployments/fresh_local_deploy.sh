@@ -21,9 +21,8 @@ docker build --tag colbeseder/smasherbackend-local:latest -f backend/Dockerfile 
 docker build --tag colbeseder/smasher-entry-prep-local:latest -f prepareEntries/Dockerfile .
 docker build --tag colbeseder/smasher-combiner-local:latest -f combiner/Dockerfile .
 
-#helm secrets upgrade --install dev ./deployments/chart -n smasher-ns-local --create-namespace --values ./deployments/local_secrets.yml --values ./deployments/local_values.yaml
-
-helm secrets upgrade --install prep ./deployments/chart -n prep-ns-local --create-namespace --values ./deployments/prod_secrets.yml --values ./deployments/word_prep_values.yaml
+helm secrets upgrade --install prep ./deployments/prep -n prep-ns-local --create-namespace --values ./deployments/secrets/prep/local.yaml --values ./deployments/values/prep/local.yaml
+helm secrets upgrade --install dev ./deployments/site -n smasher-ns-local --create-namespace --values ./deployments/secrets/site/local.yaml --values ./deployments/values/site/local.yaml
 
 sleep 30
 kubectl port-forward svc/apigate 30182:80 --namespace smasher-ns-local &
