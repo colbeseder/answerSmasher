@@ -13,6 +13,7 @@ RUN npm install
 
 # Bundle app source
 COPY frontend .
+RUN echo "\n"'/* Built at' $( date -u ) '*/' >> static/scripts/common.js
 
 EXPOSE 3001
 CMD [ "bash", "start.sh" ]
