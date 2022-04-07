@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: colbeseder/smasherfrontend:{{ .Values.imageTag }}
+        image: colbeseder/smasherfrontend{{ .Values.imageFlavour }}:latest
         imagePullPolicy: {{ .Values.pullImages }}
         ports:
         - containerPort: 3001

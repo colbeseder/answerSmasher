@@ -6,7 +6,6 @@ npm-debug.log
 */resources/Collins Scrabble Words (2019).txt
 */resources/enwiki-20220219-all-titles-in-ns-0
 */constants.sh
-secrets
 frontend/static/JSX/*
 *.yml.dec
 *.yaml.dec

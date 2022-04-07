@@ -1,4 +1,3 @@
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -19,7 +18,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: colbeseder/smasherbackend:{{ .Values.imageTag }}
+        image: colbeseder/smasherbackend{{ .Values.imageFlavour }}:latest
         imagePullPolicy: {{ .Values.pullImages}}
         ports:
         - containerPort: 3000
@@ -36,6 +35,7 @@ spec:
             value: "{{ .Values.isProd }}"
 
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
