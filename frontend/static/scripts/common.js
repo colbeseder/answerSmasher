@@ -9,7 +9,7 @@ function leadCapital(s){
  * RiCHaRd OSmAn -> richard Osman
  */
 function toLowerPreserveSurname(s){
-    s.replace(/ ?[A-Z]/g, function(x){
+    return s.replace(/ ?[A-Z]/g, function(x){
         if (x[0] !== ' '){
             return x.toLowerCase();
         }
