@@ -10,7 +10,8 @@ class QuoteZone extends React.Component {
         secondClue: '',
         firstTarget: '',
         secondTarget: '',
-        pronounciation: ''
+        pronounciation: '',
+        visibleTip: null
     };
   }
 
@@ -18,10 +19,12 @@ class QuoteZone extends React.Component {
     return (
         <div className={`${this.state.firstAnswer ? "" : "hidden"} `}>
             <div id="parts">
-                <span id="part1">{this.state.firstAnswer}</span>
-                <div id="tip1" className="tip hidden">${this.state.firstClue}</div>
-                <span id="part2">{this.state.secondAnswer}&nbsp;</span>
-                <div id="tip2" className="tip hidden">${this.state.secondClue}</div>
+                <span id="part1" onMouseOver={_=>{this.setState({visibleTip: 1})}} onMouseOut={_=>{this.setState({visibleTip: null})}}>
+                    {`${this.state.visibleTip === 1 ? this.state.firstClue : this.state.firstAnswer}`}
+                </span>
+                <span id="part2" onMouseOver={_=>{this.setState({visibleTip: 2})}} onMouseOut={_=>{this.setState({visibleTip: null})}}>
+                {`${this.state.visibleTip === 2 ? this.state.secondClue : this.state.secondAnswer}`}&nbsp;
+                </span>
             </div>
             <div id="reactContainer" onClick={next} onKeyPress={nextOnEnter}>
             <div id="answerBlock">
