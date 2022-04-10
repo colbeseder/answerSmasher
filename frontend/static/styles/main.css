@@ -177,7 +177,7 @@ span#IPA, div#IPA {
 }
 
 div#foot {
-    height: 37px;
+    height: 20px;
     position: fixed;
     bottom: 0px;
     width: 100%;
@@ -254,7 +254,6 @@ div#foot {
 span#credit {
     float: right;
     margin-right: 1em;
-    margin-top: 8px;
 }
 
 #guesses {
