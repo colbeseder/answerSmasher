@@ -1,18 +1,27 @@
 [
     {
-        "_id": "tingle",
+        "_id": "Richard Osman",
         "__v": 0,
-        "clue": "A prickling or mildly stinging sensation",
-        "end": "ɡəl",
+        "clue": "The two metre tall host of House of Games and co-presenter of Pointless",
+        "end": "mæn",
         "pattern": [
-            "t",
+            "ɹ",
             "ɪ",
-            "ŋ",
-            "ɡ",
+            "t",
+            "ʃ",
+            ".",
             "ə",
-            "l"
+            "d",
+            " ",
+            "a",
+            "ʊ",
+            "n",
+            "s",
+            "m",
+            "æ",
+            "n"
         ],
-        "start": "tɪŋ",
+        "start": "ɹɪt",
         "target": "sensation"
     }
 ]

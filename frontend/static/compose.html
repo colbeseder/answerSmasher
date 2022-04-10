@@ -1,11 +1,16 @@
 <form onSubmit="return go()">
+    <select id="page">
+        <option value="/">main</option>
+        <option value="/quiz">Quiz</option>
+    </select>
+    <br />
     <input id="main" />
     <br />
     <input type="submit"/>
 </form>
 <script>
     function go(){
-        window.location = `http://answersmasher.com/?d=${btoa(document.getElementById('main').value)}`;
+        window.location = `http://answersmasher.com${document.getElementById('page').value}?d=${btoa(document.getElementById('main').value)}`;
         return false;
     }
 </script>

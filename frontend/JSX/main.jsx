@@ -17,7 +17,12 @@ class QuoteZone extends React.Component {
   render() {
     return (
         <div className={`${this.state.firstAnswer ? "" : "hidden"} `}>
-            <div id="parts"><span id="part1">{this.state.firstAnswer}</span> <span id="part2">{this.state.secondAnswer}&nbsp;</span></div>
+            <div id="parts">
+                <span id="part1">{this.state.firstAnswer}</span>
+                <div id="tip1" className="tip hidden">${this.state.firstClue}</div>
+                <span id="part2">{this.state.secondAnswer}&nbsp;</span>
+                <div id="tip2" className="tip hidden">${this.state.secondClue}</div>
+            </div>
             <div id="reactContainer" onClick={next} onKeyPress={nextOnEnter}>
             <div id="answerBlock">
                 <span id="answer">{combineSpelling(this.state.firstAnswer, this.state.secondAnswer)}</span><br></br>
