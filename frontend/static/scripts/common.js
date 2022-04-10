@@ -203,13 +203,13 @@ function handleUpdate(smash){
 }
 
 function checkSmash(){
-    if (elem.state.guess1 === elem.state.firstAnswer.toLowerCase() && elem.state.guess2 === elem.state.secondAnswer.toLowerCase()){
+    if (elem.state.guess1.toLowerCase() === elem.state.firstAnswer.toLowerCase() && 
+            elem.state.guess2.toLowerCase() === elem.state.secondAnswer.toLowerCase()){
         elem.setState({isCorrect: true}, window?.setShareMsg);
     }
     else {
         elem.setState({isCorrect: false});
     }
-
 }
 
 function reveal(){
