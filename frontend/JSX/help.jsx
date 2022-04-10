@@ -10,7 +10,7 @@ class HelpZone extends React.Component {
   render() {
     return (
         <div id="helpModal">
-            <img className="navButton closeMenu" src="/static/icons/close.svg" onClick={toggleHelp} />
+            <img className="navButton closeMenu" src="/static/icons/close.svg" onClick={_=>toggleHelp(false)} />
             <h1>What's an AnswerSmash?</h1>
             <p>You can make an AnswerSmash by combining two words with overlapping sounds. 
               For example <i>Bowtie</i> and <i>Tiger</i> become <i><a href="/?d=Ym93dGllLHRpZ2Vy">Bowtiger</a></i></p>

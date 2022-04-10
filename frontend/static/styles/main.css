@@ -44,6 +44,10 @@ body {
     text-align: center;
 }
 
+#root {
+    height: 100%
+}
+
 #siteName, #siteName a {
     text-align: center;
     z-index: 1;
@@ -177,7 +181,7 @@ span#IPA, div#IPA {
 }
 
 div#foot {
-    height: 20px;
+    height: 22px;
     position: fixed;
     bottom: 0px;
     width: 100%;
@@ -304,10 +308,10 @@ div#header {
 }
 
 img#correctImage {
-    height: 3.5em;
+    height: 5em;
     position: relative;
     top: 7.5em;
-    left: -5em;
+    left: -12em;
     transition-duration: 0.4s;
     transition-timing-function: ease-in;
 }
@@ -361,20 +365,18 @@ img#correctImage.shrunk {
 #helpContainer {
     position: absolute;
     top: 70px;
-    width: 80%;
-    left: 10%;
-}
-
-#helpModal {
-    width: 80%;
+    left: 18%;
+    width: 64%;
     background-color: var(--whitish);
     border: 1px solid transparent;
     border-radius: 0.25rem;
     box-shadow: rgb(0 0 0 / 2%) 0 1px 3px 0;
     box-sizing: border-box;
-    padding: 2em;
     min-height: 60vh;
-    margin-left: 10%;
+}
+
+#helpModal {
+    padding: 2em;
 }
 
 #whatsapp {

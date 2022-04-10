@@ -259,16 +259,28 @@ function nextOnEnter(ev){
     }
 }
 
-function toggleShare(){
-    document.getElementById("shareContainer")?.classList.toggle('hidden');
+function toggleShare(show){
+    var modal = document.getElementById("shareContainer");
+    if (show === true){
+        modal?.classList.remove('hidden');
+    }
+    else if (show === false){
+        modal?.classList.add('hidden');
+    }
+    else {
+        document.getElementById("shareContainer")?.classList.toggle('hidden');
+    }
 }
 
-function toggleHelp(){
+function toggleHelp(show){
     var helpModal = document.getElementById("helpContainer");
     if (!helpModal) {
         return;
     }
-    if (helpModal.classList.contains('hidden')){
+    if (typeof show !== 'boolean'){
+        show = helpModal.classList.contains('hidden');
+    }
+    if (show){
         helpModal.classList.remove('hidden');
         location.hash = 'help';
     }
@@ -276,6 +288,11 @@ function toggleHelp(){
         helpModal.classList.add('hidden');
         location.hash = '';
     }
+}
+
+function closeAllModals(){
+    toggleShare(false);
+    toggleHelp(false);
 }
 
 function getGuesses(){
@@ -288,3 +305,5 @@ function getGuesses(){
 if (/help/.test(location.hash)){
     document.getElementById("helpContainer")?.classList.remove('hidden')
 }
+
+document.getElementById('root')?.addEventListener('click', closeAllModals);
