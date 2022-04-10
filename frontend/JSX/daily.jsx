@@ -48,16 +48,7 @@ class QuoteZone extends React.Component {
   }
 }
 
-
 const domContainer = document.querySelector('#root');
 var elem = ReactDOM.render(e(QuoteZone), domContainer);
-
-function getGuesses(){
-    return {
-        guess1: document.getElementById('guess1').value.trim().toLowerCase(),
-        guess2: document.getElementById('guess2').value.trim().toLowerCase(),
-    }
-}
-
 
 getDaily();

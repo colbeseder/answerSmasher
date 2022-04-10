@@ -5,6 +5,20 @@ function leadCapital(s){
     return s.replace(/^./, x => x.toUpperCase())
 }
 
+/*
+ * RiCHaRd OSmAn -> richard Osman
+ */
+function toLowerPreserveSurname(s){
+    s.replace(/ ?[A-Z]/g, function(x){
+        if (x[0] !== ' '){
+            return x.toLowerCase();
+        }
+        else {
+            return x;
+        }
+    });
+}
+
 function combineSpelling(a, b, falseIfFailed){
     if (!a) {
         return b;
@@ -263,6 +277,14 @@ function toggleHelp(){
         location.hash = '';
     }
 }
+
+function getGuesses(){
+    return {
+        guess1: toLowerPreserveSurname(document.getElementById('guess1').value.trim()),
+        guess2: toLowerPreserveSurname(document.getElementById('guess2').value.trim()),
+    }
+}
+
 if (/help/.test(location.hash)){
     document.getElementById("helpContainer")?.classList.remove('hidden')
 }
