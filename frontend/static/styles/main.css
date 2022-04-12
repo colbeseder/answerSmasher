@@ -283,6 +283,14 @@ span#credit {
     font-size: large;
 }
 
+#reactContainer .guessBox input {
+    background-color: #ff000060;
+}
+
+#reactContainer.correct .guessBox input {
+    background-color: #2ee40080;
+}
+
 .correct #revealButton {
     display: none;
 }
