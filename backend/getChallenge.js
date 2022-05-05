@@ -1,5 +1,5 @@
 // new Date().setUTCHours(0,0,0,0)
-const EPOCH = 1649203200000 ;
+const EPOCH = 1651708800000 ;
 
 function getChallengeNumber(){
     return Math.floor((Date.now() - EPOCH) / (24*60*60*1000))
@@ -23,7 +23,7 @@ function showAllChallenges(){
     for (var days = 0; days < challenges.length; days++){
         var c = challenges[days];
         var pair = atob(c);
-        console.log(`${new Date(EPOCH + 8.64e7 ).toDateString()}: ${padRight('"' + pair + '"', 25)}\t http://answersmasher.com/quiz?d=${c}`);
+        console.log(`${new Date(EPOCH + (days * 8.64e7) ).toDateString()}: ${padRight('"' + pair + '"', 25)}\t http://answersmasher.com/quiz?d=${c}`);
     }
 }
 
@@ -32,11 +32,11 @@ var challenges = [
     "Y2hvY29sYXRlLGxpdGVyYWN5",
     "Y2hhbXBhZ25lLGFuZ2Vs",
     "Z3JhYixyYWJiaXQ",
-    "bmV2ZXJ0aGVsZXNzLGxlc3Nlcg==",
     "c3ByaW50LGludGVyZmFjZQ==",
     "c3F1ZWFtaXNoLG1pc3Npb24=",
     "UmljaGFyZCBPc21hbixtYW5vcg==",
     "dGFyZ2V0LGd1aXRhcg==",
+    "YmFyYmVjdWUsY3VjdW1iZXI=",
     "ZHJpbmssaW5jcmVkaWJsZQ==",
     "dG9vdGhicnVzaCxSdXNzaWFu",
     "cHVycGxlLHBvbGx1dGlvbg==",
@@ -51,7 +51,17 @@ var challenges = [
     "cHJvdGVzdCxlc3R1YXJ5",
     "Y2FsbCxhbHJlYWR5",
     "c2ltdWx0YW5lb3VzbHksc2xlZXA",
-    "dHJhZmZpYyxmaWN0aW9u"
+    "dHJhZmZpYyxmaWN0aW9u",
+    "cmVkZWVtLGVtYWls",
+    "bWFsZSxhbGllbg==",
+    "c3BvdCxwb3R0ZXJ5",
+    "c3Rhbix0YW5naWJsZQ==",
+    "c2xvdyxsb2Fm",
+    "bmV2ZXJ0aGVsZXNzLGxlc3Nlcg==",
+    "cGluayxpbmNyZWRpYmxl",
+    "c3BhcmssYXJjYWRl"
+
+
 ];
 
 module.exports = getChallenge;
