@@ -19,6 +19,8 @@ spec:
         value: "http://127.0.0.1:3000"
       - name: WORD_LIST
         value: {{ .Values.wordList }}
+      - name: EXTRA_WORDS
+        value: '{{ .Values.extraWords }}'
       - name: LOG_LEVEL
         value: "{{ .Values.logLevel }}"
   - name: combiner
@@ -32,8 +34,6 @@ spec:
     ports:
     - containerPort: 3000
     env:
-      - name: EXTRA_WORDS
-        value: '{{ .Values.extraWords }}'
       - name: ENTRY_API_KEY
         value: '{{ .Values.apiKey }}'
       - name: MONGO_NAME
