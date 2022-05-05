@@ -3,7 +3,6 @@
         "_id": "Richard Osman",
         "__v": 0,
         "clue": "The two metre tall host of House of Games and co-presenter of Pointless",
-        "end": "mæn",
         "pattern": [
             "ɹ",
             "ɪ",
@@ -22,6 +21,35 @@
             "n"
         ],
         "start": "ɹɪt",
-        "target": "sensation"
+        "end": "mæn",
+        "target": "Pointless"
+    },
+    {
+        "_id": "Lin-Manuel Miranda",
+        "__v": 0,
+        "clue": "American actor, playwright, and filmmaker. Known for creating the Broadway musical Hamilton",
+        "pattern": [
+            "l",
+            "ɪ",
+            "n",
+            " ",
+            "m",
+            "æ",
+            "n",
+            "w",
+            "ɛ",
+            "l",
+            " ",
+            "m",
+            "ɪ",
+            "r",
+            "æ",
+            "n",
+            "d",
+            "ə"
+        ],
+        "start": "lɪn",
+        "end": "ndə",
+        "target": "Hamilton"
     }
 ]

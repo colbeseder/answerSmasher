@@ -59,9 +59,8 @@ var challenges = [
     "c2xvdyxsb2Fm",
     "bmV2ZXJ0aGVsZXNzLGxlc3Nlcg==",
     "cGluayxpbmNyZWRpYmxl",
-    "c3BhcmssYXJjYWRl"
-
-
+    "c3BhcmssYXJjYWRl",
+    "cGFuZ29saW4sTGluLU1hbnVlbCBNaXJhbmRh"
 ];
 
 module.exports = getChallenge;
