@@ -366,6 +366,12 @@ img#correctImage.shrunk {
     color: var(--periwinkle-crayola);
 }
 
+.copyLinkButton {
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+}
+
 .button {
     margin-top: 1.5em;
 }

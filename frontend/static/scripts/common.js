@@ -260,6 +260,9 @@ function nextOnEnter(ev){
 }
 
 function toggleShare(show){
+    if(window.setShareMsg){
+        setShareMsg()
+    }
     var modal = document.getElementById("shareContainer");
     if (show === true){
         modal?.classList.remove('hidden');

@@ -6,7 +6,8 @@ class ShareZone extends React.Component {
         shareDefinition: location.pathname === "/", // 0: daily, 1: definition
         shareMsg: "Check out ",
         shareLink: "http://answersmasher.com",
-        noDefinition: false
+        noDefinition: false,
+        isCopied: false
       }
     }
   
@@ -15,37 +16,38 @@ class ShareZone extends React.Component {
           <div id="shareModal">
             <img className="navButton closeMenu" src="/static/icons/close.svg" onClick={toggleShare} />
             <div className="center">
-            <h1>Share</h1>
-            <link rel="stylesheet" href="/static/styles/switch.css"></link>
-            
-            <div id="shareSelector">
-              <span className={`switchOption ${this.state.shareDefinition ? "bold" : ""}`}>Definition</span>
-              <br className="mobileOnly" />
-              <span>
-              <label className="switch">
-                <input id="whatToShare" type="checkbox" checked={ !this.state.shareDefinition } onChange={toggleShareSwitch}/>
-                <span className="slider round"></span>
-              </label>
-              </span>
-              <br className="mobileOnly" />
-              <span className={`switchOption ${this.state.shareDefinition ? "" : "bold"}`}>Challenge</span>
-              <br />
-              <span className={this.state.noDefinition ? "" : "invisible"}>You can't share the daily definition. Spoilers.</span>
-            </div>
-            <div id="shareButtons">
-              <a id="whatsAppButton" className="shareButtonLink" target="_blank"
-                href={"whatsapp://send?text=" + encodeURIComponent(this.state.shareMsg + this.state.shareLink)} data-action="share/whatsapp/share">
-                <div id="whatsapp" className="shareButton mobileOnly"></div>
-              </a>
-              <a id="tweetButton" className="twitter-share-button shareButtonLink" target="_blank"
-                  href={"https://twitter.com/intent/tweet?text=" + encodeURIComponent(this.state.shareMsg + this.state.shareLink)}>
-                <div id="twitter" className="shareButton"></div>
-              </a>
-              <a id="facebookButton" className="facebook-share-button shareButtonLink" target="_blank"
-                href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(this.state.shareLink)}&quote=${encodeURIComponent(this.state.shareMsg)}`}>
-                <div id="facebook" className="shareButton"></div>
-              </a>
+              <h1>Share</h1>
+              <link rel="stylesheet" href="/static/styles/switch.css"></link>
+              
+              <div id="shareSelector">
+                <span className={`switchOption ${this.state.shareDefinition ? "bold" : ""}`}>Definition</span>
+                <br className="mobileOnly" />
+                <span>
+                  <label className="switch">
+                    <input id="whatToShare" type="checkbox" checked={ !this.state.shareDefinition } onChange={toggleShareSwitch}/>
+                    <span className="slider round"></span>
+                  </label>
+                </span>
+                <br className="mobileOnly" />
+                <span className={`switchOption ${this.state.shareDefinition ? "" : "bold"}`}>Challenge</span>
+                <br />
+                <span className={this.state.noDefinition ? "" : "invisible"}>You can't share the daily definition. Spoilers.</span>
               </div>
+              <div id="shareButtons">
+                <a id="whatsAppButton" className="shareButtonLink" target="_blank"
+                  href={"whatsapp://send?text=" + encodeURIComponent(this.state.shareMsg + this.state.shareLink)} data-action="share/whatsapp/share">
+                  <div id="whatsapp" className="shareButton mobileOnly"></div>
+                </a>
+                <a id="tweetButton" className="twitter-share-button shareButtonLink" target="_blank"
+                    href={"https://twitter.com/intent/tweet?text=" + encodeURIComponent(this.state.shareMsg + this.state.shareLink)}>
+                  <div id="twitter" className="shareButton"></div>
+                </a>
+                <a id="facebookButton" className="facebook-share-button shareButtonLink" target="_blank"
+                  href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(this.state.shareLink)}&quote=${encodeURIComponent(this.state.shareMsg)}`}>
+                  <div id="facebook" className="shareButton"></div>
+                </a>
+                </div>
+                  <p className="copyLinkButton" onClick={() => {copyLink(this.state.shareLink)}}>{this.state.isCopied ? 'Copied!' : 'Copy link' }</p>
               </div>
           </div>
       )
@@ -79,6 +81,18 @@ function toggleShareSwitch(){
 
 function isSolved(){
   return !!document.getElementById("answer").innerText;
+}
+
+function copyLink(link){
+  navigator.clipboard.writeText(link).then(function() {
+    shareElem.setState({"isCopied": true});
+    setTimeout(
+      () => {shareElem.setState({"isCopied": false});},
+      2000
+    )
+  }, function() {
+    /* clipboard write failed */
+  });
 }
 
 function setShareMsg(){
