@@ -20,7 +20,7 @@ spec:
       - name: WORD_LIST
         value: {{ .Values.wordList }}
       - name: LOG_LEVEL
-        value: {{ .Values.logLevel }}
+        value: "{{ .Values.logLevel }}"
   - name: combiner
     image: colbeseder/smasher-combiner{{ .Values.imageFlavour }}:latest
     imagePullPolicy: {{ .Values.pullImages }}
