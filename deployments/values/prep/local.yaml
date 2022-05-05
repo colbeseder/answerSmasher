@@ -11,4 +11,5 @@ isProd: 'no'
 wordList: 'resources/test-words.txt'
 backendReplicas: 2
 logLevel: 1
+extraWords: ""
 trigger: "1"

@@ -32,6 +32,8 @@ spec:
     ports:
     - containerPort: 3000
     env:
+      - name: EXTRA_WORDS
+        value: '{{ .Values.extraWords }}'
       - name: ENTRY_API_KEY
         value: '{{ .Values.apiKey }}'
       - name: MONGO_NAME
