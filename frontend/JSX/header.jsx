@@ -25,13 +25,13 @@ class HeadZone extends React.Component {
               </li>
               <li>
                 <a href="/">
-                  <img className="navButton" src="/static/icons/tennis-blue.svg" />
+                  <img className="navButton flipped" src="/static/icons/tennis-blue.svg" />
                   Smashes
                 </a>
               </li>
               <li>
                 <a href="/quiz">
-                  <img className="navButton" src="/static/icons/brain-user-blue.svg" />
+                  <img className="navButton flipped" src="/static/icons/brain-user-blue.svg" />
                   Quiz
                 </a>
               </li>

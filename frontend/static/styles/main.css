@@ -1,8 +1,8 @@
 :root {
-    --xiketic: #130303;
+    --xiketic: #302323;
     --cinnabar: #D64933;
     --cool-grey: #938ba1ff;
-    --periwinkle-crayola: #C9DDFF;
+    --periwinkle-crayola: #6597EC;
     --state-blue: #6665DD;
     --whitish: #ffffff
 }
@@ -12,7 +12,6 @@ body, html {
 }
 
 body {
-    background-color: var(--periwinkle-crayola);
     font-family: 'League Spartan', sans-serif;
     color: var(--xiketic)
 }
@@ -28,6 +27,10 @@ body {
 
 .invisible {
     visibility: hidden;
+}
+
+.flipped {
+    transform: scaleX(-1);
 }
 
 .mobileOnly {
@@ -116,7 +119,7 @@ button, .button {
     border-radius: 0.25rem;
     box-shadow: rgb(0 0 0 / 2%) 0 1px 3px 0;
     box-sizing: border-box;
-    color: var(--periwinkle-crayola);
+    color: white;
     cursor: pointer;
     font-size: 16px;
     font-weight: 600;
