@@ -181,13 +181,18 @@ function getDaily(digest){
 function next(){
     fetch(apiUrl + "/api/smash").then(r => r.json())
         .then(smash => {
-            clear();
-            elem.setState(smash, x => handleUpdate(smash));
-            var digest = createDigest(smash);
-            window.digest = digest;
-            window.history.pushState('', '', '?d=' + digest);
+            try {
+                clear();
+                elem.setState(smash, x => handleUpdate(smash));
+                var digest = createDigest(smash);
+                window.digest = digest;
+                window.history.pushState('', '', '?d=' + digest);
+            }
+            catch(er){
+                LOG(er);
+            }
          })
-        .catch();
+        .catch(er => LOG(er));
 }
 
 function handleUpdate(smash){
@@ -302,6 +307,13 @@ function getGuesses(){
     return {
         guess1: toLowerPreserveSurname(document.getElementById('guess1').value.trim()),
         guess2: toLowerPreserveSurname(document.getElementById('guess2').value.trim()),
+    }
+}
+
+function LOG(msg){
+    var logFoot = document.getElementById("logFoot");
+    if (logFoot && msg){
+        logFoot.innerText = msg;
     }
 }
 
