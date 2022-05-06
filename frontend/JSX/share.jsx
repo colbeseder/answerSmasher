@@ -47,7 +47,7 @@ class ShareZone extends React.Component {
                   <div id="facebook" className="shareButton"></div>
                 </a>
                 </div>
-                  <p className="copyLinkButton" onClick={() => {copyLink(this.state.shareLink)}}>{this.state.isCopied ? 'Copied!' : 'Copy link' }</p>
+                  <p className="copyLinkButton" onClick={() => {copyLink(this.state.shareLink)}} onTouchEnd={() => {copyLink(this.state.shareLink)}}>{this.state.isCopied ? 'Copied!' : 'Copy link' }</p>
               </div>
           </div>
       )
