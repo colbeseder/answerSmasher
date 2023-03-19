@@ -1,5 +1,5 @@
 :root {
-    --xiketic: #302323;
+    --xiketic: #eec753;
     --cinnabar: #D64933;
     --cool-grey: #938ba1ff;
     --periwinkle-crayola: #6597EC;
@@ -13,7 +13,8 @@ body, html {
 
 body {
     font-family: 'League Spartan', sans-serif;
-    color: var(--xiketic)
+    color: var(--whitish);
+    background-color: #90000c;
 }
 
 .hidden {
@@ -87,8 +88,8 @@ div.q {
 }
 
 div#answerBlock {
-    min-height: 9em;
     font-family: 'Actor', sans-serif;
+    text-align: center;
 }
 
 span#answer, div#answer {
@@ -114,7 +115,7 @@ button, .button {
     margin: 5px;
     align-items: center;
     background-clip: padding-box;
-    background-color: var(--xiketic);
+    background-color: var(--cool-grey);
     border: 1px solid transparent;
     border-radius: 0.25rem;
     box-shadow: rgb(0 0 0 / 2%) 0 1px 3px 0;
@@ -152,14 +153,11 @@ span#result {
 }
 
 #reactContainer {
-    position: absolute;
-    top: 50%;
-    margin-top: -10em;
-    margin-left: -14em;
+    padding-top: 5em;
     left: 50%;
-    width: 30em;
-    height: 20em;
+    width: 90%;
     font-size: 1.5em;
+    margin: 0 auto;
 }
 
 #meaning {
@@ -263,14 +261,15 @@ span#credit {
     margin-right: 1em;
 }
 
-#guesses {
-    display: flex;
-}
-
 .guessBox {
-    width: 45%;
     padding: 1em;
     border: solid 2px var(--xiketic);
+    text-align: center;
+    font-size: larger;
+}
+
+#answerBox {
+    margin-top: 3em;
 }
 
 .guessBox div {
@@ -282,8 +281,9 @@ span#credit {
 }
 
 .guessbox input, .guessbox span {
-    width: 100%;
+    width: 45%;
     font-size: large;
+    margin: 0.5em;
 }
 
 #reactContainer .guessBox input {
