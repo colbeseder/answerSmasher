@@ -8,7 +8,9 @@ const entrySchema = new Schema({
   end: {type: "String", required: true},
   clue: {type: "String", required: true} ,
   pattern: [{type: "String"}],
-  target:  {type: "String"}
+  target: {type: "String"},
+  definition: {type: "String"},
+  version: {type: "number", required: false}
 });
 
 const Entry = mongoose.model("Entry", entrySchema);

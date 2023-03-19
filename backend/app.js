@@ -133,8 +133,10 @@ app.post('/api/entry/:title', (req, res) => {
     start: req.body.start,
     end: req.body.end,
     clue: req.body.clue,
+    definition: req.body.definition || req.body.clue,
     pattern: req.body.pattern,
-    target: req.body.target
+    target: req.body.target,
+    version: req.body.version || 0
   };
 
   Entry.findOneAndUpdate({ _id: entryData._id }, entryData, {upsert: true}, function(err, result) {
