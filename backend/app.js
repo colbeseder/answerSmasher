@@ -110,7 +110,7 @@ function getEntryByStart(start){
 }
 
 app.get('/', (req, res) => {
-  res.send(`This is the backend! (${Date.now()})<br>Mongo ${isConnected ? 'IS' : 'IS NOT' } connected`)
+  res.send(`This is the backend! (${Date.now()})<br>Mongo ${isConnected ? 'IS' : 'IS NOT' } connected.`)
 })
 
 app.post('/api/entry/:title', (req, res) => {
