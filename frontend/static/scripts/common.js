@@ -49,12 +49,7 @@ function removeBrackets(s){
 }
 
 function cleanClue(clue, synCount){
-    clue = removeBrackets(clue);
-    var synonym = extractSynonyms(clue, synCount);
-    if (synonym){
-        return synonym;
-    }
-    return clue;
+    return clue.replace(/[\. ]+$/, '')
 }
 
 function leadingLower(s){
