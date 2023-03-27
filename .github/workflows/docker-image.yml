@@ -47,19 +47,3 @@ jobs:
           file: backend/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/smasherbackend:latest
-      -
-        name: Build and push prepareEntries
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: prepareEntries/Dockerfile
-          push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/smasher-entry-prep:latest
-      -
-        name: Build and push Combiner
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: combiner/Dockerfile
-          push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/smasher-combiner:latest
