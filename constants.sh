@@ -1,1 +1,1 @@
-export API_Gateway="http://api.answersmasher.com"
+export API_Gateway="46.101.64.178"

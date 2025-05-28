@@ -1,5 +1,5 @@
-
-window.apiUrl = window.apiUrl || "http://api.answersmasher.com";
+window.FF = 4;
+window.apiUrl = window.apiUrl || "http://46.101.64.178";
 
 function leadCapital(s){
     return s.replace(/^./, x => x.toUpperCase())
