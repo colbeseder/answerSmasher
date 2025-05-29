@@ -11,11 +11,11 @@ isProd: 'yes'
 wordList: 'resources/default-words.txt'
 backendReplicas: 1
 logLevel: 0
-trigger: "1"
+trigger: "3"
 
 image:
   repository: nginx
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
