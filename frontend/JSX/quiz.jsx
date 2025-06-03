@@ -72,9 +72,10 @@ class QuoteZone extends React.Component {
                         {this.state.answer.split('').map((char, index) => (
                         <div
                             key={index}
-                            className={`tile ${this.state.guess[index]?.toUpperCase() === this.state.answer[index]?.toUpperCase() ? 'correct' : ''}`}
+                            className={`tile ${(this.state.guess[index]?.toUpperCase() === this.state.answer[index]?.toUpperCase()) || 
+                                 (/[ -'_]/.test(this.state.answer[index]) && !this.state.guess[index] ) ? 'correct' : ''}`}
                         >
-                            {this.state.guess[index]?.toUpperCase() || ''}
+                            {/[ -'_]/.test(this.state.answer[index]) ? this.state.answer[index] : (this.state.guess[index]?.toUpperCase() || '')}
                         </div>
                         ))}
                     </div>
