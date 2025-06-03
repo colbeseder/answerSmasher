@@ -102,7 +102,7 @@ function copyLink(link){
 function setShareMsg(){
   if (shareElem.state.shareDefinition){
     shareElem.setState({
-      "shareMsg": `Check out the definition for _${document.getElementById("answer").innerText}_`,
+      "shareMsg": `Check out the definition for _${elem.state.answer}_`,
       "shareLink": `http://answersmasher.com/?d=${window.digest}`
     });
     return;

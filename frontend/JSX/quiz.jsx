@@ -1,5 +1,6 @@
 window.isQuizPage = true;
 
+
 const e = React.createElement;
 
 class QuoteZone extends React.Component {
@@ -11,14 +12,11 @@ class QuoteZone extends React.Component {
             firstClue: '',
             secondAnswer: '',
             secondClue: '',
-            firstTarget: '',
-            secondTarget: '',
             pronounciation: '',
             guess: '',
-            guess1: '',
-            guess2: '',
             isCorrect: false,
-            isRevealed: false
+            isRevealed: false,
+            isDailyPage: location.pathname === "/daily"
         };
 
         this.handleChange = function(guess){
@@ -70,7 +68,7 @@ class QuoteZone extends React.Component {
                         />
                     </div>
 
-                    <div className="grid">
+                    <div className="grid"  style={{width: 55*this.state.answer.length}} >
                         {this.state.answer.split('').map((char, index) => (
                         <div
                             key={index}
@@ -82,14 +80,14 @@ class QuoteZone extends React.Component {
                     </div>
 
                     <div>
-                        <span id="IPA">{this.state.isCorrect ? '/' + this.state.pronounciation + '/' : ''}</span>
+                        <span id="IPA">{(this.state.isCorrect || this.state.isRevealed) ? '/' + this.state.pronounciation + '/      ' + this.state.firstAnswer + '+' + this.state.secondAnswer: ''}</span>
                         <div className="message">{this.state.isRevealed ? '🧐 Revealed!' : this.state.isCorrect ? '🎉 Correct!' : ''}</div>
                     </div>
 
                         <br />
 
 
-                    <div id="buttonContainer">
+                    <div id="buttonContainer" className={this.state.isDailyPage ? 'hidden': ''}>
 
                         {(this.state.isCorrect || this.state.isRevealed) ? <button id="nextButton" onClick={x => { next() }}>Next Smash</button> : <button id="revealButton" onClick={this.reveal}>Reveal</button>}
                     </div><br /><br />

@@ -16,8 +16,8 @@ class HeadZone extends React.Component {
     </div>
     <div class="icons">
       <span title="How to Play" onClick={_=>toggleHelp()}>ⓘ</span>
-      <span title="Menu"  onClick={toggleMenu}>📊</span>
-      <span title="Share" onClick={toggleShare}>📤</span>
+      <span title="Menu"  onClick={toggleMenu}>🎛️</span>
+      <span title="Share" onClick={toggleShare}>✉️</span>
     </div>
         <div id="iconBoxLeft">
           <div id="menuWrapper" className={`${this.state.showMenu ? "" : "slideOff"}`}>
@@ -71,5 +71,5 @@ function hideMenu(){
 }
 
 function updateMenu() {
-  document.getElementById('menuWrapper').style.left = headerElem.state.showMenu ? '0px' : '-300px';
+  document.getElementById('menuWrapper').style.right = headerElem.state.showMenu ? '0px' : '-300px';
 }
