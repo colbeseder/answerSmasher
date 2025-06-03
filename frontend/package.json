@@ -8,6 +8,7 @@
   "dependencies": {
     "express": "^4.17.3",
     "package-lock.json": "^1.0.0",
-    "package.json": "^2.0.1"
+    "package.json": "^2.0.1",
+    "esbuild": "^0.25.5"
   }
 }

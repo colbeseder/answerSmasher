@@ -3,67 +3,118 @@ window.isQuizPage = true;
 const e = React.createElement;
 
 class QuoteZone extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-        firstAnswer: '',
-        firstClue: '',
-        secondAnswer: '',
-        secondClue: '',
-        firstTarget: '',
-        secondTarget: '',
-        pronounciation: '',
-        guess1: '',
-        guess2: '',
-        isCorrect: false,
-        isRevealed: false
-    };
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            answer: '',
+            firstAnswer: '',
+            firstClue: '',
+            secondAnswer: '',
+            secondClue: '',
+            firstTarget: '',
+            secondTarget: '',
+            pronounciation: '',
+            guess: '',
+            guess1: '',
+            guess2: '',
+            isCorrect: false,
+            isRevealed: false
+        };
 
-  render() {
-    return (
-        <div>
-            <div id="reactContainer" className={`${this.state.isCorrect ? "correct" : ""} ${this.state.isRevealed ? "revealed": ""}`}>
-                <div id="guesses">
-                    <div className="guessBox" id="guessBox1">
-                        <div>{cleanClue(this.state.firstClue, 3)}</div><br />
-                        <div>{cleanClue(this.state.secondClue, 3)}</div><br />
+        this.handleChange = function(guess){
+            this.setState({guess: guess.toUpperCase(),
+                isCorrect: guess.toUpperCase() === this.state.answer.toUpperCase()
+            });
+        }
+
+        this.clear = function(){
+            document.getElementById("guessBox").value = '';
+            document.title = 'AnswerSmasher'
+            this.setState({
+                isCorrect: false,
+                isRevealed: false,
+                guess: ''
+            });
+            document.getElementById("guessBox").focus();
+        }
+
+        this.reveal = function(){
+            location.hash = "reveal"
+            document.title = combineSpelling(elem.state.firstAnswer, elem.state.secondAnswer);
+            elem.setState({
+                guess: this.state.answer.toUpperCase(),
+                isRevealed: true
+            });
+        }
+    }
+
+    render() {
+        return (
+                <div id="reactContainer" className={`${this.state.isCorrect ? "correct" : ""} ${this.state.isRevealed ? "revealed" : ""}`}>
+
+
+                    <div className="clues">
+                        <div className="clue-pair">
+                            <div className="clue">{cleanClue(this.state.firstClue, 3)}</div>
+                            <div className="clue">{cleanClue(this.state.secondClue, 3)}</div>
+                        </div>
                     </div>
-                </div>
 
-                <div id="answerBlock">
-                    <span id="answer">{this.state.isCorrect ? combineSpelling(this.state.firstAnswer, this.state.secondAnswer) 
-                        : combineSpelling(this.state.guess1, this.state.guess2) || ' '}</span>
-                        <img className={`${this.state.isCorrect && !this.state.isRevealed ? '' : 'shrunk'}`} src="/static/icons/check-mark.svg" id="correctImage" /><br />
-                    <span id="IPA">{this.state.isCorrect ? '/' + this.state.pronounciation + '/' : ''}</span><br />
-                </div>
-
-                <div className="guessBox" id="answerBox">
-                        <input id="guess1" onKeyPress={nextOnEnter} onInput={ev => {this.setState(getGuesses(), checkSmash)}} />
-                        <input id="guess2" onKeyPress={nextOnEnter} onInput={ev => {this.setState(getGuesses(), checkSmash)}} />
+                    <div className="input-area">
+                        <input id="guessBox"
+                        type="text"
+                        defaultValue={this.state.guess}
+                        onInput={e => this.handleChange(e.target.value)}
+                        maxLength={30}
+                        placeholder="Enter your answer"
+                        />
                     </div>
-                <div id="buttonContainer">
-                    <button id="revealButton" onClick={reveal}>Reveal</button>
-                    <button id="nextButton" onClick={x=>{next()}}>Next Smash</button>
-                </div><br /><br />
+
+                    <div className="grid">
+                        {this.state.answer.split('').map((char, index) => (
+                        <div
+                            key={index}
+                            className={`tile ${this.state.guess[index]?.toUpperCase() === this.state.answer[index]?.toUpperCase() ? 'correct' : ''}`}
+                        >
+                            {this.state.guess[index]?.toUpperCase() || ''}
+                        </div>
+                        ))}
+                    </div>
+
+                    <div>
+                        <span id="IPA">{this.state.isCorrect ? '/' + this.state.pronounciation + '/' : ''}</span>
+                        <div className="message">{this.state.isRevealed ? '🧐 Revealed!' : this.state.isCorrect ? '🎉 Correct!' : ''}</div>
+                    </div>
+
+                        <br />
+
+
+                    <div id="buttonContainer">
+
+                        {(this.state.isCorrect || this.state.isRevealed) ? <button id="nextButton" onClick={x => { next() }}>Next Smash</button> : <button id="revealButton" onClick={this.reveal}>Reveal</button>}
+                    </div><br /><br />
             </div>
-        </div>
-    )
-  }
+        )
+    }
 }
 
 
 const domContainer = document.querySelector('#root');
-var elem = ReactDOM.render(e(QuoteZone), domContainer);
+window.elem = ReactDOM.render(e(QuoteZone), domContainer);
 
-function loadPage(){
-    var digest = /[?&]d=([A-Z0-9/+=]+)/i.exec(location.search)?.at(1);
-    if (digest){
-        getSmashfromDigest(digest);
+function loadPage() {
+    try{
+        var digest = /[?&]d=([A-Z0-9/+=]+)/i.exec(location.search)?.at(1);
+        if (digest) {
+            getSmashfromDigest(digest);
+        }
+        else {
+            next();
+        }
     }
-    else {
-        next();
-    }    
+    catch(er){
+        console.log(er);
+    }
 }
 
 window.onpopstate = loadPage;

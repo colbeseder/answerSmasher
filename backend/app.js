@@ -86,7 +86,7 @@ function findPair(limit){
             resolve(smash)
           }
           catch (err){
-            if (limit <= 1){
+            if (limit <= 3){
               reject({error: "Exceeded retries"})
             }
             else {

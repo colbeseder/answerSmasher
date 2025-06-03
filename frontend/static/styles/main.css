@@ -8,14 +8,148 @@
     --game-dark: #730e17;
     --golden:  #eec753;
     --correct: #2ee40080;
-    --whitish: #ffffff
+    --whitish: #ffffff;
+    --primary: #3B82F6;         /* Electric Blue */
+    --accent: #34D399;          /* Mint Green */
+    --bg: #F9FAFB;              /* Ghost White */
+    --surface: #E5E7EB;         /* Soft Slate */
+    --text-primary: #111827;    /* Charcoal Black */
+    --text-muted: #6B7280;      /* Cool Gray */
+    --error: #F87171;           /* Coral Red */
+    --correct: #34D39980;       /* Mint Green (Transparent for feedback) */
+    --whitish: #ffffff;
 }
 
 body {
-    font-family: 'League Spartan', sans-serif;
-    color: var(--whitish);
-    background-color: var(--game-time);
-}
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f8f9fa;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    header {
+      width: 100%;
+      background: #2e2e3a;
+      color: #fdfdfd;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      border-bottom: 4px solid #730e17;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    left: 0;
+    z-index: 1;
+    }
+
+    .title {
+      font-size: 2rem;
+      font-weight: bold;
+      font-family: 'Courier New', Courier, monospace;
+      letter-spacing: 2px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .title-icon {
+      font-size: 2rem;
+    }
+
+    .icons {
+      display: flex;
+      gap: 1rem;
+      font-size: 1.3rem;
+      cursor: pointer;
+      position: relative;
+      left: -100;
+    }
+
+    .clues {
+      margin: 1rem 0;
+      background: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .clue-pair {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .clue {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .clue::before {
+      content: "🧩";
+      color: #730e17;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+      gap: 5px;
+      margin: 1rem 0;
+      max-width: calc(40px * 12 + 5px * 11);
+      width: 100%;
+      justify-content: center;
+    }
+
+    .tile {
+      width: 40px;
+      height: 40px;
+      background: #e0e0e0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.25rem;
+      font-weight: bold;
+      border-radius: 4px;
+    }
+
+    .tile.correct {
+      background: #a3e635;
+      color: #000;
+    }
+
+    .input-area {
+      margin: 1rem 0;
+    }
+
+    .input-area input {
+      padding: 0.5rem;
+      font-size: 1rem;
+      width: 200px;
+      text-transform: uppercase;
+    }
+
+    .message {
+      font-size: large;
+      color: green;
+      font-weight: bold;
+      margin-top: 1rem;
+    }
+
+    .footer {
+      margin-top: auto;
+      padding: 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+    }
 
 .hidden {
     visibility: hidden;
@@ -155,7 +289,6 @@ span#result {
 #reactContainer {
     padding-top: 5em;
     left: 50%;
-    width: 75%;
     font-size: 1.5em;
     margin: 0 auto;
 }
@@ -167,6 +300,7 @@ span#result {
 
 span#IPA, div#IPA {
     margin-left: 0.5em;
+    font-size: small;
 }
 
 #part2 {
@@ -308,18 +442,6 @@ span#credit {
 
 .correct #nextButton {
     display: inline;
-}
-
-div#header {
-    height: 37px;
-    position: fixed;
-    top: 0px;
-    border-bottom: solid 1px var(--golden);
-    width: 100%;
-    left: 0;
-    background-color: var(--game-dark);
-    padding: 5px;
-    z-index: 1;
 }
 
 img#correctImage {
@@ -503,3 +625,76 @@ img#correctImage.shrunk {
     }
 
   }
+
+  body {
+    font-family: 'League Spartan', sans-serif;
+    color: var(--text-primary);
+    background-color: var(--bg);
+}
+
+.bold {
+    font-weight: bolder;
+    color: var(--primary);
+    font-size: x-large;
+}
+
+div[contenteditable=true] {
+    background-color: var(--primary);
+}
+
+div.q {
+    background-color: var(--primary);
+    color: var(--whitish);
+}
+
+button, .button {
+    background-color: var(--accent);
+    border: 1px solid var(--surface);
+    color: var(--text-primary);
+}
+
+#parts {
+    color: var(--text-muted);
+}
+
+.guessBox {
+    border: solid 2px var(--primary);
+}
+
+.guessbox input, .guessbox span {
+    color: var(--text-primary);
+}
+
+#reactContainer .guessBox input {
+    background-color: var(--surface);
+    color: var(--text-primary);
+}
+
+#reactContainer.correct .guessBox input {
+    background-color: var(--correct);
+}
+
+div#header {
+    background-color: var(--primary);
+    border-bottom: solid 1px var(--surface);
+}
+
+#menuWrapper {
+    background: var(--surface);
+    color: var(--text-muted);
+    border-right: solid 1px var(--surface);
+}
+
+#menuWrapper li a, #menuWrapper li span {
+    color: var(--primary);
+}
+
+#shareModal {
+    background-color: var(--surface);
+    color: var(--text-primary);
+}
+
+#helpContainer {
+    background-color: var(--surface);
+    color: var(--text-primary);
+}

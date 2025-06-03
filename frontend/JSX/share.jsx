@@ -80,7 +80,11 @@ function toggleShareSwitch(){
 }
 
 function isSolved(){
-  return !!document.getElementById("answer").innerText;
+  try {
+    return elem.state.isCorrect;
+  }
+  catch(er){}
+  return false;
 }
 
 function copyLink(link){

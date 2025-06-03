@@ -9,12 +9,18 @@ class HeadZone extends React.Component {
 
   render() {
     return (
-      <div id="header">
+  <header id="header">
+    <div class="title">
+      <span class="title-icon">🧠</span>
+      AnswerSmasher
+    </div>
+    <div class="icons">
+      <span title="How to Play" onClick={_=>toggleHelp()}>ⓘ</span>
+      <span title="Menu"  onClick={toggleMenu}>📊</span>
+      <span title="Share" onClick={toggleShare}>📤</span>
+    </div>
         <div id="iconBoxLeft">
-          <img className="navButton" src="/static/icons/menu.svg" onClick={toggleMenu} />
-          <img className="navButton notMobile" src="/static/icons/help.svg" onClick={_=>toggleHelp()}  />
           <div id="menuWrapper" className={`${this.state.showMenu ? "" : "slideOff"}`}>
-          <img className="navButton closeMenu" src="/static/icons/close.svg" onClick={hideMenu} />
           <br />
             <ul>
               <li className="mobileOnly" onClick={function(){toggleHelp();hideMenu()}}>
@@ -44,15 +50,8 @@ class HeadZone extends React.Component {
             </ul>
           </div>
         </div>
-        <div id="iconBoxRight">
-          <img className="navButton" src="/static/icons/share.svg" onClick={toggleShare} />
-        </div>
-        <div id="siteName">
-          <a href="/">
-            <span >Answer Smasher</span>
-          </a>
-        </div>
-      </div>
+      </header>
+
     )
   }
 }

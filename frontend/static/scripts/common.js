@@ -145,10 +145,14 @@ function getSmashfromDigest(digest){
         fetch(apiUrl + "/api/combine/" + digest)
             .then(r => r.json())
             .then(smash => {
+                smash.answer = combineSpelling(smash.firstAnswer, smash.secondAnswer);
                 if (smash.firstAnswer) {
                     elem.setState(smash, x => handleUpdate(smash));
                     if(/reveal/.test(location.hash)){
-                        reveal();
+                        try {
+                            window.elem.reveal();
+                        }
+                        catch(er){}
                     }
                 }
                 else {
@@ -178,6 +182,7 @@ function next(){
         .then(smash => {
             try {
                 clear();
+                smash.answer = combineSpelling(smash.firstAnswer, smash.secondAnswer);
                 elem.setState(smash, x => handleUpdate(smash));
                 var digest = createDigest(smash);
                 window.digest = digest;
@@ -191,7 +196,7 @@ function next(){
 }
 
 function handleUpdate(smash){
-    if (window.isQuizPage || window.isDailyPage){
+    if (window.isDailyPage){
         document.title = 'Answer Smasher';
         document.getElementsByTagName('input')[0].focus();
     }
@@ -199,7 +204,6 @@ function handleUpdate(smash){
         document.title = combineSpelling(smash.firstAnswer, smash.secondAnswer);
     }
     window?.setShareMsg();
-    equalizeGuessBoxes()
 }
 
 function checkSmash(){
@@ -218,8 +222,6 @@ function reveal(){
         return;
     }
     location.hash = "reveal"
-    document.getElementById("guess1").value = elem.state.firstAnswer;
-    document.getElementById("guess2").value = elem.state.secondAnswer;
     document.title = combineSpelling(elem.state.firstAnswer, elem.state.secondAnswer);
     elem.setState({
         isCorrect: true,
@@ -228,29 +230,9 @@ function reveal(){
 }
 
 function clear(){
-    if(!window.isQuizPage){
-        return;
+    if(window.isQuizPage){
+       window.elem.clear();
     }
-    document.getElementById("guess1").value = '';
-    document.getElementById("guess2").value = '';
-    elem.setState({
-        isCorrect: false,
-        isRevealed: false,
-        guess1: '',
-        guess2: ''
-    }, x => {document.getElementById('guess2').focus()});
-}
-
-function equalizeGuessBoxes(){
-    if(!window.isQuizPage && !window.isDailyPage){
-        return;
-    }
-    var boxes = document.querySelectorAll(".guessBox>div");
-    boxes[0].style.height = 'auto';
-    boxes[1].style.height = 'auto';
-    var newHeight = Math.max(boxes[0].offsetHeight, boxes[1].offsetHeight);
-    boxes[0].style.height = newHeight;
-    boxes[1].style.height = newHeight;
 }
 
 function nextOnEnter(ev){
@@ -310,6 +292,7 @@ function LOG(msg){
     if (logFoot && msg){
         logFoot.innerText = msg;
     }
+    console.log(msg);
 }
 
 if (/help/.test(location.hash)){

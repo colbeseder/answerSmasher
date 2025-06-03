@@ -14,7 +14,7 @@ app.get('/quiz', (req, res) => {
 })
 
 app.get('/daily', (req, res) => {
-  res.sendFile(__dirname + '/static/daily.html');
+  res.sendFile(__dirname + '/static/quiz.html');
 })
 
 app.get('/compose', (req, res) => {

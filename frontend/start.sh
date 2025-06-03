@@ -1,4 +1,5 @@
 source constants.sh
+npm run build
 
 # Set api URL to the local version
 if [ $IS_LOCAL ] ; then echo "window.apiUrl = 'http://127.0.0.1:30182'; " > del0 ;
