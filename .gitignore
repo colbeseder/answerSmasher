@@ -12,3 +12,4 @@ frontend/static/JSX/*
 *.sops.yaml
 deployments/deployProd.sh
 secrets.txt
+deployments/secrets/*
