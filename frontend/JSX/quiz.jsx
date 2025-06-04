@@ -21,7 +21,7 @@ class QuoteZone extends React.Component {
 
         this.handleChange = function(guess){
             this.setState({guess: guess.toUpperCase(),
-                isCorrect: guess.toUpperCase() === this.state.answer.toUpperCase()
+                isCorrect: guess.toUpperCase().trim() === this.state.answer.toUpperCase()
             });
         }
 
