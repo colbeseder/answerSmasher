@@ -123,6 +123,11 @@ body {
       color: #000;
     }
 
+    .tile.wrong {
+      background: #f33033;
+      color: #000;
+    }
+
     .input-area {
       margin: 1rem 0;
       padding: 0 2em;
@@ -136,10 +141,16 @@ body {
     }
 
     .message {
-      font-size: large;
+      font-size: larger;
+        padding: 0.5em 2em;
       color: green;
       font-weight: bold;
       margin-top: 1rem;
+    }
+
+    span.hintButton {
+        font-size: large;
+        font-style: italic;
     }
 
     .footer {
@@ -585,7 +596,12 @@ img#correctImage.shrunk {
         font-size: 2.3em;
     }
 
+    .footer {
+        display: none;
+    }
+
     #shareModal {
+        color: var(--bg);
         width: 80%;
         margin-left: 10%;
         height: 80%;
@@ -684,10 +700,10 @@ div#header {
 
 #shareModal {
     background-color: var(--surface);
-    color: var(--text-primary);
+    color: var(--bg);
 }
 
 #helpContainer {
     background-color: var(--surface);
-    color: var(--text-primary);
+    color: var(--bg);
 }

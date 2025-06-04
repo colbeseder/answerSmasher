@@ -25,6 +25,23 @@ class QuoteZone extends React.Component {
             });
         }
 
+        this.giveHint = function(){
+            if (this.state.isCorrect || this.state.isRevealed){
+                return;
+            }
+            let answerBox = document.getElementById('guessBox');
+            let guess = answerBox.value;
+            let firstPartLength = this.state.answer.length - this.state.secondAnswer.length; 
+
+            while (guess.length <= firstPartLength){
+                guess += '.';
+            }
+            guess = this.state.firstAnswer[0] + guess.slice(1);
+            guess = guess.slice(0, firstPartLength) + this.state.secondAnswer[0] + guess.slice(firstPartLength + 1)
+            answerBox.value = guess;
+            this.handleChange(guess);
+        }
+
         this.clear = function(){
             document.getElementById("guessBox").value = '';
             document.title = 'AnswerSmasher'
@@ -65,7 +82,7 @@ class QuoteZone extends React.Component {
                         onInput={e => this.handleChange(e.target.value)}
                         maxLength={30}
                         placeholder="Enter your answer"
-                        />
+                        /> <span className="hintButton" onClick={x => this.giveHint()}>{(this.state.isCorrect || this.state.isRevealed) ? '' : "⁉️ hint"}</span>
                     </div>
 
                     <div className="grid"  style={{width: 55*this.state.answer.length}} >
@@ -73,7 +90,7 @@ class QuoteZone extends React.Component {
                         <div
                             key={index}
                             className={`tile ${(this.state.guess[index]?.toUpperCase() === this.state.answer[index]?.toUpperCase()) || 
-                                 (/[ -'_]/.test(this.state.answer[index]) && !this.state.guess[index] ) ? 'correct' : ''}`}
+                                 (/[ -'_]/.test(this.state.answer[index]) && !this.state.guess[index] ) ? 'correct' : (this.state.guess[index]? 'wrong' : '')}`}
                         >
                             {/[ -'_]/.test(this.state.answer[index]) ? this.state.answer[index] : (this.state.guess[index]?.toUpperCase() || '')}
                         </div>

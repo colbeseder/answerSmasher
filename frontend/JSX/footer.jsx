@@ -9,7 +9,7 @@ class FooterZone extends React.Component {
     return (
         <div id="foot" class="footer">
           <span id="logFoot" className={/SamsungBrowser/i.test(navigator.userAgent) ? '' : 'hidden'}></span>
-                <a href="/daily">Daily Puzzle</a> • <a href="" onClick={toggleShare}>Share</a> • Created by&nbsp;
+                <a href="/daily">Daily Puzzle</a> • <a onClick={toggleShare}>Share</a> • Created by&nbsp;
                 <a href="https://twitter.com/bryapp">
                     @bryapp
                 </a>
