@@ -544,11 +544,7 @@ img#correctImage.shrunk {
     }
 
     html>body {
-        zoom: 2;
-    }
-
-    html>body.quiz {
-        zoom: 2;
+        width: 100%;
     }
 
     html, body {

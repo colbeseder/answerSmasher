@@ -53,8 +53,8 @@ class QuoteZone extends React.Component {
 
                     <div className="clues">
                         <div className="clue-pair">
-                            <div className="clue">{cleanClue(this.state.firstClue, 3)}</div>
-                            <div className="clue">{cleanClue(this.state.secondClue, 3)}</div>
+                            <div className="clue">{cleanClue(this.state.firstClue, 3)} ({getWordLength(this.state.firstAnswer)})</div>
+                            <div className="clue">{cleanClue(this.state.secondClue, 3)} ({getWordLength(this.state.secondAnswer)})</div>
                         </div>
                     </div>
 

@@ -52,6 +52,12 @@ function cleanClue(clue, synCount){
     return clue.replace(/[\. ]+$/, '')
 }
 
+function getWordLength(s){
+    let parts = s.split(/(?<=\W)|(?=\W)/g);
+    let results = parts.map(part => /^\W+$/.test(part) ? part : part.length);
+    return results.join(',').replace(/, ,/g, ',').replace(/,(\D+),/g, '$1');
+}
+
 function leadingLower(s){
     return s.replace(/^\s*[A-Z]/, x => x.toLowerCase());
 }
@@ -197,11 +203,7 @@ function next(){
 
 function handleUpdate(smash){
     if (window.isDailyPage){
-        document.title = 'Answer Smasher';
         document.getElementsByTagName('input')[0].focus();
-    }
-    else {
-        document.title = combineSpelling(smash.firstAnswer, smash.secondAnswer);
     }
     window?.setShareMsg();
 }
