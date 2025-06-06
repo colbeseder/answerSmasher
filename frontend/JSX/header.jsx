@@ -10,11 +10,11 @@ class HeadZone extends React.Component {
   render() {
     return (
   <header id="header">
-    <div class="title">
-      <span class="title-icon">🧠</span>
+    <div className="title">
+      <span className="title-icon">🧠</span>
       AnswerSmasher
     </div>
-    <div class="icons">
+    <div className="icons">
       <span title="How to Play" onClick={_=>toggleHelp()}><img className="navButton notMobile" src="/static/icons/help.svg" /></span>
       <span title="Menu"  onClick={toggleMenu}><img className="navButton" src="/static/icons/menu.svg" /></span>
       <span title="Share" onClick={toggleShare}><img className="navButton" src="/static/icons/share.svg" /></span>

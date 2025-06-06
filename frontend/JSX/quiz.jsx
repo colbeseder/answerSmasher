@@ -16,13 +16,23 @@ class QuoteZone extends React.Component {
             guess: '',
             isCorrect: false,
             isRevealed: false,
-            isDailyPage: location.pathname === "/daily"
+            isDailyPage: location.pathname === "/daily",
+            isScorable: true,
+            score: 0
         };
 
         this.handleChange = function(guess){
-            this.setState({guess: guess.toUpperCase(),
-                isCorrect: guess.toUpperCase().trim() === this.state.answer.toUpperCase()
-            });
+            let correct = guess.toUpperCase().trim() === this.state.answer.toUpperCase();
+            let newState = {
+                guess: guess.toUpperCase(),
+                isCorrect: correct
+            }
+            if (correct && !this.state.isRevealed && this.state.isScorable){
+                incrementScore();
+                newState.isScorable = false;
+                score = getScore();
+            }
+            this.setState(newState);
         }
 
         this.giveHint = function(){

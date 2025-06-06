@@ -1,6 +1,19 @@
 
 window.apiUrl = window.apiUrl || "http://api.answersmasher.com";
 
+function incrementScore(x){
+    if (typeof x !== 'number'){
+        x = 1;
+    }
+    let current = getScore();
+    
+    localStorage.score = current + x;
+}
+
+function getScore(){
+    return localStorage.score ? parseInt(localStorage.score, 10) : 0;
+}
+
 function leadCapital(s){
     return s.replace(/^./, x => x.toUpperCase())
 }
