@@ -1,709 +1,724 @@
 :root {
-    --xiketic: #0c020f;
-    --cinnabar: #D64933;
-    --cool-grey: #938ba1ff;
-    --periwinkle-crayola: #6597EC;
-    --state-blue: #6665DD;
-    --game-time: #90000c;
-    --game-dark: #730e17;
-    --golden:  #eec753;
-    --correct: #2ee40080;
-    --whitish: #ffffff;
-    --primary: #3B82F6;         /* Electric Blue */
-    --accent: #34D399;          /* Mint Green */
-    --bg: #F9FAFB;              /* Ghost White */
-    --surface: #2e2e3a;         /* Soft Slate */
-    --text-primary: #111827;    /* Charcoal Black */
-    --text-muted: #6B7280;      /* Cool Gray */
-    --error: #F87171;           /* Coral Red */
-    --correct: #34D39980;       /* Mint Green (Transparent for feedback) */
-    --whitish: #ffffff;
+	--xiketic: #0c020f;
+	--cinnabar: #D64933;
+	--cool-grey: #938ba1ff;
+	--periwinkle-crayola: #6597EC;
+	--state-blue: #6665DD;
+	--game-time: #90000c;
+	--game-dark: #730e17;
+	--golden: #eec753;
+	--correct: #2ee40080;
+	--whitish: #ffffff;
+	--primary: #3B82F6;
+	/* Electric Blue */
+	--accent: #34D399;
+	/* Mint Green */
+	--bg: #F9FAFB;
+	/* Ghost White */
+	--surface: #2e2e3a;
+	/* Soft Slate */
+	--text-primary: #111827;
+	/* Charcoal Black */
+	--text-muted: #6B7280;
+	/* Cool Gray */
+	--error: #F87171;
+	/* Coral Red */
+	--correct: #34D39980;
+	/* Mint Green (Transparent for feedback) */
+	--whitish: #ffffff;
 }
 
 body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #f8f9fa;
-      color: #333;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 1rem;
-    }
-
-    header {
-      width: 100%;
-      background: #2e2e3a;
-      color: #fdfdfd;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      border-bottom: 4px solid #730e17;
-    position: fixed;
-    top: 0px;
-    width: 100%;
-    left: 0;
-    z-index: 1;
-    }
-
-    .title {
-      font-size: 2rem;
-      font-weight: bold;
-      font-family: 'Courier New', Courier, monospace;
-      letter-spacing: 2px;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .title-icon {
-      font-size: 2rem;
-    }
-
-    .icons {
-      display: flex;
-      gap: 1rem;
-      font-size: 1.3rem;
-      cursor: pointer;
-      position: relative;
-      left: -100;
-    }
-
-    .clues {
-      margin: 1rem 0;
-      background: #fff;
-      padding: 1rem;
-      border-radius: 8px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-      width: 100%;
-    }
-
-    .clue-pair {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .clue {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .clue::before {
-      content: "🧩";
-      color: #730e17;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
-      gap: 5px;
-      margin: 1rem auto;
-      width: 100%;
-      justify-content: center;
-    }
-
-    .tile {
-      width: 40px;
-      height: 40px;
-      background: #e0e0e0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 1.25rem;
-      font-weight: bold;
-      border-radius: 4px;
-    }
-
-    .tile.correct {
-      background: #a3e635;
-      color: #000;
-    }
-
-    .tile.wrong {
-      background: #f33033;
-      color: #000;
-    }
-
-    .input-area {
-      margin: 1rem 0;
-      padding: 0 2em;
-    }
-
-    .input-area input {
-      padding: 0.5rem;
-      font-size: 1rem;
-      width: 200px;
-      text-transform: uppercase;
-    }
-
-    .message {
-      font-size: larger;
-        padding: 0.5em 2em;
-      color: green;
-      font-weight: bold;
-      margin-top: 1rem;
-    }
-
-    span.hintButton {
-        font-size: large;
-        font-style: italic;
-    }
-
-    .footer {
-      margin-top: auto;
-      padding: 1rem;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #777;
-    }
-
-.hidden {
-    visibility: hidden;
-    display: none;
+    font-family: 'League Spartan', Arial, sans-serif;
+	margin: 0;
+	background: #f8f9fa;
+    display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 1rem;
+	color: var(--text-primary);
+	background-color: var(--bg);
 }
 
-.shrunk {
-    height: 0em;
-}
-
-.invisible {
-    visibility: hidden;
-}
-
-.flipped {
-    transform: scaleX(-1);
-}
-
-.mobileOnly {
-    display: none;
+header {
+	width: 100%;
+	background: #2e2e3a;
+	color: #fdfdfd;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem 2rem;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	border-bottom: 4px solid #730e17;
+	position: fixed;
+	top: 0px;
+	width: 100%;
+	left: 0;
+	z-index: 1;
 }
 
 .bold {
-    font-weight: bolder;
-    color: darkblue;
-    font-size: x-large;
-}
-
-.center {
-    text-align: center;
-}
-
-#root {
-    height: 100%;
-    width: 50%;
-}
-
-#siteName, #siteName a {
-    text-align: center;
-    z-index: 1;
-    font-size: 30px;
-    color: inherit;
-    text-decoration: none;
-    font-family: 'Actor', sans-serif;
+	font-weight: bolder;
+	color: var(--primary);
+	font-size: x-large;
 }
 
 div[contenteditable=true] {
-    background-color: var(--periwinkle-crayola);
+	background-color: var(--primary);
 }
 
 div.q {
-    width: 95%;
-    height: auto;
-    padding: 0.5em;
-    margin-left: auto;
-    background-color: var(--state-blue);
-    color: var(--golden);
-    font-size: xx-large;
-    margin-right: auto;
-    margin-top: 15px;
-    margin-bottom: 25px;
-    background-clip: padding-box;
-    border: 1px solid transparent;
-    border-radius: 0.25rem;
-    box-shadow: rgb(0 0 0 / 2%) 0 1px 3px 0;
-    box-sizing: border-box;
+	background-color: var(--primary);
+	color: var(--whitish);
 }
 
-#buttonGroup2 {
-    display: none;
-}
-
-div#answerBlock {
-    font-family: 'Actor', sans-serif;
-    text-align: center;
-}
-
-span#answer, div#answer {
-    font-family: serif;
-    font-size: 4em;
-}
-
-#def {
-    margin-top: 2.5em;
-    color: var(--golden);
-    min-height: 5em;
-
-    margin-left: 2.5em;
-    font-size: larger;
-}
-
-.clue {
-    padding: 1em;
-}
-
-button, .button {
-    font-size: x-large;
-    margin: 5px;
-    align-items: center;
-    background-clip: padding-box;
-    background-color: var(--game-dark);
-    border: 1px solid var(--cool-grey);
-    border-radius: 0.25rem;
-    box-shadow: rgb(0 0 0 / 2%) 0 1px 3px 0;
-    box-sizing: border-box;
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 600;
-    min-height: 3rem;
-    padding: calc(0.875rem - 1px) calc(1.5rem - 1px);
-    transition: all 250ms;
-    user-select: none;
-    touch-action: manipulation;
-    vertical-align: baseline;
-    width: auto;
-    margin-right: 2em;    
-}
-
-div#buttonContainer {
-    clear: both;
-    margin-top: 1.5em;
-    text-align: center;
-}
-
-span#result {
-    font-size: larger;
-    float: right;
-    margin-right: 5em;
-}
-
-.answer {
-    height: 1em;
-    padding-left: 3px;
-    padding-right: 3px;
-}
-
-#reactContainer {
-    padding-top: 5em;
-    left: 50%;
-    font-size: 1.5em;
-    margin: 0 auto;
-}
-
-#meaning {
-    min-height: 2em;
-    margin-left: 0.5em;
-}
-
-span#IPA, div#IPA {
-    margin-left: 0.5em;
-    font-size: 80%;
-}
-
-#part2 {
-    float: right;
+button,
+.button {
+	background-color: var(--accent);
+	border: 1px solid var(--surface);
+	color: var(--text-primary);
 }
 
 #parts {
-    color: var(--cool-grey);
-    font-size: 1em;
-    font-style: italic;
-    top: 47px;
-    position: relative;
+	color: var(--text-muted);
+}
+
+.guessBox {
+	border: solid 2px var(--primary);
+}
+
+.guessbox input,
+.guessbox span {
+	color: var(--text-primary);
+}
+
+#reactContainer .guessBox input {
+	background-color: var(--surface);
+	color: var(--text-primary);
+}
+
+#reactContainer.correct .guessBox input {
+	background-color: var(--correct);
+}
+
+div#header {
+	background-color: var(--primary);
+	border-bottom: solid 1px var(--surface);
+}
+
+#shareModal {
+	background-color: var(--surface);
+	color: var(--bg);
+}
+
+#helpContainer {
+	background-color: var(--surface);
+	color: var(--bg);
+}
+
+
+.title {
+	font-size: 2rem;
+	font-weight: bold;
+	font-family: 'Courier New', Courier, monospace;
+	letter-spacing: 2px;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.title-icon {
+	font-size: 2rem;
+}
+
+.icons {
+	display: flex;
+	gap: 1rem;
+	font-size: 1.3rem;
+	cursor: pointer;
+	position: relative;
+	left: -100;
+}
+
+.clues {
+	margin: 1rem 0;
+	background: #fff;
+	padding: 1rem;
+	border-radius: 8px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+	width: 100%;
+}
+
+.clue-pair {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.clue {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.clue::before {
+	content: "🧩";
+	color: #730e17;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+	gap: 5px;
+	margin: 1rem auto;
+	width: 100%;
+	justify-content: center;
+}
+
+.tile {
+	width: 40px;
+	height: 40px;
+	background: #e0e0e0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.25rem;
+	font-weight: bold;
+	border-radius: 4px;
+}
+
+.tile.correct {
+	background: #a3e635;
+	color: #000;
+}
+
+.tile.wrong {
+	background: #f33033;
+	color: #000;
+}
+
+.input-area {
+	margin: 1rem 0;
+	padding: 0 2em;
+}
+
+.input-area input {
+	padding: 0.5rem;
+	font-size: 1rem;
+	width: 200px;
+	text-transform: uppercase;
+}
+
+.message {
+	font-size: larger;
+	padding: 0.5em 2em;
+	color: green;
+	font-weight: bold;
+	margin-top: 1rem;
+}
+
+span.hintButton {
+	font-size: large;
+	font-style: italic;
+}
+
+.footer {
+	margin-top: auto;
+	padding: 1rem;
+	text-align: center;
+	font-size: 0.9rem;
+	color: #777;
+}
+
+.hidden {
+	visibility: hidden;
+	display: none;
+}
+
+.shrunk {
+	height: 0em;
+}
+
+.invisible {
+	visibility: hidden;
+}
+
+.flipped {
+	transform: scaleX(-1);
+}
+
+.mobileOnly {
+	display: none;
+}
+
+.bold {
+	font-weight: bolder;
+	color: darkblue;
+	font-size: x-large;
+}
+
+.center {
+	text-align: center;
+}
+
+#root {
+	height: 100%;
+	width: 50%;
+}
+
+#siteName,
+#siteName a {
+	text-align: center;
+	z-index: 1;
+	font-size: 30px;
+	color: inherit;
+	text-decoration: none;
+	font-family: 'Actor', sans-serif;
+}
+
+div[contenteditable=true] {
+	background-color: var(--periwinkle-crayola);
+}
+
+div.q {
+	width: 95%;
+	height: auto;
+	padding: 0.5em;
+	margin-left: auto;
+	background-color: var(--state-blue);
+	color: var(--golden);
+	font-size: xx-large;
+	margin-right: auto;
+	margin-top: 15px;
+	margin-bottom: 25px;
+	background-clip: padding-box;
+	border: 1px solid transparent;
+	border-radius: 0.25rem;
+	box-shadow: rgb(0 0 0 / 2%) 0 1px 3px 0;
+	box-sizing: border-box;
+}
+
+#buttonGroup2 {
+	display: none;
+}
+
+div#answerBlock {
+	font-family: 'Actor', sans-serif;
+	text-align: center;
+}
+
+span#answer,
+div#answer {
+	font-family: serif;
+	font-size: 4em;
+}
+
+#def {
+	margin-top: 2.5em;
+	color: var(--golden);
+	min-height: 5em;
+
+	margin-left: 2.5em;
+	font-size: larger;
+}
+
+.clue {
+	padding: 1em;
+}
+
+button,
+.button {
+	font-size: x-large;
+	margin: 5px;
+	align-items: center;
+	background-clip: padding-box;
+	background-color: var(--game-dark);
+	border: 1px solid var(--cool-grey);
+	border-radius: 0.25rem;
+	box-shadow: rgb(0 0 0 / 2%) 0 1px 3px 0;
+	box-sizing: border-box;
+	color: white;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: 600;
+	min-height: 3rem;
+	padding: calc(0.875rem - 1px) calc(1.5rem - 1px);
+	transition: all 250ms;
+	user-select: none;
+	touch-action: manipulation;
+	vertical-align: baseline;
+	width: auto;
+	margin-right: 2em;
+}
+
+div#buttonContainer {
+	clear: both;
+	margin-top: 1.5em;
+	text-align: center;
+}
+
+span#result {
+	font-size: larger;
+	float: right;
+	margin-right: 5em;
+}
+
+.answer {
+	height: 1em;
+	padding-left: 3px;
+	padding-right: 3px;
+}
+
+#reactContainer {
+	padding-top: 5em;
+	left: 50%;
+	font-size: 1.5em;
+	margin: 0 auto;
+}
+
+#meaning {
+	min-height: 2em;
+	margin-left: 0.5em;
+}
+
+span#IPA,
+div#IPA {
+	margin-left: 0.5em;
+	font-size: 80%;
+}
+
+#part2 {
+	float: right;
+}
+
+#parts {
+	color: var(--cool-grey);
+	font-size: 1em;
+	font-style: italic;
+	top: 47px;
+	position: relative;
 }
 
 div#foot {
-    height: 22px;
-    position: fixed;
-    bottom: 0px;
-    width: 100%;
-    left: 0;
-    z-index: 0;
+	height: 22px;
+	position: fixed;
+	bottom: 0px;
+	width: 100%;
+	left: 0;
+	z-index: 0;
 }
 
 #foot a {
-    margin-right: 5px;
+	margin-right: 5px;
 }
 
 #menuWrapper {
     position: fixed;
     top: 78px;
-    border-right: solid 1px var(--golden);
+    border-left: 4px solid #730e17;
     height: 100%;
     width: 13em;
     padding-left: 1em;
-    background: var(--whitish);
-    color: var(--cool-grey);
-    transition: 0.7s;
+    background: #2e2e3a;
+    color: #fdfdfd;
+    transition: 0.4s;
     transition-timing-function: ease-in-out;
     z-index: 5;
 }
 
 #menuWrapper.slideOff {
-    right: -300px;
+	right: -300px;
 }
 
 #menuWrapper ul {
-    list-style-type: none; /* Remove bullets */
-    padding: 0; /* Remove padding */
-    margin: 0; /* Remove margins */
-    margin-top: 2em;
-    margin-right: 0.5em;
+	list-style-type: none;
+	/* Remove bullets */
+	padding: 0;
+	/* Remove padding */
+	margin: 0;
+	/* Remove margins */
+	margin-top: 2em;
+	margin-right: 0.5em;
 }
 
 #menuWrapper li {
-    margin-bottom: 8px;
+	margin-bottom: 8px;
 }
 
 #menuWrapper li img {
-    vertical-align: middle;
-    margin-right: 5px;
+	vertical-align: middle;
+	margin-right: 5px;
 }
 
-#menuWrapper li a, #menuWrapper li span {
-    text-decoration: none;
-    font-size: 1.1em;
-    color: var(--game-dark);
+#menuWrapper li a,
+#menuWrapper li span {
+	text-decoration: none;
+	font-size: 1.1em;
+	color: #fdfdfd;
 }
 
 .closeMenu {
-    cursor: pointer;
-    float: right;
+	cursor: pointer;
+	float: right;
 }
 
 #iconBoxLeft {
-    position: absolute;
-    margin-left: 5px;
-    z-index: 2;
+	position: absolute;
+	margin-left: 5px;
+	z-index: 2;
 }
 
 #iconBoxRight {
-    position: absolute;
-    right: 17px;
-    z-index: 2;
+	position: absolute;
+	right: 17px;
+	z-index: 2;
 }
 
 .navButton {
-    height: 37px;
-    cursor: pointer;
+	height: 37px;
+	cursor: pointer;
 }
 
 span#credit {
-    float: right;
-    margin-right: 1em;
+	float: right;
+	margin-right: 1em;
 }
 
 .guessBox {
-    padding: 1em;
-    border: solid 2px var(--golden);
-    text-align: center;
-    font-size: larger;
+	padding: 1em;
+	border: solid 2px var(--golden);
+	text-align: center;
+	font-size: larger;
 }
 
 #guessBox {
-    border-radius: 6px;
-    width: 20em;
+	border-radius: 6px;
+	width: 20em;
 }
 
 #answerBox {
-    margin-top: 3em;
+	margin-top: 3em;
 }
 
 .guessBox div {
-    height: 5em;
+	height: 5em;
 }
 
 #guessBox1 {
-    margin-right: 0.5em;
+	margin-right: 0.5em;
 }
 
-.guessbox input, .guessbox span {
-    width: 33%;
-    font-size: larger;
-    margin: 2em;
-    color: var(--whitish);
-    padding: 4px;
+.guessbox input,
+.guessbox span {
+	width: 33%;
+	font-size: larger;
+	margin: 2em;
+	color: var(--whitish);
+	padding: 4px;
 }
 
 #reactContainer .guessBox input {
-    background-color: var(--game-dark);
-    color: var(--whitish);
+	background-color: var(--game-dark);
+	color: var(--whitish);
 }
 
 #reactContainer.correct .guessBox input {
-    background-color:var(--game-dark);
+	background-color: var(--game-dark);
 }
 
 .correct #revealButton {
-    display: none;
+	display: none;
 }
 
 img#correctImage {
-    height: 5em;
-    position: relative;
-    top: 7.5em;
-    left: -12em;
-    transition-duration: 0.4s;
-    transition-timing-function: ease-in;
+	height: 5em;
+	position: relative;
+	top: 7.5em;
+	left: -12em;
+	transition-duration: 0.4s;
+	transition-timing-function: ease-in;
 }
 
 img#correctImage.shrunk {
-    height: 0em;
-    transition-duration: 0s;
+	height: 0em;
+	transition-duration: 0s;
 }
 
 #shareModal {
-    z-index: 3;
-    color: var(--game-dark);
-    background-color: var(--whitish);
-    position: fixed;
-    width: 40%;
-    margin-left: -20%;
-    padding: 1em;
-    padding-bottom: 2em;
-    min-height: 50%;
-    top: 25%;
-    border: black solid 2px;
-    border-radius: 5px;
-    box-shadow: rgb(0 0 0 / 30%) 5px 5px 5px 0;
-    box-sizing: border-box;
+	z-index: 3;
+	color: var(--game-dark);
+	background-color: var(--whitish);
+	position: fixed;
+	width: 40%;
+	margin-left: -20%;
+	padding: 1em;
+	padding-bottom: 2em;
+	min-height: 50%;
+	top: 25%;
+	border: black solid 2px;
+	border-radius: 5px;
+	box-shadow: rgb(0 0 0 / 30%) 5px 5px 5px 0;
+	box-sizing: border-box;
 }
 
 #shareButtons {
-    display: flex;
-    align-items: center;
-    justify-items: center;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    align-content: center;
-    justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-items: center;
+	flex-wrap: nowrap;
+	flex-direction: row;
+	align-content: center;
+	justify-content: center;
 }
 
 .shareButton {
-    height: 60px;
-    width: 60px;
-    margin: 5px;
+	height: 60px;
+	width: 60px;
+	margin: 5px;
 }
 
 .shareButton a {
-    text-decoration: none;
-    color: var(--periwinkle-crayola);
+	text-decoration: none;
+	color: var(--periwinkle-crayola);
 }
 
 .copyLinkButton {
-    text-decoration: underline;
-    color: blue;
-    cursor: pointer;
+	text-decoration: underline;
+	color: blue;
+	cursor: pointer;
 }
 
 .button {
-    margin-top: 1.5em;
+	margin-top: 1.5em;
 }
 
 #helpContainer {
-    position: absolute;
-    top: 70px;
-    left: 18%;
-    width: 64%;
-    color: var(--game-dark);
-    background-color: var(--whitish);
-    border: 1px solid transparent;
-    border-radius: 0.25rem;
-    box-shadow: rgb(0 0 0 / 2%) 0 1px 3px 0;
-    box-sizing: border-box;
-    min-height: 60vh;
+	position: absolute;
+	top: 70px;
+	left: 18%;
+	width: 64%;
+	color: var(--game-dark);
+	background-color: var(--whitish);
+	border: 1px solid transparent;
+	border-radius: 0.25rem;
+	box-shadow: rgb(0 0 0 / 2%) 0 1px 3px 0;
+	box-sizing: border-box;
+	min-height: 60vh;
 }
 
 #helpModal {
-    padding: 2em;
+	padding: 2em;
 }
 
 #whatsapp {
-    background-image: url(/static/icons/whatsapp.svg);
+	background-image: url(/static/icons/whatsapp.svg);
 }
 
 #twitter {
-    background-image: url(/static/icons/twitter.svg);
+	background-image: url(/static/icons/twitter.svg);
 }
 
 #facebook {
-    background-image: url(/static/icons/facebook.svg);
+	background-image: url(/static/icons/facebook.svg);
 }
 
-@media only screen and (max-device-width: 800px) {
+@media only screen and (max-device-width: 1000px) {
 
-    .mobileOnly {
-        display: inherit;
+	.mobileOnly {
+		display: inherit;
+	}
+
+	.notMobile {
+		display: none;
+	}
+
+	html>body {
+		width: 100%;
+	}
+
+	html,
+	body {
+		overflow-y: inherit;
+	}
+
+    #header {
+        font-size: small;
+        height: 1em;
+        padding: 1rem 1rem;
     }
 
-    .notMobile {
-        display: none;
+    .grid {
+        margin: 1rem 0;
     }
 
-    html>body {
-        width: 100%;
+	label.switch {
+		top: initial;
+	}
+
+	div#reactContainer {
+		width: 100%;
+		height: 30em;
+		font-size: inherit;
+        padding: 0.5em;
+	}
+
+	.guessbox input {
+		margin: 0px;
+		margin-top: 12px;
+		display: block;
+		width: 100%;
+	}
+
+	#guesses {
+		display: inherit;
+	}
+
+	.guessBox {
+		width: 90%;
+		margin-bottom: 5px;
+		;
+	}
+
+	div#root {
+		width: inherit;
+	}
+
+    .clues {
+        font-size: xx-large;
     }
 
-    html, body {
-        overflow-y: inherit;
-    }
+	.footer {
+		display: none;
+	}
 
-    label.switch {
-        top: initial;
-    }
+	#shareModal {
+		color: var(--bg);
+		width: 80%;
+		margin-left: 10%;
+		height: 80%;
+		top: 5%;
+	}
 
-    div#reactContainer {
-        width: 100%;
-        height: 30em;
-        font-size: inherit;
-    }
+	#shareModal h1 {
+		clear: both;
+	}
 
-    .guessbox input {
-        margin: 0px;
-        margin-top: 12px;
-        display: block;
-        width: 100%;
-    }
+	@media only screen and (orientation:landscape) {
 
-    #guesses {
-        display: inherit;
-    }
+		div#reactContainer {
+			top: 0px;
+			margin-top: 0px;
+			padding: 0px;
+		}
 
-    .guessBox {
-        width: 90%;
-        margin-bottom: 5px;;
-    }
+		#buttonContainer {
+			margin-left: 0;
+		}
 
-    div#root {
-        width: inherit;
-    }
+		#parts {
+			top: 0px;
+			position: inherit;
+		}
+	}
 
-    answer {
-        font-size: 2.3em;
-    }
-
-    .footer {
-        display: none;
-    }
-
-    #shareModal {
-        color: var(--bg);
-        width: 80%;
-        margin-left: 10%;
-        height: 80%;
-        top: 5%;
-    }
-
-    #shareModal h1 {
-        clear: both;
-    }
-
-    @media only screen and (orientation:landscape) {
-        html>body {
-            zoom: 2;
-        }
-        div#reactContainer {
-            top: 0px;
-            margin-top: 0px;
-            padding: 0px;
-        }
-        #foot, #header {
-            display: none;
-        }
-        #buttonContainer {
-            margin-left: 0;
-        }
-        #parts {
-            top: 0px;
-            position: inherit;
-        }
-    }
-
-  }
-
-  body {
-    font-family: 'League Spartan', sans-serif;
-    color: var(--text-primary);
-    background-color: var(--bg);
-}
-
-.bold {
-    font-weight: bolder;
-    color: var(--primary);
-    font-size: x-large;
-}
-
-div[contenteditable=true] {
-    background-color: var(--primary);
-}
-
-div.q {
-    background-color: var(--primary);
-    color: var(--whitish);
-}
-
-button, .button {
-    background-color: var(--accent);
-    border: 1px solid var(--surface);
-    color: var(--text-primary);
-}
-
-#parts {
-    color: var(--text-muted);
-}
-
-.guessBox {
-    border: solid 2px var(--primary);
-}
-
-.guessbox input, .guessbox span {
-    color: var(--text-primary);
-}
-
-#reactContainer .guessBox input {
-    background-color: var(--surface);
-    color: var(--text-primary);
-}
-
-#reactContainer.correct .guessBox input {
-    background-color: var(--correct);
-}
-
-div#header {
-    background-color: var(--primary);
-    border-bottom: solid 1px var(--surface);
-}
-
-#menuWrapper {
-    background: var(--surface);
-    color: var(--text-muted);
-    border-right: solid 1px var(--surface);
-}
-
-#menuWrapper li a, #menuWrapper li span {
-    color: var(--primary);
-}
-
-#shareModal {
-    background-color: var(--surface);
-    color: var(--bg);
-}
-
-#helpContainer {
-    background-color: var(--surface);
-    color: var(--bg);
 }

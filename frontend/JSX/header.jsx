@@ -15,9 +15,9 @@ class HeadZone extends React.Component {
       AnswerSmasher
     </div>
     <div class="icons">
-      <span title="How to Play" onClick={_=>toggleHelp()}>ⓘ</span>
-      <span title="Menu"  onClick={toggleMenu}>🫩</span>
-      <span title="Share" onClick={toggleShare}>✉️</span>
+      <span title="How to Play" onClick={_=>toggleHelp()}><img className="navButton notMobile" src="/static/icons/help.svg" /></span>
+      <span title="Menu"  onClick={toggleMenu}><img className="navButton" src="/static/icons/menu.svg" /></span>
+      <span title="Share" onClick={toggleShare}><img className="navButton" src="/static/icons/share.svg" /></span>
     </div>
         <div id="iconBoxLeft">
           <div id="menuWrapper" className={`${this.state.showMenu ? "" : "slideOff"}`}>
