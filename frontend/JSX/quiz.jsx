@@ -31,6 +31,7 @@ class QuoteZone extends React.Component {
                 incrementScore();
                 newState.isScorable = false;
                 let score = getScore();
+                newState.score = score;
             }
             this.setState(newState);
         }
