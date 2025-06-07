@@ -14,7 +14,8 @@ var cors = require('cors');
 app.use(cors());
 app.use(express.json());
 
-const port = 3000
+const port = 3000;
+const retryLimit = 6;
 
 const isProd = process.env.IS_PROD !== "no";
 
@@ -82,11 +83,14 @@ function findPair(limit){
             if (!canMergeSpelling){
               throw 'Failed to merge spelling';
             }
+            if (canMergeSpelling.length <= first._id.length+1){
+              throw "merged smash is too short";
+            }
             var smash = combine(first, second);
             resolve(smash)
           }
           catch (err){
-            stopAt = 4;
+            stopAt = retryLimit;
             if (limit <= stopAt){
               reject({error: `Exceeded retries (${stopAt})`})
             }
