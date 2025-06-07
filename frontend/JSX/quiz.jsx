@@ -30,7 +30,7 @@ class QuoteZone extends React.Component {
             if (correct && !this.state.isRevealed && this.state.isScorable){
                 incrementScore();
                 newState.isScorable = false;
-                score = getScore();
+                let score = getScore();
             }
             this.setState(newState);
         }
@@ -67,7 +67,7 @@ class QuoteZone extends React.Component {
             location.hash = "reveal"
             document.title = combineSpelling(elem.state.firstAnswer, elem.state.secondAnswer);
             elem.setState({
-                guess: this.state.answer.toUpperCase(),
+                guess: elem.state.answer.toUpperCase(),
                 isRevealed: true
             });
         }
