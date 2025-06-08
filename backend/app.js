@@ -107,10 +107,14 @@ function findPair(limit){
 
 function getEntryByStart(start){
   return new Promise((resolve, reject) => {
-    Entry.find({start: start, _id: {"$expr": { "$gt": [ { "$strLenCP":"$_id" }, 5]}}, function(err, docs){
-      var choice = Math.floor(Math.random() * docs.length)
-      resolve(docs[choice])
-    });
+    Entry.find(
+      {start: start, $expr: {
+        $gt: [{ $strLenCP: "$_id" }, 5]
+      }},
+      function(err, docs){
+        var choice = Math.floor(Math.random() * docs.length)
+        resolve(docs[choice])
+      });
   });
 }
 
