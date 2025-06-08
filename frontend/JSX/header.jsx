@@ -11,7 +11,7 @@ class HeadZone extends React.Component {
     return (
   <header id="header">
     <div className="title">
-      <span className="title-icon">🧠</span>
+      <span className="title-icon"><img src="/static/icons/brainyR.png" /></span>
       AnswerSmasher
     </div>
     <div className="icons">

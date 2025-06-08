@@ -96,7 +96,7 @@ class QuoteZone extends React.Component {
                         /> <span className="hintButton" onClick={x => this.giveHint()}>{(this.state.isCorrect || this.state.isRevealed) ? '' : "⁉️ hint"}</span>
                     </div>
 
-                    <div className="grid"  style={{width: 55*this.state.answer.length}} >
+                    <div className="grid"  style={{width: 55*this.state.answer.length, maxWidth: "90%"}} >
                         {this.state.answer.split('').map((char, index) => (
                         <div
                             key={index}
