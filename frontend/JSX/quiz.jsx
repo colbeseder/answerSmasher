@@ -81,8 +81,8 @@ class QuoteZone extends React.Component {
 
                     <div className="clues">
                         <div className="clue-pair">
-                            <div className="clue">{cleanClue(this.state.firstClue, 3)} ({getWordLength(this.state.firstAnswer)})</div>
-                            <div className="clue">{cleanClue(this.state.secondClue, 3)} ({getWordLength(this.state.secondAnswer)})</div>
+                            <div className="clue"><img className="clueIcon" src="/static/icons/magglass.png" />{cleanClue(this.state.firstClue, 3)} ({getWordLength(this.state.firstAnswer)})</div>
+                            <div className="clue"><img className="clueIcon" src="/static/icons/magglass.png" />{cleanClue(this.state.secondClue, 3)} ({getWordLength(this.state.secondAnswer)})</div>
                         </div>
                     </div>
 
@@ -93,7 +93,12 @@ class QuoteZone extends React.Component {
                         onInput={e => this.handleChange(e.target.value)}
                         maxLength={30}
                         placeholder="Enter your answer"
-                        /> <span className="hintButton" onClick={x => this.giveHint()}>{(this.state.isCorrect || this.state.isRevealed) ? '' : "⁉️ hint"}</span>
+                        /> 
+                    {(this.state.isRevealed || this.state.isCorrect) ?
+                         (<span className="message">{this.state.isRevealed ? '🧐 Revealed!' : this.state.isCorrect ? '🎉 Correct!' : ''}</span> ): 
+                         (<span className="hintButton" onClick={x => this.giveHint()}>{(this.state.isCorrect || this.state.isRevealed) ? '' : "⁉️ hint"}</span>) 
+                    }
+
                     </div>
 
                     <div className="grid"  style={{width: 55*this.state.answer.length, maxWidth: "90%"}} >
@@ -110,7 +115,6 @@ class QuoteZone extends React.Component {
 
                     <div>
                         <span id="IPA">{(this.state.isCorrect || this.state.isRevealed) ? '/' + this.state.pronounciation + '/      ' + this.state.firstAnswer + '+' + this.state.secondAnswer: ''}</span>
-                        <div className="message">{this.state.isRevealed ? '🧐 Revealed!' : this.state.isCorrect ? '🎉 Correct!' : ''}</div>
                     </div>
 
                         <br />
