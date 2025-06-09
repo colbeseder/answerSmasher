@@ -154,6 +154,13 @@ class QuoteZone extends React.Component {
 const domContainer = document.querySelector('#root');
 window.elem = ReactDOM.render(e(QuoteZone), domContainer);
 
+const input = document.getElementById('guessBox'); // or a textarea
+input.addEventListener('keypress', function() {
+  const s = this.selectionStart;
+  this.value = this.value.slice(0, s) + this.value.slice(s + 1);
+  this.selectionEnd = s;
+}, false);
+
 function loadPage() {
     try{
         var digest = /[?&]d=([A-Z0-9/+=]+)/i.exec(location.search)?.at(1);
