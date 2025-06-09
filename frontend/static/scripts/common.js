@@ -40,7 +40,11 @@ function combineSpelling(a, b, falseIfFailed){
         return leadCapital(a);
     }
     var joint = b.charAt(0);
-    if (a.slice(1, -1).indexOf(joint.toLowerCase()) === -1){
+    // Edge case for ti=sh (eg.  illustration+shenanigans)
+    if (/^sh/i.test(b) && /ti/i.test(a)){
+        joint = "(?:sh|ti)"
+    }
+    if (!new RegExp(joint, "i").test(a.slice(1, -1))){
         // Failed to combine
         if (falseIfFailed){
             return false;
