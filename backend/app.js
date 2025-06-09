@@ -15,7 +15,6 @@ app.use(cors());
 app.use(express.json());
 
 const port = 3000;
-const retryLimit = 10;
 
 const isProd = process.env.IS_PROD !== "no";
 
@@ -67,7 +66,7 @@ function combine(first, second){
   return smash;
 }
 
-const maxRetries = 10;
+const maxRetries = 6;
 
 function findPair(limit, errorMessages){
   errorMessages = errorMessages || [];
@@ -91,10 +90,9 @@ function findPair(limit, errorMessages){
             resolve(smash)
           }
           catch (err){
-            stopAt = retryLimit;
             errorMessages.push(err);
-            if (limit <= stopAt){
-              reject({error: `Exceeded retries (${stopAt})`, errorMessages})
+            if (limit <= 0){
+              reject({error: `Exceeded retries (${maxRetries})`, errorMessages})
             }
             else {
               findPair(limit-1, errorMessages)
