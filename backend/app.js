@@ -69,7 +69,8 @@ function combine(first, second){
 
 const maxRetries = 10;
 
-function findPair(limit){
+function findPair(limit, errorMessages){
+  errorMessages = errorMessages || [];
   limit = limit || maxRetries; //Don't retry forever
   return new Promise((resolve, reject) => {
     var entry = getRandomDoc(Entry)
@@ -91,11 +92,12 @@ function findPair(limit){
           }
           catch (err){
             stopAt = retryLimit;
+            errorMessages.push(err);
             if (limit <= stopAt){
-              reject({error: `Exceeded retries (${stopAt})`})
+              reject({error: `Exceeded retries (${stopAt})`, errorMessages})
             }
             else {
-              findPair(limit-1)
+              findPair(limit-1, errorMessages)
                 .then(pair => resolve(pair))
                 .catch(e => reject(e))
             }
