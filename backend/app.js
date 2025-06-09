@@ -15,7 +15,7 @@ app.use(cors());
 app.use(express.json());
 
 const port = 3000;
-const retryLimit = 6;
+const retryLimit = 10;
 
 const isProd = process.env.IS_PROD !== "no";
 
