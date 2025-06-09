@@ -214,15 +214,23 @@ img.clueIcon {
 
 .message {
 	font-size: larger;
-	padding: 0.5em 2em;
 	color: green;
 	font-weight: bold;
 	margin-top: 1rem;
 }
 
+.message-icon {
+    height: 2.5em;
+    position: relative;
+    top: 21px;
+    margin: 0px 10px;
+}
+
 span.hintButton {
-	font-size: large;
-	font-style: italic;
+	font-size: 110%;
+    font-style: italic;
+    font-weight: bold;
+    color: #f33033;
 }
 
 .footer {

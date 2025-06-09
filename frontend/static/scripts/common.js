@@ -302,6 +302,35 @@ function getGuesses(){
     }
 }
 
+function explodeConfetti() {
+    const duration = 2 * 1000;
+    const animationEnd = Date.now() + duration;
+    const defaults = {
+        startVelocity: 30,
+        spread: 360,
+        ticks: 60,
+        zIndex: 1000,
+        scalar: 2 // << Bigger particles
+      };
+    const interval = setInterval(function () {
+    const timeLeft = animationEnd - Date.now();
+
+    if (timeLeft <= 0) {
+        return clearInterval(interval);
+    }
+
+    const particleCount = 100 * (timeLeft / duration);
+    // random origin point
+    confetti(Object.assign({}, defaults, {
+        particleCount,
+        origin: {
+        x: Math.random(),
+        y: Math.random() - 0.2
+        }
+    }));
+    }, 250);
+}
+
 function LOG(msg){
     var logFoot = document.getElementById("logFoot");
     if (logFoot && msg){

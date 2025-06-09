@@ -1,6 +1,5 @@
 window.isQuizPage = true;
 
-
 const e = React.createElement;
 
 class QuoteZone extends React.Component {
@@ -74,6 +73,15 @@ class QuoteZone extends React.Component {
         }
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        // Trigger confetti when isCorrect changes from false to true
+        if (!prevState.isCorrect && this.state.isCorrect && !this.state.isRevealed) {
+            if (window.explodeConfetti) {
+                window.explodeConfetti();
+            }
+        }
+    }
+
     render() {
         return (
                 <div id="reactContainer" className={`${this.state.isCorrect ? "correct" : ""} ${this.state.isRevealed ? "revealed" : ""}`}>
@@ -94,14 +102,15 @@ class QuoteZone extends React.Component {
                         maxLength={30}
                         placeholder="Enter your answer"
                         /> 
+                    <img className="message-icon" onClick={x => this.giveHint()} src={`/static/icons/${this.state.isRevealed ? "revealed" : (this.state.isCorrect ? "correct" : "hint")}.png`} />
                     {(this.state.isRevealed || this.state.isCorrect) ?
-                         (<span className="message">{this.state.isRevealed ? '🧐 Revealed!' : this.state.isCorrect ? '🎉 Correct!' : ''}</span> ): 
-                         (<span className="hintButton" onClick={x => this.giveHint()}>{(this.state.isCorrect || this.state.isRevealed) ? '' : "⁉️ hint"}</span>) 
+                         (<span className="message">{this.state.isRevealed ? ' Revealed!' : this.state.isCorrect ? ' Correct!' : ''}</span> ): 
+                         (<span className="hintButton" onClick={x => this.giveHint()}>{(this.state.isCorrect || this.state.isRevealed) ? '' : "hint"}</span>) 
                     }
 
                     </div>
 
-                    <div className="grid"  style={{width: 55*this.state.answer.length, maxWidth: "90%"}} >
+                    <div className="grid"  style={{width: 55*(this.state.answer?.length || 0), maxWidth: "90%"}} >
                         {this.state.answer.split('').map((char, index) => (
                         <div
                             key={index}
