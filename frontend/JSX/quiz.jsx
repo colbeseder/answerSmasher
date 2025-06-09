@@ -156,7 +156,7 @@ const domContainer = document.querySelector('#root');
 window.elem = ReactDOM.render(e(QuoteZone), domContainer);
 
 const input = document.getElementById('guessBox'); // or a textarea
-input.addEventListener('keypress', function() {
+input.addEventListener('keydown', function() {
   const s = this.selectionStart;
   this.value = this.value.slice(0, s) + this.value.slice(s + 1);
   this.selectionEnd = s;
