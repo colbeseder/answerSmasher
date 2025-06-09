@@ -44,7 +44,7 @@ class QuoteZone extends React.Component {
             let firstPartLength = this.state.answer.length - this.state.secondAnswer.length; 
 
             while (guess.length <= firstPartLength){
-                guess += '.';
+                guess += ' ';
             }
             guess = this.state.firstAnswer[0] + guess.slice(1);
             guess = guess.slice(0, firstPartLength) + this.state.secondAnswer[0] + guess.slice(firstPartLength + 1)
@@ -68,7 +68,7 @@ class QuoteZone extends React.Component {
             let guess = answerBox.value;
 
             while (guess.length < index){
-                guess += '.';
+                guess += ' ';
             }
             answerBox.value = guess;
             answerBox.focus();
@@ -126,8 +126,9 @@ class QuoteZone extends React.Component {
                         {this.state.answer.split('').map((char, index) => (
                         <div
                             key={index} onClick={x => this.setPosition(index)}
-                            className={`tile ${!(index === 0 || index === this.state.answer.length - (this.state.secondAnswer.length-1)) || 'startLetter'} ${(this.state.guess[index]?.toUpperCase() === this.state.answer[index]?.toUpperCase()) || 
-                                 (/[ -'_]/.test(this.state.answer[index]) && !this.state.guess[index] ) ? 'correct' : (this.state.guess[index]? 'wrong' : '')}`}
+                            className={`tile ${!(index === 0 || index === this.state.answer.length - (this.state.secondAnswer.length-1)) || 'startLetter'} 
+                            ${(this.state.guess[index]?.toUpperCase() === this.state.answer[index]?.toUpperCase()) || 
+                                 (/[ -'_]/.test(this.state.answer[index]) && !this.state.guess[index] ) ? 'correct' : ((this.state.guess[index] && this.state.guess[index] !== ' ') ? 'wrong' : '')}`}
                         >
                             {/[ -'_]/.test(this.state.answer[index]) ? this.state.answer[index] : (this.state.guess[index]?.toUpperCase() || '')}
                         </div>
