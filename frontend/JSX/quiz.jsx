@@ -126,7 +126,7 @@ class QuoteZone extends React.Component {
                         {this.state.answer.split('').map((char, index) => (
                         <div
                             key={index} onClick={x => this.setPosition(index)}
-                            className={`tile ${!(index === 0 || index === this.state.answer.length - (this.state.secondAnswer.length-1)) || 'startLetter'} 
+                            className={`tile ${!(index === 0 || index === this.state.answer.length - (this.state.secondAnswer.length)) || 'startLetter'} 
                             ${(this.state.guess[index]?.toUpperCase() === this.state.answer[index]?.toUpperCase()) || 
                                  (/[ -'_]/.test(this.state.answer[index]) && !this.state.guess[index] ) ? 'correct' : ((this.state.guess[index] && this.state.guess[index] !== ' ') ? 'wrong' : '')}`}
                         >
