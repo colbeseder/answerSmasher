@@ -238,6 +238,10 @@ span.hintButton {
 	cursor: pointer;
 }
 
+.startLetter {
+	border-top: solid 3px #2e2e3a;
+}
+
 .footer {
 	margin-top: auto;
 	padding: 1rem;

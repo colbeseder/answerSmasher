@@ -14,6 +14,7 @@ class HelpZone extends React.Component {
             <h1>What's an AnswerSmash?</h1>
             <p>You can make an AnswerSmash by combining two words with overlapping sounds. 
               For example <i>Bowtie</i> and <i>Tiger</i> become <i><a href="/quiz?d=Ym93dGllLHRpZ2Vy">Bowtiger</a></i></p>
+            <p>This is based on sound, not spelling. So the end of the first word may not be spelled the way you expect</p>
             <h1>How to Play</h1>
             <p>The <a href="/quiz">Quiz page</a> will give you two definitions, whose answers combine to form an AnswerSmash</p>
             <p>The <a href="/daily">Smash of the Day</a> gives you the day's AnswerSmasher challenge. Can you get it before your friends? </p>

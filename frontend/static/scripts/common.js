@@ -331,6 +331,11 @@ function explodeConfetti() {
     }, 250);
 }
 
+function setCaret(elemId, caret){
+    let box = document.getElementById(elemId);
+    box.setSelectionRange(caret, caret);
+}
+
 function LOG(msg){
     var logFoot = document.getElementById("logFoot");
     if (logFoot && msg){

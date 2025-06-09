@@ -20,7 +20,7 @@ class QuoteZone extends React.Component {
             score: 0
         };
 
-        this.handleChange = function(guess){
+        this.handleChange = function(guess, event){
             let correct = guess.toUpperCase().trim() === this.state.answer.toUpperCase();
             let newState = {
                 guess: guess.toUpperCase(),
@@ -63,6 +63,18 @@ class QuoteZone extends React.Component {
             document.getElementById("guessBox").focus();
         }
 
+        this.setPosition = function(index){
+            let answerBox = document.getElementById('guessBox');
+            let guess = answerBox.value;
+
+            while (guess.length < index){
+                guess += '.';
+            }
+            answerBox.value = guess;
+            answerBox.focus();
+            setCaret('guessBox', index);
+        }
+
         this.reveal = function(){
             location.hash = "reveal"
             document.title = combineSpelling(elem.state.firstAnswer, elem.state.secondAnswer);
@@ -98,7 +110,7 @@ class QuoteZone extends React.Component {
                         <input id="guessBox"
                         type="text"
                         defaultValue={this.state.guess}
-                        onInput={e => this.handleChange(e.target.value)}
+                        onInput={e => this.handleChange(e.target.value, e)}
                         maxLength={30}
                         placeholder="Enter your answer"
                         /> 
@@ -113,8 +125,8 @@ class QuoteZone extends React.Component {
                     <div className="grid"  style={{width: 55*(this.state.answer?.length || 0), maxWidth: "90%"}} >
                         {this.state.answer.split('').map((char, index) => (
                         <div
-                            key={index}
-                            className={`tile ${(this.state.guess[index]?.toUpperCase() === this.state.answer[index]?.toUpperCase()) || 
+                            key={index} onClick={x => this.setPosition(index)}
+                            className={`tile ${!(index === 0 || index === this.state.answer.length - (this.state.secondAnswer.length-1)) || 'startLetter'} ${(this.state.guess[index]?.toUpperCase() === this.state.answer[index]?.toUpperCase()) || 
                                  (/[ -'_]/.test(this.state.answer[index]) && !this.state.guess[index] ) ? 'correct' : (this.state.guess[index]? 'wrong' : '')}`}
                         >
                             {/[ -'_]/.test(this.state.answer[index]) ? this.state.answer[index] : (this.state.guess[index]?.toUpperCase() || '')}
