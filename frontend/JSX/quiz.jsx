@@ -102,10 +102,10 @@ class QuoteZone extends React.Component {
                         maxLength={30}
                         placeholder="Enter your answer"
                         /> 
-                    <img className="message-icon" onClick={x => this.giveHint()} src={`/static/icons/${this.state.isRevealed ? "revealed" : (this.state.isCorrect ? "correct" : "hint")}.png`} />
+                    <img className={`message-icon ${(this.state.isCorrect || this.state.isRevealed) ? "" : "pointer"}`} onClick={x => this.giveHint()} src={`/static/icons/${this.state.isRevealed ? "revealed" : (this.state.isCorrect ? "correct" : "hint")}.png`} />
                     {(this.state.isRevealed || this.state.isCorrect) ?
                          (<span className="message">{this.state.isRevealed ? ' Revealed!' : this.state.isCorrect ? ' Correct!' : ''}</span> ): 
-                         (<span className="hintButton" onClick={x => this.giveHint()}>{(this.state.isCorrect || this.state.isRevealed) ? '' : "hint"}</span>) 
+                         (<span className="hintButton" onClick={x => this.giveHint()}>{(this.state.isCorrect || this.state.isRevealed) ? '' : "hint ⁉️"}</span>) 
                     }
 
                     </div>

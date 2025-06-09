@@ -231,6 +231,11 @@ span.hintButton {
     font-style: italic;
     font-weight: bold;
     color: #f33033;
+	cursor: pointer;
+}
+
+.pointer {
+	cursor: pointer;
 }
 
 .footer {
@@ -364,7 +369,6 @@ button,
 
 div#buttonContainer {
 	clear: both;
-	margin-top: 1.5em;
 	text-align: center;
 }
 
@@ -381,7 +385,7 @@ span#result {
 }
 
 #reactContainer {
-	padding-top: 5em;
+	padding-top: 3em;
 	left: 50%;
 	font-size: 1.5em;
 	margin: 0 auto;
@@ -709,6 +713,10 @@ img#correctImage.shrunk {
 
 	.title-icon>img {
 		width: 2em;
+	}
+
+	.message-icon {
+    	height: 3.5em
 	}
 
 	@media only screen and (orientation:landscape) {
